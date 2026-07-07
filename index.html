@@ -181,6 +181,44 @@
     .tabs,main,.banner{padding-left:16px;padding-right:16px}
     .sheet{padding:26px 18px}
   }
+  /* ---------- Vowel section (sound-first) ---------- */
+  .vgrid{display:flex;flex-direction:column;gap:8px}
+  .vrow{display:grid;grid-template-columns:52px minmax(120px,1fr) 24px minmax(150px,1.3fr);align-items:center;gap:12px;
+    border:1px solid var(--hair);border-radius:12px;padding:11px 14px;background:var(--card)}
+  .vrow:nth-child(odd){background:var(--teal-faint)}
+  .vglyph{font-size:1.85rem;font-weight:700;color:var(--clay-deep);text-align:center;line-height:1}
+  .vaudio{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:10px;
+    padding:8px 12px;cursor:pointer;font:inherit;text-align:left;transition:border-color .12s,box-shadow .12s}
+  .vaudio:hover,.vaudio:focus-visible{border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-glow);outline:none}
+  .vaudio[data-playing="true"]{border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-glow)}
+  .vaudio .spk{width:16px;height:16px;color:var(--clay-deep);flex:0 0 auto}
+  .vtxt{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+  .vsound{background:var(--clay-tint);border-color:#e6c3a6}
+  .vsound-lab{font-size:1.14rem;font-weight:700;color:var(--ink)}
+  .vsound-as{font-size:.72rem;color:var(--ink-soft);font-style:italic}
+  .varrow{color:var(--ink-soft);font-size:1.2rem;text-align:center}
+  .vex{display:flex;flex-wrap:wrap;gap:7px}
+  .vex-word{font-size:1.05rem;font-weight:600}
+  .vex-ph{font-size:.72rem;color:var(--ink-soft);font-style:italic}
+
+  /* ---------- Heading speaker buttons ---------- */
+  button.say-mini{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;
+    width:27px;height:27px;margin-left:11px;padding:0;border:1px solid var(--line);background:var(--card);background-image:none;
+    border-radius:50%;color:var(--clay-deep);cursor:pointer;flex:0 0 auto;transition:border-color .12s,box-shadow .12s,background .12s}
+  button.say-mini:hover,button.say-mini:focus-visible{border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-glow);outline:none}
+  button.say-mini[data-playing="true"]{border-color:var(--clay);background:var(--clay-tint)}
+  button.say-mini .spk{width:14px;height:14px}
+  h1 button.say-mini{width:31px;height:31px;margin-left:14px}
+  h1 button.say-mini .spk{width:16px;height:16px}
+
+  @media (max-width:560px){
+    .vrow{grid-template-columns:44px 1fr;grid-template-areas:"g s" "g e";gap:7px 10px}
+    .vglyph{grid-area:g;align-self:center}
+    .vsound{grid-area:s}
+    .vex{grid-area:e}
+    .varrow{display:none}
+  }
+
   /* ---------- Quiz mode ---------- */
   #quizToggle{
     position:fixed;right:18px;bottom:18px;z-index:55;display:inline-flex;align-items:center;gap:8px;
@@ -439,13 +477,31 @@ const LESSON2 = {
 };
 
 const VOWELS = [
-  {v:"a",s:"“ah” (as in father)",ex:"casa",ph:"KAH-sah"},
-  {v:"e",s:"“eh” (as in bed)",ex:"que",ph:"keh"},
-  {v:"i",s:"“ee” (as in see)",ex:"sí",ph:"see"},
-  {v:"o",s:"“oh” (as in go)",ex:"no",ph:"noh"},
-  {v:"u",s:"“oo” (as in moon)",ex:"tú",ph:"too"},
-  {v:"ll / y",s:"“sh” (as in shoe)",ex:"llamo",ph:"SHAH-moh"},
+  {g:"a", lab:"“ah”", as:"as in father", sound:"a", ex:[{w:"casa",ph:"KAH-sah",en:"house"}]},
+  {g:"e", lab:"“eh”", as:"as in bed",    sound:"e", ex:[{w:"que",ph:"keh",en:"that / what"}]},
+  {g:"i", lab:"“ee”", as:"as in see",    sound:"i", ex:[{w:"sí",ph:"see",en:"yes"}]},
+  {g:"o", lab:"“oh”", as:"as in go",     sound:"o", ex:[{w:"no",ph:"noh",en:"no"}]},
+  {g:"u", lab:"“oo”", as:"as in moon",   sound:"u", ex:[{w:"tú",ph:"too",en:"you"}]},
+  {g:"ll / y", lab:"“sh”", as:"as in shoe", sound:"yo", soundPh:"shoh",
+     ex:[{w:"calle",ph:"KAH-she",en:"street"},{w:"llamo",ph:"SHAH-moh",en:"I call"}]},
 ];
+
+/* audio buttons for headings/titles */
+const HEADING_AUDIO = {
+  "Lo básico para empezar":{en:"The basics to get started"},
+  "Números, plata y compras":{en:"Numbers, money & shopping"},
+  "Las vocales":{en:"The vowels"},
+  "Saludos y cortesía":{en:"Greetings & courtesy"},
+  "Presentarte":{en:"Introducing yourself"},
+  "El voseo":{en:"The voseo"},
+  "En el café":{en:"At the café"},
+  "Pidiendo direcciones":{en:"Asking for directions"},
+  "Los números 0–15":{say:"Los números",en:"The numbers"},
+  "De 16 a 100":{say:"De dieciséis a cien",en:"From sixteen to a hundred"},
+  "Números de precios":{en:"Price numbers"},
+  "La plata":{en:"Money"},
+  "De compras":{en:"Shopping"},
+};
 
 /* ============================================================ SLUG + RENDER ============================================================ */
 function slugify(s){
@@ -453,6 +509,7 @@ function slugify(s){
     .replace(/[¿?¡!.,…"'’“”]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
 }
 const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SPK='<svg class="spk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none"/><path d="M16 8.5a4 4 0 010 7" stroke-linecap="round"/></svg>';
 
 function sayButton(o){
   const say=o.say||o.es, slug=slugify(say);
@@ -475,10 +532,14 @@ function renderNums(b){
   return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="grid-nums">${tiles}</div>${note}</section>`;
 }
 function renderVowels(){
-  const cells=VOWELS.map(o=>{
-    return `<div class="row"><div><button class="say" data-slug="${slugify(o.ex)}" data-say="${esc(o.ex)}" data-es="${esc(o.ex)}" data-en="${esc(o.s)}" data-ph="${esc(o.ph)}"><span style="color:var(--clay-deep);font-weight:700;margin-right:9px">${esc(o.v)}</span>${esc(o.ex)}<span class="ph">${esc(o.ph)}</span></button></div><div class="en">${esc(o.s)}</div></div>`;
+  const rows=VOWELS.map(o=>{
+    const soundLab=o.lab.replace(/[“”]/g,'');
+    const soundInner=`<span class="vtxt"><span class="vsound-lab">${esc(o.lab)}</span><span class="vsound-as">${esc(o.as)}${o.soundPh?` · ${esc(o.soundPh)}`:''}</span></span>`;
+    const soundBtn=`<button class="say vaudio vsound" data-slug="${slugify(o.sound)}" data-say="${esc(o.sound)}" data-es="${esc(o.sound)}" data-en="the ‘${esc(soundLab)}’ sound" data-ph="${esc(o.soundPh||'')}">${SPK}${soundInner}</button>`;
+    const exBtns=o.ex.map(x=>`<button class="say vaudio vexample" data-slug="${slugify(x.w)}" data-say="${esc(x.w)}" data-es="${esc(x.w)}" data-en="${esc(x.en)}" data-ph="${esc(x.ph)}">${SPK}<span class="vtxt"><span class="vex-word">${esc(x.w)}</span><span class="vex-ph">${esc(x.ph)}</span></span></button>`).join("");
+    return `<div class="vrow"><div class="vglyph">${esc(o.g)}</div>${soundBtn}<span class="varrow" aria-hidden="true">→</span><div class="vex">${exBtns}</div></div>`;
   }).join("");
-  return `<section class="block"><div class="block-head"><h2>Las vocales</h2><span class="en">Vowel pronunciation — always the same sound</span></div><div class="rows">${cells}</div><p class="pron-note">Tap any example word to hear it. In Rioplatense, <b>ll</b> and <b>y</b> sound like “sh” — a synthetic voice may not nail that, so trust the guide (SHAH-moh) or your own recording.</p></section>`;
+  return `<section class="block"><div class="block-head"><h2>Las vocales</h2><span class="en">Vowel pronunciation — always the same sound</span></div><div class="vgrid">${rows}</div><p class="pron-note">Tap the <b>sound</b>, then the <b>example word</b> that shows it. In Rioplatense, <b>ll</b> and <b>y</b> sound like “sh” (calle = KAH-she) — the most striking regional feature.</p></section>`;
 }
 function renderVoseo(){
   return `<section class="block"><div class="block-head"><h2>El voseo</h2><span class="en">The key difference from most Spanish apps</span></div>
@@ -502,6 +563,24 @@ function renderLesson(L){
 }
 document.getElementById("lesson1").innerHTML=renderLesson(LESSON1);
 document.getElementById("lesson2").innerHTML=renderLesson(LESSON2);
+
+/* attach speaker buttons to Spanish titles/headings */
+function addHeadingAudio(){
+  document.querySelectorAll(".lesson-head h1, .block-head h2").forEach(h=>{
+    const key=h.textContent.trim();
+    const info=HEADING_AUDIO[key];
+    if(!info) return;
+    const say=info.say||key;
+    const b=document.createElement("button");
+    b.className="say say-mini";
+    b.type="button";
+    b.dataset.slug=slugify(say); b.dataset.say=say; b.dataset.es=key; b.dataset.en=info.en||""; b.dataset.ph="";
+    b.setAttribute("aria-label","Escuchar “"+key+"”");
+    b.innerHTML=SPK;
+    h.appendChild(b);
+  });
+}
+addHeadingAudio();
 
 /* ============================================================ TABS ============================================================ */
 const tabs=[document.getElementById("tab1"),document.getElementById("tab2")];
@@ -587,7 +666,7 @@ document.getElementById("dlList").addEventListener("click",()=>{
   document.querySelectorAll(".say").forEach(b=>{
     const slug=b.dataset.slug; if(seen.has(slug))return; seen.add(slug);
     const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
-    rows.push([slug,slug+".mp3",b.dataset.es,b.dataset.en].map(q));
+    rows.push([slug,slug+".mp3",b.dataset.say,b.dataset.en].map(q));
   });
   const csv=rows.map(r=>r.join(",")).join("\r\n");
   const blob=new Blob([csv],{type:"text/csv"}), url=URL.createObjectURL(blob);
