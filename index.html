@@ -181,6 +181,33 @@
     .tabs,main,.banner{padding-left:16px;padding-right:16px}
     .sheet{padding:26px 18px}
   }
+  /* ---------- Dialogue ---------- */
+  .dialogue{border:1px solid var(--hair);border-radius:12px;overflow:hidden}
+  .dline{display:grid;grid-template-columns:56px minmax(0,1.15fr) minmax(0,1fr);gap:12px;align-items:baseline;padding:12px 14px;background:var(--card)}
+  .dline + .dline{border-top:1px solid var(--hair)}
+  .who{font-size:.66rem;font-weight:700;letter-spacing:.08em;padding:3px 0;border-radius:6px;text-align:center;color:#fff}
+  .who.mozo{background:var(--teal)}
+  .who.vos{background:var(--clay)}
+  .dsay .say{font-size:1.06rem}
+  .dline .en{color:var(--ink-soft);font-size:.9rem}
+
+  /* ---------- Tu turno (fill-in) ---------- */
+  .turno{border:1px dashed var(--teal);border-radius:12px;padding:18px 20px;background:var(--teal-faint)}
+  .turno h3{margin:0 0 12px;font-size:1.05rem;font-weight:700;color:var(--teal-deep)}
+  .turno-line{padding:9px 0}
+  .turno-line + .turno-line{border-top:1px solid var(--hair)}
+  .turno-es{display:block;font-size:1.06rem;font-weight:600;color:var(--ink)}
+  .turno-en{display:block;font-size:.84rem;color:var(--ink-soft);font-style:italic;margin-top:2px}
+  .slot{display:inline-block;background:var(--clay-tint);border:1px dashed var(--clay);color:var(--clay-deep);
+    font-weight:700;border-radius:6px;padding:0 7px;font-style:normal}
+
+  @media (max-width:560px){
+    .tabs{flex-wrap:wrap}
+    .tab{padding:10px 14px;font-size:.94rem}
+    .dline{grid-template-columns:1fr;gap:4px}
+    .who{justify-self:start;padding:2px 9px}
+  }
+
   /* ---------- Vowel section (sound-first) ---------- */
   .vgrid{display:flex;flex-direction:column;gap:8px}
   .vrow{display:grid;grid-template-columns:52px minmax(120px,1fr) 24px minmax(150px,1.3fr);align-items:center;gap:12px;
@@ -274,11 +301,13 @@
 <div class="tabs" role="tablist" aria-label="Lecciones">
   <button class="tab" role="tab" id="tab1" aria-controls="lesson1" aria-selected="true"><span class="n">01</span>Lo básico</button>
   <button class="tab" role="tab" id="tab2" aria-controls="lesson2" aria-selected="false"><span class="n">02</span>Números y plata</button>
+  <button class="tab" role="tab" id="tab3" aria-controls="lesson3" aria-selected="false"><span class="n">03</span>Comida y viaje</button>
 </div>
 
 <main>
   <div class="sheet" id="lesson1" role="tabpanel" aria-labelledby="tab1"></div>
   <div class="sheet" id="lesson2" role="tabpanel" aria-labelledby="tab2" hidden></div>
+  <div class="sheet" id="lesson3" role="tabpanel" aria-labelledby="tab3" hidden></div>
 </main>
 
 <button id="quizToggle" aria-pressed="false" aria-label="Modo quiz — ocultar traducciones">
@@ -476,12 +505,86 @@ const LESSON2 = {
   ]
 };
 
+const LESSON3 = {
+  kicker:"Lección 3", title:"Vocabulario para el viaje",
+  subtitle:"Vocabulary for the trip — food, places & ordering",
+  blocks:[
+    { type:"rows", h:"En el restorán", en:"At the restaurant", items:[
+      P("el bife","steak"), P("el entrecot","ribeye-style steak"),
+      P("el asado de tira","cross-cut short ribs",{note:"A classic parrilla order"}),
+      P("el pescado","fish"), P("el pollo","chicken"),
+      P("la hamburguesa","burger"), P("las papas fritas","french fries"),
+      P("la ensalada","salad"),
+      P("el agua sin gas","still water"), P("el agua con gas","sparkling water"),
+      P("el vino tinto","red wine"), P("el vino blanco","white wine"),
+      P("la cerveza","beer"), P("el jugo","juice"),
+      P("el mozo","the waiter"), P("la carta","the menu"),
+    ]},
+    { type:"aside", cls:"warm", h:"Lo que pregunta el mozo", body:[
+      "What the waiter asks: <b>¿Qué van a pedir?</b> (What are you going to order?) and <b>¿Y para tomar?</b> (And to drink?). You answer: <b>Quería el bife con papas fritas y una cerveza, por favor.</b>"
+    ], chips:[
+      P("¿Qué van a pedir?","What are you going to order?"),
+      P("¿Y para tomar?","And to drink?"),
+      P("Quería el bife con papas fritas y una cerveza, por favor","I’d like the steak with fries and a beer, please"),
+    ]},
+    { type:"rows", h:"Especialidades uruguayas", en:"Uruguayan specialties", items:[
+      P("el chivito","THE national sandwich",{note:"Steak, ham, egg, the works"}),
+      P("el asado","barbecue — the social event",{note:"asado de tira is the rib cut you order"}),
+      P("la milanesa","breaded cutlet",{note:"Uruguay’s comfort food"}),
+      P("la empanada","stuffed pastry",{note:"Great cheap lunch"}),
+      P("el dulce de leche","caramelized milk",{note:"It’s in everything"}),
+      P("el alfajor","cookie sandwich with dulce de leche"),
+      P("completa","“with everything” (fem.)",{note:"hamburguesa completa = ham, cheese, egg, lettuce & tomato"}),
+      P("completo","“with everything” (masc.)"),
+    ]},
+    { type:"aside", cls:"warm", h:"Cómo decir que está rico", body:[
+      "How to say it’s delicious: <b>¡Está muy rico!</b> Use <b>está</b> (not “es”) — you’re describing this plate, right now."
+    ], chips:[ P("¡Está muy rico!","It’s delicious!") ]},
+    { type:"rows", h:"Por la ciudad", en:"Around town", items:[
+      P("la playa","the beach"),
+      P("el cerro","the hill",{note:"Cerro San Antonio has a chairlift over the bay"}),
+      P("la rambla","the waterfront promenade",{note:"Where life happens"}),
+      P("el Hotel Argentino","Piriápolis’ landmark grand hotel"),
+      P("la plaza","the square"), P("el parque","the park"), P("la calle","the street"),
+      P("la feria","the street market",{note:"You know it from Lección 2!"}), P("el mercado","the market"),
+    ]},
+    { type:"aside", h:"Aplicalo — plug it in", body:[
+      "<b>¿Dónde queda el Hotel Argentino?</b> (Where is the Hotel Argentino?) — <b>Está cerca.</b> (It’s close.)"
+    ], chips:[ P("¿Dónde queda el Hotel Argentino?","Where is the Hotel Argentino?"), P("Está cerca","It’s close") ]},
+    { type:"aside", cls:"warm", h:"Para el auto", body:[
+      "For the car: <b>la nafta</b> = gas · <b>el estacionamiento</b> = parking · <b>la ruta</b> = highway. “¿Dónde queda…?” works for all of these."
+    ], chips:[ P("la nafta","gas"), P("el estacionamiento","parking"), P("la ruta","highway") ]},
+    { type:"dialogue", h:"A practicar: en el restorán", en:"Let’s practice — at the restaurant", lines:[
+      {who:"MOZO", es:"Buenas tardes, ¿qué van a pedir?", en:"Good afternoon, what’ll you order?"},
+      {who:"VOS",  es:"Hola. Quería un chivito y una cerveza, por favor.", en:"Hi. I’d like a chivito and a beer, please."},
+      {who:"MOZO", es:"¿Y para tomar algo más?", en:"And anything else to drink?"},
+      {who:"VOS",  es:"No, gracias. ¿Cuánto sale?", en:"No, thanks. How much is it?"},
+      {who:"MOZO", es:"Son seiscientos pesos.", en:"It’s six hundred pesos."},
+      {who:"VOS",  es:"Ta. ¿Puedo pagar con tarjeta?", en:"OK. Can I pay by card?"},
+      {who:"MOZO", es:"Sí, claro.", en:"Yes, of course."},
+      {who:"VOS",  es:"¡Está muy rico! La cuenta, por favor. ¡Chau!", en:"It’s delicious! The check, please. Bye!"},
+    ]},
+    { type:"turno", h:"Tu turno — your turn (fill in the blanks)", lines:[
+      {es:'Quería <span class="slot">[comida]</span> y <span class="slot">[bebida]</span>, por favor.', en:"I’d like [food] and [drink], please."},
+      {es:'¿Cuánto sale?', en:"How much is it? — listen for the number!"},
+      {es:'¿Puedo pagar con <span class="slot">[tarjeta / efectivo]</span>?', en:"Can I pay by [card / cash]?"},
+      {es:'¡Está muy rico! La cuenta, por favor.', en:"It’s delicious! The check, please."},
+    ]},
+    { type:"hw", items:[
+      "Write your dream order: “Quería… y…, por favor.”",
+      "Practice the restaurant dialogue out loud twice this week — trade roles.",
+      "Write 2 questions with new places: “¿Dónde queda la rambla?” · “¿Dónde queda el Hotel Argentino?”",
+      "(Optional) Look up photos of a chivito and the Hotel Argentino — build the craving."
+    ]}
+  ]
+};
+
 const VOWELS = [
   {g:"a", lab:"“ah”", as:"as in father", sound:"a", ex:[{w:"casa",ph:"KAH-sah",en:"house"}]},
   {g:"e", lab:"“eh”", as:"as in bed",    sound:"e", ex:[{w:"que",ph:"keh",en:"that / what"}]},
   {g:"i", lab:"“ee”", as:"as in see",    sound:"i", ex:[{w:"sí",ph:"see",en:"yes"}]},
-  {g:"o", lab:"“oh”", as:"as in go",     sound:"o", ex:[{w:"no",ph:"noh",en:"no"}]},
-  {g:"u", lab:"“oo”", as:"as in moon",   sound:"u", ex:[{w:"tú",ph:"too",en:"you"}]},
+  {g:"o", lab:"“oh”", as:"as in go",     sound:"o", soundSay:"o.", ex:[{w:"no",ph:"noh",en:"no"}]},
+  {g:"u", lab:"“oo”", as:"as in moon",   sound:"u", soundSay:"u.", ex:[{w:"tú",ph:"too",en:"you"}]},
   {g:"ll / y", lab:"“sh”", as:"as in shoe", sound:"yo", soundPh:"shoh",
      ex:[{w:"calle",ph:"KAH-she",en:"street"},{w:"llamo",ph:"SHAH-moh",en:"I call"}]},
 ];
@@ -501,6 +604,11 @@ const HEADING_AUDIO = {
   "Números de precios":{en:"Price numbers"},
   "La plata":{en:"Money"},
   "De compras":{en:"Shopping"},
+  "Vocabulario para el viaje":{en:"Vocabulary for the trip"},
+  "En el restorán":{en:"At the restaurant"},
+  "Especialidades uruguayas":{en:"Uruguayan specialties"},
+  "Por la ciudad":{en:"Around town"},
+  "A practicar: en el restorán":{say:"A practicar",en:"Let’s practice"},
 };
 
 /* ============================================================ SLUG + RENDER ============================================================ */
@@ -535,7 +643,7 @@ function renderVowels(){
   const rows=VOWELS.map(o=>{
     const soundLab=o.lab.replace(/[“”]/g,'');
     const soundInner=`<span class="vtxt"><span class="vsound-lab">${esc(o.lab)}</span><span class="vsound-as">${esc(o.as)}${o.soundPh?` · ${esc(o.soundPh)}`:''}</span></span>`;
-    const soundBtn=`<button class="say vaudio vsound" data-slug="${slugify(o.sound)}" data-say="${esc(o.sound)}" data-es="${esc(o.sound)}" data-en="the ‘${esc(soundLab)}’ sound" data-ph="${esc(o.soundPh||'')}">${SPK}${soundInner}</button>`;
+    const soundBtn=`<button class="say vaudio vsound" data-slug="${slugify(o.sound)}" data-say="${esc(o.soundSay||o.sound)}" data-es="${esc(o.sound)}" data-en="the ‘${esc(soundLab)}’ sound" data-ph="${esc(o.soundPh||'')}">${SPK}${soundInner}</button>`;
     const exBtns=o.ex.map(x=>`<button class="say vaudio vexample" data-slug="${slugify(x.w)}" data-say="${esc(x.w)}" data-es="${esc(x.w)}" data-en="${esc(x.en)}" data-ph="${esc(x.ph)}">${SPK}<span class="vtxt"><span class="vex-word">${esc(x.w)}</span><span class="vex-ph">${esc(x.ph)}</span></span></button>`).join("");
     return `<div class="vrow"><div class="vglyph">${esc(o.g)}</div>${soundBtn}<span class="varrow" aria-hidden="true">→</span><div class="vex">${exBtns}</div></div>`;
   }).join("");
@@ -556,13 +664,25 @@ function renderHw(b){
   const items=b.items.map(t=>`<li>${t}</li>`).join("");
   return `<section class="block"><div class="hw"><h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay-deep)" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10" stroke-linecap="round"/></svg>Tarea — Homework (10–15 min)</h2><ol>${items}</ol></div></section>`;
 }
+function renderDialogue(b){
+  const lines=b.lines.map(l=>{
+    const cls=l.who==="VOS"?"vos":"mozo";
+    return `<div class="dline"><span class="who ${cls}">${esc(l.who)}</span><div class="dsay">${sayButton({es:l.es,en:l.en})}</div><div class="en quizzable"><span class="en-content">${esc(l.en)}</span><button type="button" class="reveal">Show answer</button></div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="dialogue">${lines}</div></section>`;
+}
+function renderTurno(b){
+  const lines=b.lines.map(l=>`<div class="turno-line"><span class="turno-es">${l.es}</span><span class="turno-en">${esc(l.en)}</span></div>`).join("");
+  return `<section class="block"><div class="turno"><h3>${esc(b.h)}</h3>${lines}</div></section>`;
+}
 function renderLesson(L){
   const head=`<div class="lesson-head"><div class="lesson-kicker">${esc(L.kicker)}</div><h1>${esc(L.title)}</h1><p>${esc(L.subtitle)}</p></div>`;
-  const blocks=L.blocks.map(b=>({vowels:renderVowels,voseo:renderVoseo,rows:()=>renderRows(b),nums:()=>renderNums(b),aside:()=>renderAside(b),hw:()=>renderHw(b)}[b.type])()).join("");
+  const blocks=L.blocks.map(b=>({vowels:renderVowels,voseo:renderVoseo,rows:()=>renderRows(b),nums:()=>renderNums(b),aside:()=>renderAside(b),hw:()=>renderHw(b),dialogue:()=>renderDialogue(b),turno:()=>renderTurno(b)}[b.type])()).join("");
   return head+blocks;
 }
 document.getElementById("lesson1").innerHTML=renderLesson(LESSON1);
 document.getElementById("lesson2").innerHTML=renderLesson(LESSON2);
+document.getElementById("lesson3").innerHTML=renderLesson(LESSON3);
 
 /* attach speaker buttons to Spanish titles/headings */
 function addHeadingAudio(){
@@ -583,8 +703,8 @@ function addHeadingAudio(){
 addHeadingAudio();
 
 /* ============================================================ TABS ============================================================ */
-const tabs=[document.getElementById("tab1"),document.getElementById("tab2")];
-const panels=[document.getElementById("lesson1"),document.getElementById("lesson2")];
+const tabs=[document.getElementById("tab1"),document.getElementById("tab2"),document.getElementById("tab3")];
+const panels=[document.getElementById("lesson1"),document.getElementById("lesson2"),document.getElementById("lesson3")];
 tabs.forEach((t,i)=>t.addEventListener("click",()=>{tabs.forEach((x,j)=>{x.setAttribute("aria-selected",j===i);panels[j].hidden=(j!==i);});closePlayer();}));
 
 /* ============================================================ AUDIO ============================================================ */
