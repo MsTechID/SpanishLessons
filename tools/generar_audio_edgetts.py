@@ -1,42 +1,37 @@
 #!/usr/bin/env python3
 """
-generar_audio_edgetts.py
-------------------------
-Turn the phrase list into 88 Rioplatense MP3s using Microsoft's free neural
-voices (via the open-source `edge-tts`), then (optionally) embed them straight
-into the lesson page so it works OFFLINE and IDENTICALLY on every device
--- including GrapheneOS phones with no TTS engine.
+generar_audio_edgetts.py  (resumable, path-anchored)
+----------------------------------------------------
+Generate Rioplatense MP3s from lista_de_grabacion.csv using Microsoft's free
+neural voices via `edge-tts`, then optionally embed them into index.html.
 
-Microsoft has actual URUGUAY voices:
-    es-UY-ValentinaNeural   (female)   <- default
-    es-UY-MateoNeural       (male)
-(Argentina also exists: es-AR-ElenaNeural / es-AR-TomasNeural.)
+Voice: es-UY-ValentinaNeural  (Uruguay).  Male: es-UY-MateoNeural.
 
-NOTE ON YOUR STACK: edge-tts uses Microsoft's *online* Edge voice service.
-It's free with no API key, but it does contact Microsoft while generating
-(one-time). After that the audio is local forever; nothing phones home when
-the page is used. If you'd rather stay fully FOSS/offline end-to-end, use the
-Piper script instead (generar_audio_piper.py).
+FIX vs. earlier versions: this script now finds the repo's audio/ and CSV
+regardless of the folder you launch it from (root OR tools/). So the "skip
+what's already done" logic actually works -- re-runs only fill in missing clips.
 
-SETUP (one time):
-    python3 -m pip install --user edge-tts
-
-RUN:
-    python3 generar_audio_edgetts.py
-        -> writes ./audio/<slug>.mp3  (drop this folder next to the HTML and host it)
-
-    python3 generar_audio_edgetts.py --embed
-        -> also writes Lecciones_Rioplatense_con_audio.html with the clips baked in
+SETUP:  python3 -m pip install --user edge-tts     (or use a venv)
+RUN:    python3 tools/generar_audio_edgetts.py          -> audio/<slug>.mp3
+        python3 tools/generar_audio_edgetts.py --embed  -> also bakes into HTML
+        python3 tools/generar_audio_edgetts.py --force  -> regenerate everything
 """
 
-import asyncio, base64, csv, json, re, sys
+import asyncio, base64, csv, json, socket, sys
 from pathlib import Path
 
-VOICE      = "es-UY-ValentinaNeural"   # swap to es-UY-MateoNeural for the male voice
-CSV_PATH   = Path("lista_de_grabacion.csv")
-OUT_DIR    = Path("audio")
-HTML_IN    = Path("Lecciones_Rioplatense.html")
-HTML_OUT   = Path("Lecciones_Rioplatense_con_audio.html")
+VOICE       = "es-UY-ValentinaNeural"   # or es-UY-MateoNeural
+HOST        = "speech.platform.bing.com"
+MAX_RETRIES = 4
+RETRY_SLEEP = 2.0
+
+# --- anchor all paths to the repo root, wherever we're launched from ---
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO = SCRIPT_DIR.parent if SCRIPT_DIR.name == "tools" else SCRIPT_DIR
+CSV_PATH = REPO / "lista_de_grabacion.csv"
+OUT_DIR  = REPO / "audio"
+HTML_IN  = REPO / "index.html"
+HTML_OUT = REPO / "index_con_audio.html"
 
 try:
     import edge_tts
@@ -45,57 +40,95 @@ except ImportError:
 
 
 def tts_text(display: str) -> str:
-    """The page speaks the phrase minus the trailing '…' placeholder."""
-    return display.replace("…", "").strip()
+    return display.replace("\u2026", "").strip()   # drop trailing ellipsis
 
 
 def read_rows():
     if not CSV_PATH.exists():
-        sys.exit(f"Missing {CSV_PATH} -- put this script next to the CSV.")
+        sys.exit(f"Missing {CSV_PATH}")
     with CSV_PATH.open(encoding="utf-8-sig", newline="") as f:
         return list(csv.DictReader(f))
 
 
-async def synth_one(slug: str, text: str, path: Path):
-    communicate = edge_tts.Communicate(text, voice=VOICE)
-    await communicate.save(str(path))
+def preflight():
+    try:
+        socket.getaddrinfo(HOST, 443)
+    except socket.gaierror:
+        sys.exit(
+            f"\nDNS can't resolve {HOST} -- name-resolution problem, not the script.\n"
+            "  * VPN / NetShield / DNS blocklist may drop Microsoft domains -- toggle off and retry.\n"
+            "  * Relink resolver:\n"
+            "      sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf\n"
+            "      sudo systemctl restart systemd-resolved\n"
+            "  * Or use generar_audio_piper.py (fully offline).\n"
+        )
+
+
+async def synth(text, path):
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            await edge_tts.Communicate(text, voice=VOICE).save(str(path))
+            return True, ""
+        except Exception as e:
+            if attempt < MAX_RETRIES:
+                await asyncio.sleep(RETRY_SLEEP * attempt)
+            else:
+                if path.exists() and path.stat().st_size == 0:
+                    path.unlink(missing_ok=True)
+                return False, str(e)
 
 
 async def main():
     rows = read_rows()
     OUT_DIR.mkdir(exist_ok=True)
-    print(f"Voice: {VOICE}   Phrases: {len(rows)}\n")
+    preflight()
+    force = "--force" in sys.argv
+    print(f"Repo:  {REPO}")
+    print(f"Voice: {VOICE}   Phrases: {len(rows)}"
+          + ("   (--force: regenerating all)" if force else "   (resumable -- skips existing)") + "\n")
+
+    done = skipped = failed = 0
+    fails = []
     for i, r in enumerate(rows, 1):
-        slug = r["slug"]
-        text = tts_text(r["spanish"])
+        slug, text = r["slug"], tts_text(r["spanish"])
         path = OUT_DIR / f"{slug}.mp3"
-        try:
-            await synth_one(slug, text, path)
-            print(f"  [{i:>2}/{len(rows)}] {slug:<22} “{text}”")
-        except Exception as e:
-            print(f"  [{i:>2}/{len(rows)}] {slug:<22} FAILED: {e}")
-        await asyncio.sleep(0.15)  # be polite to the free service
-    print(f"\nDone -> {OUT_DIR}/")
+        if not force and path.exists() and path.stat().st_size > 0:
+            skipped += 1
+            continue
+        ok, err = await synth(text, path)
+        if ok:
+            done += 1
+            print(f"  [{i:>3}/{len(rows)}] {slug:<28} \u201c{text}\u201d")
+        else:
+            failed += 1; fails.append(slug)
+            print(f"  [{i:>3}/{len(rows)}] {slug:<28} FAILED: {err}")
+        await asyncio.sleep(0.15)
+
+    print(f"\nNew: {done}   Already had: {skipped}   Failed: {failed}")
+    if fails:
+        print("Failed (re-run to retry just these):", ", ".join(fails))
+    else:
+        print(f"All {len(rows)} clips present in {OUT_DIR}  \u2713")
 
     if "--embed" in sys.argv:
-        embed_into_html()
+        embed()
 
 
-def embed_into_html():
+def embed():
     if not HTML_IN.exists():
-        sys.exit(f"Can't embed: {HTML_IN} not found in this folder.")
+        sys.exit(f"Can't embed: {HTML_IN} not found.")
     audio_map = {}
     for mp3 in sorted(OUT_DIR.glob("*.mp3")):
+        if mp3.stat().st_size == 0:
+            continue
         b64 = base64.b64encode(mp3.read_bytes()).decode("ascii")
         audio_map[mp3.stem] = f"data:audio/mpeg;base64,{b64}"
     html = HTML_IN.read_text(encoding="utf-8")
-    needle = "const AUDIO = {};"
-    if needle not in html:
-        sys.exit("Couldn't find the AUDIO placeholder in the HTML (was it edited?).")
-    html = html.replace(needle, "const AUDIO = " + json.dumps(audio_map, ensure_ascii=False) + ";")
+    if "const AUDIO = {};" not in html:
+        sys.exit("Couldn't find the AUDIO placeholder in index.html.")
+    html = html.replace("const AUDIO = {};", "const AUDIO = " + json.dumps(audio_map, ensure_ascii=False) + ";")
     HTML_OUT.write_text(html, encoding="utf-8")
-    mb = HTML_OUT.stat().st_size / 1e6
-    print(f"Embedded {len(audio_map)} clips -> {HTML_OUT}  ({mb:.1f} MB, fully self-contained)")
+    print(f"Embedded {len(audio_map)} clips -> {HTML_OUT}  ({HTML_OUT.stat().st_size/1e6:.1f} MB)")
 
 
 if __name__ == "__main__":

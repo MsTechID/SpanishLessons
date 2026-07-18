@@ -181,6 +181,36 @@
     .tabs,main,.banner{padding-left:16px;padding-right:16px}
     .sheet{padding:26px 18px}
   }
+  /* ---------- Verb cards ---------- */
+  .vgridcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:10px}
+  .vcard{border:1px solid var(--hair);border-radius:12px;padding:12px 14px;background:var(--card)}
+  .vcard-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid var(--hair)}
+  .vcard-head > .say{font-size:1.18rem;font-weight:700}
+  .vmean{font-size:.85rem;color:var(--ink-soft);font-style:italic;text-align:right}
+  .vconj{display:grid;grid-template-columns:auto 1fr;gap:6px 9px;align-items:center;margin-bottom:9px}
+  .clabel{font-size:.64rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--clay-deep)}
+  .vconj .say{font-size:1.03rem}
+  .vcex{display:flex;flex-direction:column;gap:1px;background:var(--teal-faint);border-radius:8px;padding:8px 10px}
+  .vcex > .say{font-size:1rem;font-weight:600;color:var(--teal-deep)}
+  .vcex-en{font-size:.77rem;color:var(--ink-soft);font-style:italic}
+
+  /* ---------- Sentence patterns ---------- */
+  .patterns{display:grid;gap:1px;border:1px solid var(--hair);border-radius:12px;overflow:hidden;background:var(--hair)}
+  .prow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr) minmax(0,1.1fr);gap:12px;padding:12px 14px;background:var(--card);align-items:baseline}
+  .prow:nth-child(odd){background:var(--teal-faint)}
+  .ppat{font-size:1.06rem;font-weight:600;color:var(--ink)}
+  .pen{font-size:.88rem;color:var(--ink-soft)}
+  .pex{display:flex;flex-direction:column;gap:1px}
+  .pex > .say{font-size:.98rem;font-weight:600;color:var(--teal-deep)}
+  .pex-en{font-size:.76rem;color:var(--ink-soft);font-style:italic}
+
+  .wordbank .say{font-family:inherit;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.98rem;font-weight:600;background-image:none}
+  .wordbank .say:hover{border-color:var(--clay);color:var(--clay-deep);background-color:var(--clay-tint)}
+
+  @media (max-width:560px){
+    .prow{grid-template-columns:1fr;gap:5px}
+  }
+
   /* ---------- Dialogue ---------- */
   .dialogue{border:1px solid var(--hair);border-radius:12px;overflow:hidden}
   .dline{display:grid;grid-template-columns:56px minmax(0,1.15fr) minmax(0,1fr);gap:12px;align-items:baseline;padding:12px 14px;background:var(--card)}
@@ -302,12 +332,14 @@
   <button class="tab" role="tab" id="tab1" aria-controls="lesson1" aria-selected="true"><span class="n">01</span>Lo básico</button>
   <button class="tab" role="tab" id="tab2" aria-controls="lesson2" aria-selected="false"><span class="n">02</span>Números y plata</button>
   <button class="tab" role="tab" id="tab3" aria-controls="lesson3" aria-selected="false"><span class="n">03</span>Comida y viaje</button>
+  <button class="tab" role="tab" id="tab4" aria-controls="lesson4" aria-selected="false"><span class="n">04</span>Verbos</button>
 </div>
 
 <main>
   <div class="sheet" id="lesson1" role="tabpanel" aria-labelledby="tab1"></div>
   <div class="sheet" id="lesson2" role="tabpanel" aria-labelledby="tab2" hidden></div>
   <div class="sheet" id="lesson3" role="tabpanel" aria-labelledby="tab3" hidden></div>
+  <div class="sheet" id="lesson4" role="tabpanel" aria-labelledby="tab4" hidden></div>
 </main>
 
 <button id="quizToggle" aria-pressed="false" aria-label="Modo quiz — ocultar traducciones">
@@ -579,6 +611,58 @@ const LESSON3 = {
   ]
 };
 
+const LESSON4 = {
+  kicker:"Lección 4", title:"Los verbos esenciales",
+  subtitle:"The essential verbs — small verbs, big power",
+  blocks:[
+    { type:"verbs", h:"Los cinco verbos", en:"The five verbs",
+      note:"The vos pattern: stress the last syllable — querÉS, tenÉS, podÉS, necesitÁS. That end-stress is the sound of the Río de la Plata.",
+      items:[
+      {inf:"querer", en:"to want", yo:"quiero", vos:"querés", ex:"¿Querés ir a la playa?", exEn:"Want to go to the beach?"},
+      {inf:"tener", en:"to have", yo:"tengo", vos:"tenés", ex:"¿Tenés cambio?", exEn:"Do you have change?"},
+      {inf:"ir", en:"to go", yo:"voy", vos:"vas", ex:"Voy a la playa.", exEn:"I’m going to the beach."},
+      {inf:"poder", en:"can / to be able", yo:"puedo", vos:"podés", ex:"¿Podés ayudarme?", exEn:"Can you help me?"},
+      {inf:"necesitar", en:"to need", yo:"necesito", vos:"necesitás", ex:"Necesito agua.", exEn:"I need water."},
+    ]},
+    { type:"rows", h:"Tener — más que “have”", en:"Tener does extra work", items:[
+      P("Tengo hambre","I’m hungry",{note:"literally “I have hunger”"}),
+      P("Tengo sed","I’m thirsty",{note:"literally “I have thirst”"}),
+      P("Tengo calor","I’m hot",{note:"literally “I have heat”"}),
+      P("Tengo frío","I’m cold",{note:"literally “I have cold”"}),
+      P("¿Tenés hambre?","Are you hungry?"),
+    ]},
+    { type:"aside", cls:"warm", h:"Aha: quería", body:[
+      "<b>Quería…</b> (I’d like) is just <b>querer</b> being polite — a softer, past version of <b>quiero</b>. Use <b>quería</b> with waiters, <b>quiero</b> with family."
+    ], chips:[ P("quiero","I want"), P("quería","I’d like") ]},
+    { type:"rows", h:"“Vamos a…” — el futuro fácil", en:"The easy future",
+      note:"Why it’s a cheat code: no future-tense grammar needed. “Vamos a” + any verb = instant plans.",
+      items:[
+      P("¡Vamos a comer!","Let’s eat!"),
+      P("Vamos a la rambla","Let’s go to the rambla"),
+      P("Mañana vamos a visitar Piriápolis","Tomorrow we’re going to visit Piriápolis"),
+    ]},
+    { type:"patterns", h:"Armá tus frases", en:"Build your own sentences", items:[
+      {pat:'Quiero <span class="slot">[cosa]</span>', en:"I want [thing]", ex:"Quiero un helado", exEn:"I want an ice cream"},
+      {pat:'¿Querés <span class="slot">[verbo]</span>?', en:"Do you want to [verb]?", ex:"¿Querés caminar?", exEn:"Do you want to walk?"},
+      {pat:'¡Vamos a <span class="slot">[lugar / verbo]</span>!', en:"Let’s [place / verb]!", ex:"¡Vamos a la feria!", exEn:"Let’s go to the market!"},
+      {pat:'¿Puedo <span class="slot">[verbo]</span>?', en:"Can I [verb]?", ex:"¿Puedo ver la carta?", exEn:"Can I see the menu?"},
+      {pat:'Necesito <span class="slot">[cosa]</span>', en:"I need [thing]", ex:"Necesito nafta", exEn:"I need gas"},
+    ]},
+    { type:"wordbank", h:"Banco de palabras", en:"Word bank (from Lección 3)", items:[
+      P("un chivito","a chivito"), P("una cerveza","a beer"), P("agua","water"), P("la carta","the menu"),
+      P("helado","ice cream"), P("la playa","the beach"), P("la rambla","the promenade"), P("la feria","the market"),
+      P("el Hotel Argentino","the Hotel Argentino"),
+      P("comer","to eat"), P("ir","to go"), P("ver","to see"), P("pagar","to pay"), P("caminar","to walk"),
+    ]},
+    { type:"hw", items:[
+      "Write 3 sentences: one with <b>quiero</b>, one with <b>tengo</b>, one with <b>vamos a</b>.",
+      "Text a family member 2 questions: “¿Querés…?” (do you want…?) or “¿Podés…?” (can you…?)",
+      "Say “tengo hambre” or “tengo sed” out loud whenever it’s true this week.",
+      "(Optional) Spot the verbs: reread the Lección 3 restaurant dialogue and circle every verb you now recognize."
+    ]}
+  ]
+};
+
 const VOWELS = [
   {g:"a", lab:"“ah”", as:"as in father", sound:"a", ex:[{w:"casa",ph:"KAH-sah",en:"house"}]},
   {g:"e", lab:"“eh”", as:"as in bed",    sound:"e", ex:[{w:"que",ph:"keh",en:"that / what"}]},
@@ -609,6 +693,12 @@ const HEADING_AUDIO = {
   "Especialidades uruguayas":{en:"Uruguayan specialties"},
   "Por la ciudad":{en:"Around town"},
   "A practicar: en el restorán":{say:"A practicar",en:"Let’s practice"},
+  "Los verbos esenciales":{en:"The essential verbs"},
+  "Los cinco verbos":{en:"The five verbs"},
+  "Tener — más que “have”":{say:"Tener",en:"Tener does extra work"},
+  "“Vamos a…” — el futuro fácil":{say:"Vamos a",en:"The easy future"},
+  "Armá tus frases":{en:"Build your own sentences"},
+  "Banco de palabras":{en:"Word bank"},
 };
 
 /* ============================================================ SLUG + RENDER ============================================================ */
@@ -629,7 +719,7 @@ function renderRows(b){
     const note=o.note?`<span class="note">${esc(o.note)}</span>`:"";
     return `<div class="row">${sayButton(o)}<div class="en quizzable"><span class="en-content">${esc(o.en)}${note}</span><button type="button" class="reveal">Show answer</button></div></div>`;
   }).join("");
-  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="rows">${rows}</div></section>`;
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="rows">${rows}</div>${b.note?`<p class="pron-note">${esc(b.note)}</p>`:''}</section>`;
 }
 function renderNums(b){
   const tiles=b.items.map(o=>{
@@ -664,6 +754,28 @@ function renderHw(b){
   const items=b.items.map(t=>`<li>${t}</li>`).join("");
   return `<section class="block"><div class="hw"><h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay-deep)" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10" stroke-linecap="round"/></svg>Tarea — Homework (10–15 min)</h2><ol>${items}</ol></div></section>`;
 }
+function renderVerbs(b){
+  const cards=b.items.map(v=>{
+    const inf=sayButton({es:v.inf,say:v.inf,en:v.en});
+    const yo=sayButton({es:v.yo,say:v.yo,en:"yo — "+v.en});
+    const vos=sayButton({es:v.vos,say:v.vos,en:"vos — "+v.en});
+    const ex=sayButton({es:v.ex,say:v.ex,en:v.exEn});
+    return `<div class="vcard"><div class="vcard-head">${inf}<span class="vmean quizzable"><span class="en-content">${esc(v.en)}</span><button type="button" class="reveal">Show answer</button></span></div>
+      <div class="vconj"><span class="clabel">yo</span>${yo}<span class="clabel">vos</span>${vos}</div>
+      <div class="vcex">${ex}<span class="vcex-en">${esc(v.exEn)}</span></div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="vgridcards">${cards}</div>${b.note?`<p class="pron-note">${esc(b.note)}</p>`:''}</section>`;
+}
+function renderPatterns(b){
+  const rows=b.items.map(p=>{
+    const ex=sayButton({es:p.ex,say:p.ex,en:p.exEn});
+    return `<div class="prow"><div class="ppat">${p.pat}</div><div class="pen quizzable"><span class="en-content">${esc(p.en)}</span><button type="button" class="reveal">Show answer</button></div><div class="pex">${ex}<span class="pex-en">${esc(p.exEn)}</span></div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="patterns">${rows}</div></section>`;
+}
+function renderWordbank(b){
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="chips wordbank">${b.items.map(sayButton).join("")}</div></section>`;
+}
 function renderDialogue(b){
   const lines=b.lines.map(l=>{
     const cls=l.who==="VOS"?"vos":"mozo";
@@ -677,12 +789,13 @@ function renderTurno(b){
 }
 function renderLesson(L){
   const head=`<div class="lesson-head"><div class="lesson-kicker">${esc(L.kicker)}</div><h1>${esc(L.title)}</h1><p>${esc(L.subtitle)}</p></div>`;
-  const blocks=L.blocks.map(b=>({vowels:renderVowels,voseo:renderVoseo,rows:()=>renderRows(b),nums:()=>renderNums(b),aside:()=>renderAside(b),hw:()=>renderHw(b),dialogue:()=>renderDialogue(b),turno:()=>renderTurno(b)}[b.type])()).join("");
+  const blocks=L.blocks.map(b=>({vowels:renderVowels,voseo:renderVoseo,rows:()=>renderRows(b),nums:()=>renderNums(b),aside:()=>renderAside(b),hw:()=>renderHw(b),dialogue:()=>renderDialogue(b),turno:()=>renderTurno(b),verbs:()=>renderVerbs(b),patterns:()=>renderPatterns(b),wordbank:()=>renderWordbank(b)}[b.type])()).join("");
   return head+blocks;
 }
 document.getElementById("lesson1").innerHTML=renderLesson(LESSON1);
 document.getElementById("lesson2").innerHTML=renderLesson(LESSON2);
 document.getElementById("lesson3").innerHTML=renderLesson(LESSON3);
+document.getElementById("lesson4").innerHTML=renderLesson(LESSON4);
 
 /* attach speaker buttons to Spanish titles/headings */
 function addHeadingAudio(){
@@ -703,8 +816,8 @@ function addHeadingAudio(){
 addHeadingAudio();
 
 /* ============================================================ TABS ============================================================ */
-const tabs=[document.getElementById("tab1"),document.getElementById("tab2"),document.getElementById("tab3")];
-const panels=[document.getElementById("lesson1"),document.getElementById("lesson2"),document.getElementById("lesson3")];
+const tabs=[document.getElementById("tab1"),document.getElementById("tab2"),document.getElementById("tab3"),document.getElementById("tab4")];
+const panels=[document.getElementById("lesson1"),document.getElementById("lesson2"),document.getElementById("lesson3"),document.getElementById("lesson4")];
 tabs.forEach((t,i)=>t.addEventListener("click",()=>{tabs.forEach((x,j)=>{x.setAttribute("aria-selected",j===i);panels[j].hidden=(j!==i);});closePlayer();}));
 
 /* ============================================================ AUDIO ============================================================ */
