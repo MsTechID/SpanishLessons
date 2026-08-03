@@ -181,6 +181,26 @@
     .tabs,main,.banner{padding-left:16px;padding-right:16px}
     .sheet{padding:26px 18px}
   }
+  /* ---------- Self-test (Ponte a prueba) ---------- */
+  .st-level{margin-top:18px}
+  .st-level:first-child{margin-top:2px}
+  .st-level h3{font-size:1rem;font-weight:700;color:var(--teal-deep);margin:0 0 8px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+  .st-lvl-en{font-size:.8rem;font-weight:400;color:var(--ink-soft);font-style:italic}
+  .strows{display:grid;gap:1px;border:1px solid var(--hair);border-radius:12px;overflow:hidden;background:var(--hair)}
+  .strow{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:11px 14px;background:var(--card);align-items:center}
+  .strow:nth-child(odd){background:var(--teal-faint)}
+  .st-prompt{font-size:.98rem;color:var(--ink)}
+  .st-reveal{font:inherit;font-size:.82rem;font-weight:600;color:var(--clay-deep);background:var(--clay-tint);border:1px dashed var(--clay);border-radius:8px;padding:6px 13px;cursor:pointer}
+  .st-reveal:hover{background:#efd4bf}
+  .st-ans{display:none;align-items:center;gap:8px}
+  .stcell.shown .st-reveal{display:none}
+  .stcell.shown .st-ans{display:flex}
+  .st-ans .say{font-size:1.05rem;font-weight:700;color:var(--teal-deep)}
+  .st-gloss{color:var(--ink-soft);font-size:.85rem;font-style:italic}
+  .st-txt{font-weight:700;color:var(--teal-deep);font-size:1.02rem}
+  .st-hide{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:.95rem;line-height:1;padding:2px 5px;border-radius:6px;flex:0 0 auto}
+  .st-hide:hover{background:var(--teal-tint);color:var(--teal-deep)}
+
   /* ---------- Verb cards ---------- */
   .vgridcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:10px}
   .vcard{border:1px solid var(--hair);border-radius:12px;padding:12px 14px;background:var(--card)}
@@ -333,6 +353,7 @@
   <button class="tab" role="tab" id="tab2" aria-controls="lesson2" aria-selected="false"><span class="n">02</span>Números y plata</button>
   <button class="tab" role="tab" id="tab3" aria-controls="lesson3" aria-selected="false"><span class="n">03</span>Comida y viaje</button>
   <button class="tab" role="tab" id="tab4" aria-controls="lesson4" aria-selected="false"><span class="n">04</span>Verbos</button>
+  <button class="tab" role="tab" id="tab6" aria-controls="lesson6" aria-selected="false"><span class="n">06</span>La hora</button>
 </div>
 
 <main>
@@ -340,6 +361,7 @@
   <div class="sheet" id="lesson2" role="tabpanel" aria-labelledby="tab2" hidden></div>
   <div class="sheet" id="lesson3" role="tabpanel" aria-labelledby="tab3" hidden></div>
   <div class="sheet" id="lesson4" role="tabpanel" aria-labelledby="tab4" hidden></div>
+  <div class="sheet" id="lesson6" role="tabpanel" aria-labelledby="tab6" hidden></div>
 </main>
 
 <button id="quizToggle" aria-pressed="false" aria-label="Modo quiz — ocultar traducciones">
@@ -663,6 +685,82 @@ const LESSON4 = {
   ]
 };
 
+const LESSON6 = {
+  kicker:"Chuleta · Lección 6", title:"La hora y los horarios",
+  subtitle:"Time & hours — telling time, asking when, reading signs",
+  blocks:[
+    { type:"rows", h:"Decir la hora", en:"Telling time", items:[
+      P("¿Qué hora es?","What time is it?"),
+      P("Es la una","It’s 1:00",{note:"only 1 uses “es la”"}),
+      P("Son las dos","It’s 2:00"),
+      P("Son las tres","It’s 3:00"),
+      P("Son las doce","It’s 12:00"),
+    ]},
+    { type:"rows", h:"Los minutos", en:"Minutes", items:[
+      P("y media","half past (:30)"),
+      P("y cuarto","quarter past (:15)"),
+      P("menos cuarto","quarter to (:45)"),
+      P("y diez","ten past"),
+      P("menos veinte","twenty to"),
+      P("las dos cuarenta y cinco","2:45",{note:"just saying the numbers always works"}),
+    ]},
+    { type:"rows", h:"Mañana, tarde, noche", en:"a.m. / p.m.", items:[
+      P("de la mañana","in the morning (a.m.)"),
+      P("de la tarde","in the afternoon (~12–7)"),
+      P("de la noche","in the evening / night"),
+      P("las ocho de la noche","8 p.m."),
+    ]},
+    { type:"rows", h:"¿A qué hora…?", en:"Asking when", items:[
+      P("¿A qué hora abre?","What time does it open?"),
+      P("¿A qué hora cierra?","What time does it close?"),
+      P("¿Hasta qué hora están abiertos?","Until what time are you open?"),
+      P("¿Está abierto ahora?","Is it open now?"),
+      P("Abre a las nueve","It opens at 9"),
+      P("Cierra a las ocho","It closes at 8"),
+    ]},
+    { type:"rows", h:"Leer el cartel", en:"Reading signs", items:[
+      P("abierto","open"), P("cerrado","closed"),
+      P("el horario","the hours / schedule"),
+      P("de lunes a viernes","Monday to Friday"),
+      P("sábados y domingos","Saturdays & Sundays"),
+      P("feriado","holiday",{note:"often closed!"}),
+    ]},
+    { type:"rows", h:"Los días", en:"Days (just recognize)", items:[
+      P("lunes","Monday"), P("martes","Tuesday"), P("miércoles","Wednesday"),
+      P("jueves","Thursday"), P("viernes","Friday"), P("sábado","Saturday"), P("domingo","Sunday"),
+    ]},
+    { type:"aside", cls:"warm", h:"El reloj de 24 horas", body:[
+      "Signs use 24-hour time; people say 12-hour. After noon, subtract 12: <b>13:00 = 1 p.m. · 18:00 = 6 p.m. · 20:00 = 8 p.m. · 21:30 = 9:30 p.m.</b> A sign says “20:00,” a person says <b>“las ocho.”</b>"
+    ]},
+    { type:"selftest", h:"Ponte a prueba", en:"Self-test — cover the answers, say each out loud, then check", levels:[
+      { h:"Nivel 1: Decir la hora", en:"Telling time", items:[
+        {p:"What time is it?", es:"¿Qué hora es?"},
+        {p:"It’s 1:00", es:"Es la una"},
+        {p:"It’s 4:00", es:"Son las cuatro"},
+        {p:"It’s 3:30", es:"Son las tres y media"},
+        {p:"It’s 6:15", es:"Son las seis y cuarto"},
+        {p:"It’s 8 p.m.", es:"Son las ocho de la noche"},
+      ]},
+      { h:"Nivel 2: ¿A qué hora?", en:"Asking & reading", items:[
+        {p:"What time does it open?", es:"¿A qué hora abre?"},
+        {p:"What time does it close?", es:"¿A qué hora cierra?"},
+        {p:"Is it open now?", es:"¿Está abierto ahora?"},
+        {p:"“cerrado” means…?", txt:"closed"},
+        {p:"“feriado” means…?", txt:"public holiday (often closed)"},
+      ]},
+      { h:"Nivel 3: El reloj de 24 horas", en:"Convert the sign times", items:[
+        {p:"14:00 = ?", gloss:"2 p.m. —", es:"las dos de la tarde"},
+        {p:"18:30 = ?", gloss:"6:30 p.m. —", es:"las seis y media"},
+        {p:"20:00 = ?", gloss:"8 p.m. —", es:"las ocho de la noche"},
+        {p:"21:00 = ?", gloss:"9 p.m. —", es:"las nueve de la noche"},
+      ]},
+    ]},
+    { type:"aside", h:"El desafío — the challenge", body:[
+      "Find a real Piriápolis business online, read its <b>horario</b> out loud, and answer: what time does it open, what time does it close, and is it open right now? Do the 24-hour conversion in your head."
+    ]},
+  ]
+};
+
 const VOWELS = [
   {g:"a", lab:"“ah”", as:"as in father", sound:"a", ex:[{w:"casa",ph:"KAH-sah",en:"house"}]},
   {g:"e", lab:"“eh”", as:"as in bed",    sound:"e", ex:[{w:"que",ph:"keh",en:"that / what"}]},
@@ -699,6 +797,14 @@ const HEADING_AUDIO = {
   "“Vamos a…” — el futuro fácil":{say:"Vamos a",en:"The easy future"},
   "Armá tus frases":{en:"Build your own sentences"},
   "Banco de palabras":{en:"Word bank"},
+  "La hora y los horarios":{en:"Time and schedules"},
+  "Decir la hora":{en:"Telling time"},
+  "Los minutos":{en:"Minutes"},
+  "Mañana, tarde, noche":{en:"Morning, afternoon, night"},
+  "¿A qué hora…?":{say:"¿A qué hora?",en:"At what time?"},
+  "Leer el cartel":{en:"Reading the sign"},
+  "Los días":{en:"The days"},
+  "Ponte a prueba":{en:"Test yourself"},
 };
 
 /* ============================================================ SLUG + RENDER ============================================================ */
@@ -754,6 +860,22 @@ function renderHw(b){
   const items=b.items.map(t=>`<li>${t}</li>`).join("");
   return `<section class="block"><div class="hw"><h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay-deep)" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10" stroke-linecap="round"/></svg>Tarea — Homework (10–15 min)</h2><ol>${items}</ol></div></section>`;
 }
+function renderSelftest(b){
+  const levels=b.levels.map(lv=>{
+    const rows=lv.items.map(it=>{
+      let ans;
+      if(it.es){
+        const gloss=it.gloss?`<span class="st-gloss">${esc(it.gloss)} </span>`:'';
+        ans=`${gloss}${sayButton({es:it.es,say:it.es,en:it.p})}`;
+      } else {
+        ans=`<span class="st-txt">${esc(it.txt)}</span>`;
+      }
+      return `<div class="strow"><div class="st-prompt">${esc(it.p)}</div><div class="stcell"><button type="button" class="st-reveal">Show answer</button><span class="st-ans">${ans}<button type="button" class="st-hide" aria-label="Cover again">↺</button></span></div></div>`;
+    }).join("");
+    return `<div class="st-level"><h3>${esc(lv.h)} <span class="st-lvl-en">${esc(lv.en)}</span></h3><div class="strows">${rows}</div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="selftest">${levels}</div></section>`;
+}
 function renderVerbs(b){
   const cards=b.items.map(v=>{
     const inf=sayButton({es:v.inf,say:v.inf,en:v.en});
@@ -789,13 +911,14 @@ function renderTurno(b){
 }
 function renderLesson(L){
   const head=`<div class="lesson-head"><div class="lesson-kicker">${esc(L.kicker)}</div><h1>${esc(L.title)}</h1><p>${esc(L.subtitle)}</p></div>`;
-  const blocks=L.blocks.map(b=>({vowels:renderVowels,voseo:renderVoseo,rows:()=>renderRows(b),nums:()=>renderNums(b),aside:()=>renderAside(b),hw:()=>renderHw(b),dialogue:()=>renderDialogue(b),turno:()=>renderTurno(b),verbs:()=>renderVerbs(b),patterns:()=>renderPatterns(b),wordbank:()=>renderWordbank(b)}[b.type])()).join("");
+  const blocks=L.blocks.map(b=>({vowels:renderVowels,voseo:renderVoseo,rows:()=>renderRows(b),nums:()=>renderNums(b),aside:()=>renderAside(b),hw:()=>renderHw(b),dialogue:()=>renderDialogue(b),turno:()=>renderTurno(b),verbs:()=>renderVerbs(b),patterns:()=>renderPatterns(b),wordbank:()=>renderWordbank(b),selftest:()=>renderSelftest(b)}[b.type])()).join("");
   return head+blocks;
 }
 document.getElementById("lesson1").innerHTML=renderLesson(LESSON1);
 document.getElementById("lesson2").innerHTML=renderLesson(LESSON2);
 document.getElementById("lesson3").innerHTML=renderLesson(LESSON3);
 document.getElementById("lesson4").innerHTML=renderLesson(LESSON4);
+document.getElementById("lesson6").innerHTML=renderLesson(LESSON6);
 
 /* attach speaker buttons to Spanish titles/headings */
 function addHeadingAudio(){
@@ -816,8 +939,8 @@ function addHeadingAudio(){
 addHeadingAudio();
 
 /* ============================================================ TABS ============================================================ */
-const tabs=[document.getElementById("tab1"),document.getElementById("tab2"),document.getElementById("tab3"),document.getElementById("tab4")];
-const panels=[document.getElementById("lesson1"),document.getElementById("lesson2"),document.getElementById("lesson3"),document.getElementById("lesson4")];
+const tabs=[document.getElementById("tab1"),document.getElementById("tab2"),document.getElementById("tab3"),document.getElementById("tab4"),document.getElementById("tab6")];
+const panels=[document.getElementById("lesson1"),document.getElementById("lesson2"),document.getElementById("lesson3"),document.getElementById("lesson4"),document.getElementById("lesson6")];
 tabs.forEach((t,i)=>t.addEventListener("click",()=>{tabs.forEach((x,j)=>{x.setAttribute("aria-selected",j===i);panels[j].hidden=(j!==i);});closePlayer();}));
 
 /* ============================================================ AUDIO ============================================================ */
@@ -1005,6 +1128,10 @@ plVol.addEventListener("input",()=>{
 function closePlayer(){ player.classList.remove("open"); audioEl.pause(); if(synth) synth.cancel(); setPlayIcon(false); paintPlaying(null); isPaused=false; currentBtn=null; }
 
 document.addEventListener("click",e=>{
+  const stRev=e.target.closest(".st-reveal");
+  if(stRev){ stRev.closest(".stcell").classList.add("shown"); return; }
+  const stHide=e.target.closest(".st-hide");
+  if(stHide){ e.preventDefault(); stHide.closest(".stcell").classList.remove("shown"); return; }
   const rev=e.target.closest(".reveal");
   if(rev){ e.preventDefault(); rev.closest(".quizzable").classList.add("revealed"); return; }
   const btn=e.target.closest(".say");
