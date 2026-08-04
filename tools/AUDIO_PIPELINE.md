@@ -12,7 +12,7 @@ How the `audio/*.mp3` files are generated, and how to regenerate or extend them.
 - **Input:** `lista_de_grabacion.csv` at the repo root. Columns:
   `slug, filename, spanish, english`. The `spanish` column holds the **spoken**
   text (already stripped of ornamental "…"); `slug` is the lookup key / filename.
-- **Output:** `audio/<slug>.mp3`, one per phrase (currently 252).
+- **Output:** `audio/<slug>.mp3`, one per phrase (currently 279).
 
 ## Data flow
 

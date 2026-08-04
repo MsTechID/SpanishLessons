@@ -353,6 +353,7 @@
   <button class="tab" role="tab" id="tab2" aria-controls="lesson2" aria-selected="false"><span class="n">02</span>Números y plata</button>
   <button class="tab" role="tab" id="tab3" aria-controls="lesson3" aria-selected="false"><span class="n">03</span>Comida y viaje</button>
   <button class="tab" role="tab" id="tab4" aria-controls="lesson4" aria-selected="false"><span class="n">04</span>Verbos</button>
+  <button class="tab" role="tab" id="tab5" aria-controls="lesson5" aria-selected="false"><span class="n">05</span>Repaso</button>
   <button class="tab" role="tab" id="tab6" aria-controls="lesson6" aria-selected="false"><span class="n">06</span>La hora</button>
 </div>
 
@@ -361,6 +362,7 @@
   <div class="sheet" id="lesson2" role="tabpanel" aria-labelledby="tab2" hidden></div>
   <div class="sheet" id="lesson3" role="tabpanel" aria-labelledby="tab3" hidden></div>
   <div class="sheet" id="lesson4" role="tabpanel" aria-labelledby="tab4" hidden></div>
+  <div class="sheet" id="lesson5" role="tabpanel" aria-labelledby="tab5" hidden></div>
   <div class="sheet" id="lesson6" role="tabpanel" aria-labelledby="tab6" hidden></div>
 </main>
 
@@ -761,6 +763,108 @@ const LESSON6 = {
   ]
 };
 
+const LESSON5 = {
+  kicker:"Lección 5 · Día de juegos", title:"Repaso — día de juegos",
+  subtitle:"Game day — solo practice of the live review games",
+  blocks:[
+    { type:"aside", h:"Cómo usar esto — how to use this", body:[
+      "Lesson 5 is <b>game day</b> — normally hosted live over Meet. This is a solo version to practice the same games between calls. For each card: <b>cover the answer, say it out loud, then reveal</b> to check — and tap the revealed phrase to hear it."
+    ]},
+    { type:"selftest", h:"Los juegos", en:"The games — cover, say it, reveal", levels:[
+      { h:"1 · Tiro rápido", en:"rapid fire — say each in Spanish", items:[
+        {p:"Say hi, casually", es:"Hola / ¿Cómo andás?"},
+        {p:"Good morning", es:"Buen día"},
+        {p:"Thanks / you’re welcome", es:"Gracias / De nada"},
+        {p:"Count 1 to 5", es:"uno, dos, tres, cuatro, cinco"},
+        {p:"How much is it?", es:"¿Cuánto sale?"},
+        {p:"I’d like a coffee", es:"Quería un café"},
+        {p:"Where’s the beach?", es:"¿Dónde queda la playa?"},
+        {p:"I’m hungry", es:"Tengo hambre"},
+        {p:"Pay by card?", es:"¿Puedo pagar con tarjeta?"},
+        {p:"Let’s go to the rambla", es:"Vamos a la rambla"},
+        {p:"Bye", es:"Chau"},
+      ]},
+      { h:"2 · Armá la frase", en:"unscramble, then say the whole sentence", items:[
+        {p:"la / vamos / playa / a", es:"Vamos a la playa"},
+        {p:"sale / cuánto / ¿ ?", es:"¿Cuánto sale?"},
+        {p:"un / quería / chivito", es:"Quería un chivito"},
+        {p:"queda / dónde / la / feria / ¿ ?", es:"¿Dónde queda la feria?"},
+        {p:"con / puedo / pagar / tarjeta / ¿ ?", es:"¿Puedo pagar con tarjeta?"},
+      ]},
+      { h:"3 · De la palabra a la frase", en:"hear the word, build a sentence, then check a model", items:[
+        {p:"el chivito", pSay:"el chivito", es:"Quiero un chivito"},
+        {p:"la playa", pSay:"la playa", es:"Vamos a la playa"},
+        {p:"la cerveza", pSay:"la cerveza", es:"Quería una cerveza, por favor"},
+        {p:"el Hotel Argentino", pSay:"el Hotel Argentino", es:"¿Dónde queda el Hotel Argentino?"},
+        {p:"la nafta", pSay:"la nafta", es:"Necesito nafta"},
+        {p:"la feria", pSay:"la feria", es:"Vamos a la feria"},
+      ]},
+      { h:"4 · Restaurante con sorpresas", en:"the waiter surprises you — how do you react?", items:[
+        {p:"No tenemos chivito hoy.", pSay:"No tenemos chivito hoy.", es:"Ta, quería una milanesa entonces."},
+        {p:"Solo aceptamos efectivo.", pSay:"Solo aceptamos efectivo.", es:"¿Hay un cajero cerca?"},
+        {p:"¿Van a querer postre?", pSay:"¿Van a querer postre?", es:"Sí, quería un alfajor. / No, gracias."},
+        {p:"La cocina cierra en 10 minutos.", pSay:"La cocina cierra en diez minutos.", es:"¡Quería el bife, rápido!"},
+        {p:"No queda cerveza, ¿otra cosa?", pSay:"No queda cerveza, ¿otra cosa?", es:"¿Tenés vino tinto? / Un agua, por favor."},
+      ]},
+    ]},
+    { type:"selftest", h:"Jeopardy — todo junto", en:"Read the clue, say the Spanish", levels:[
+      { h:"Saludos", en:"greetings", items:[
+        {p:"Hi, how’s it going?", es:"Hola, ¿cómo andás?"},
+        {p:"Good evening", es:"Buenas noches"},
+        {p:"Nice to meet you", es:"Mucho gusto"},
+      ]},
+      { h:"Números", en:"numbers & prices", items:[
+        {p:"15", es:"quince"},
+        {p:"$500 pesos", es:"quinientos pesos"},
+        {p:"US$1 = ? pesos", gloss:"~", es:"cuarenta pesos"},
+      ]},
+      { h:"Comida", en:"food", items:[
+        {p:"steak", es:"el bife"},
+        {p:"the check, please", es:"La cuenta, por favor"},
+        {p:"it’s delicious!", es:"¡Está muy rico!"},
+      ]},
+      { h:"Lugares", en:"places", items:[
+        {p:"the beach", es:"la playa"},
+        {p:"where’s the market?", es:"¿Dónde queda la feria?"},
+        {p:"the promenade", es:"la rambla"},
+      ]},
+      { h:"Verbos", en:"verbs", items:[
+        {p:"I want (yo)", es:"quiero"},
+        {p:"you have (vos)", es:"tenés"},
+        {p:"let’s eat!", es:"¡Vamos a comer!"},
+      ]},
+    ]},
+    { type:"selftest", h:"Chuleta de viaje — autoevaluación", en:"Trip cheat sheet self-test — cumulative, Lessons 1–4", levels:[
+      { h:"Nivel 1: Lo básico", en:"warm-up", items:[
+        {p:"Say hello, casually", es:"Hola / ¿Cómo andás?"},
+        {p:"Good morning", es:"Buen día"},
+        {p:"Thank you / You’re welcome", es:"Gracias / De nada"},
+        {p:"Count from 1 to 5", es:"uno, dos, tres, cuatro, cinco"},
+        {p:"Bye", es:"Chau"},
+      ]},
+      { h:"Nivel 2: En el pueblo", en:"out and about", items:[
+        {p:"How much is it?", es:"¿Cuánto sale?"},
+        {p:"Say the price “$450 pesos”", es:"cuatrocientos cincuenta pesos"},
+        {p:"Roughly how many dollars is $400 pesos?", txt:"about US$10 (divide by 40)"},
+        {p:"Can I pay by card?", es:"¿Puedo pagar con tarjeta?"},
+        {p:"Where is the beach?", es:"¿Dónde queda la playa?"},
+        {p:"Where is the market?", es:"¿Dónde queda la feria?"},
+      ]},
+      { h:"Nivel 3: A conversar", en:"putting it together", items:[
+        {p:"Order a chivito and a beer", es:"Quería un chivito y una cerveza, por favor"},
+        {p:"Tell the waiter it’s delicious", es:"¡Está muy rico!"},
+        {p:"Say you’re hungry", es:"Tengo hambre"},
+        {p:"Ask a friend: do you want to go to the beach?", es:"¿Querés ir a la playa?"},
+        {p:"Suggest: let’s eat!", es:"¡Vamos a comer!"},
+        {p:"Say you need gas (for the car)", es:"Necesito nafta"},
+      ]},
+    ]},
+    { type:"aside", cls:"warm", h:"El desafío final — the final challenge", body:[
+      "Run the whole restaurant scene start to finish with a partner, out loud, without looking: <b>greet → order food + drink → ask the price → pay → say it’s delicious → say goodbye.</b> If you can do that, you’re ready for Piriápolis."
+    ]},
+  ]
+};
+
 const VOWELS = [
   {g:"a", lab:"“ah”", as:"as in father", sound:"a", ex:[{w:"casa",ph:"KAH-sah",en:"house"}]},
   {g:"e", lab:"“eh”", as:"as in bed",    sound:"e", ex:[{w:"que",ph:"keh",en:"that / what"}]},
@@ -805,6 +909,9 @@ const HEADING_AUDIO = {
   "Leer el cartel":{en:"Reading the sign"},
   "Los días":{en:"The days"},
   "Ponte a prueba":{en:"Test yourself"},
+  "Repaso — día de juegos":{say:"Repaso",en:"Review — game day"},
+  "Los juegos":{en:"The games"},
+  "Chuleta de viaje — autoevaluación":{say:"Chuleta de viaje",en:"Trip cheat sheet self-test"},
 };
 
 /* ============================================================ SLUG + RENDER ============================================================ */
@@ -866,13 +973,16 @@ function renderSelftest(b){
       let ans;
       if(it.es){
         const gloss=it.gloss?`<span class="st-gloss">${esc(it.gloss)} </span>`:'';
-        ans=`${gloss}${sayButton({es:it.es,say:it.es,en:it.p})}`;
+        const extra=it.extra?`<span class="st-extra">${esc(it.extra)}</span>`:'';
+        ans=`${gloss}${sayButton({es:it.es,say:it.es,en:it.p})}${extra}`;
       } else {
         ans=`<span class="st-txt">${esc(it.txt)}</span>`;
       }
-      return `<div class="strow"><div class="st-prompt">${esc(it.p)}</div><div class="stcell"><button type="button" class="st-reveal">Show answer</button><span class="st-ans">${ans}<button type="button" class="st-hide" aria-label="Cover again">↺</button></span></div></div>`;
+      const prompt = it.pSay ? sayButton({es:it.p,say:it.pSay,en:""}) : `<span>${esc(it.p)}</span>`;
+      return `<div class="strow"><div class="st-prompt">${prompt}</div><div class="stcell"><button type="button" class="st-reveal">Show answer</button><span class="st-ans">${ans}<button type="button" class="st-hide" aria-label="Cover again">↺</button></span></div></div>`;
     }).join("");
-    return `<div class="st-level"><h3>${esc(lv.h)} <span class="st-lvl-en">${esc(lv.en)}</span></h3><div class="strows">${rows}</div></div>`;
+    const h3=lv.h?`<h3>${esc(lv.h)} <span class="st-lvl-en">${esc(lv.en||'')}</span></h3>`:'';
+    return `<div class="st-level">${h3}<div class="strows">${rows}</div></div>`;
   }).join("");
   return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="selftest">${levels}</div></section>`;
 }
@@ -918,6 +1028,7 @@ document.getElementById("lesson1").innerHTML=renderLesson(LESSON1);
 document.getElementById("lesson2").innerHTML=renderLesson(LESSON2);
 document.getElementById("lesson3").innerHTML=renderLesson(LESSON3);
 document.getElementById("lesson4").innerHTML=renderLesson(LESSON4);
+document.getElementById("lesson5").innerHTML=renderLesson(LESSON5);
 document.getElementById("lesson6").innerHTML=renderLesson(LESSON6);
 
 /* attach speaker buttons to Spanish titles/headings */
@@ -939,8 +1050,8 @@ function addHeadingAudio(){
 addHeadingAudio();
 
 /* ============================================================ TABS ============================================================ */
-const tabs=[document.getElementById("tab1"),document.getElementById("tab2"),document.getElementById("tab3"),document.getElementById("tab4"),document.getElementById("tab6")];
-const panels=[document.getElementById("lesson1"),document.getElementById("lesson2"),document.getElementById("lesson3"),document.getElementById("lesson4"),document.getElementById("lesson6")];
+const tabs=[document.getElementById("tab1"),document.getElementById("tab2"),document.getElementById("tab3"),document.getElementById("tab4"),document.getElementById("tab5"),document.getElementById("tab6")];
+const panels=[document.getElementById("lesson1"),document.getElementById("lesson2"),document.getElementById("lesson3"),document.getElementById("lesson4"),document.getElementById("lesson5"),document.getElementById("lesson6")];
 tabs.forEach((t,i)=>t.addEventListener("click",()=>{tabs.forEach((x,j)=>{x.setAttribute("aria-selected",j===i);panels[j].hidden=(j!==i);});closePlayer();}));
 
 /* ============================================================ AUDIO ============================================================ */
