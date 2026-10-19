@@ -9,8 +9,7 @@ to family, under the **Tardis Software** brand.
 
 ## What it is
 
-A single `index.html` with **five lessons** across tabs (numbered 1–4 and 6;
-Lesson 5 is a review, not yet built). Every Spanish word, phrase, and title is a
+A single `index.html` with **seven lessons** across tabs (numbered 1–6 and 8). Every Spanish word, phrase, and title is a
 clickable audio button; tapping opens a small popover player with **play/pause,
 speed (0.6 / 0.8 / 1×), and volume**. Audio plays a recorded clip when one exists,
 otherwise falls back to the device's Spanish voice.
@@ -20,9 +19,11 @@ Current tabs:
 - **02 Números y plata** — numbers 0–100, prices, money, shopping
 - **03 Comida y viaje** — restaurant, specialties, around town, practice dialogue
 - **04 Verbos** — five core verbs, tener idioms, "vamos a", sentence patterns, word bank
+- **05 Repaso** — game-day review (solo): 5 games + Jeopardy + cumulative trip self-test
 - **06 La hora** — time/hours cheat sheet + "Ponte a prueba" self-test
+- **08 Dónde queda** — directions, gas station, survival phrases, emergencies + 5-level self-test
 
-Clip count: **252** MP3s in `audio/`.
+Clip count: **325** MP3s in `audio/`.
 
 ## Design
 
@@ -51,7 +52,7 @@ glyph → sound → example, each clickable), `voseo`, `aside` (callouts, option
 clickable chips), `dialogue` (two-speaker, quiz-aware, full-line audio), `turno`
 (fill-in template with highlighted slots), `verbs` (conjugation cards: infinitive,
 yo, vos, example), `patterns` (sentence builders with slots + clickable example),
-`wordbank` (clickable pill chips), `selftest` (the Lesson 6 drill), `hw` (homework).
+`wordbank` (clickable pill chips), `selftest` (reverse-recall drill; prompts can be audio via `pSay`), `hw` (homework).
 
 ## Audio (see AUDIO_PIPELINE.md for detail)
 
@@ -90,7 +91,7 @@ GitHub is case-sensitive: keep clip filenames lowercase to match slugs.
 SpanishLessons/
 ├── index.html                     # the lesson site
 ├── lista_de_grabacion.csv         # phrase list the generator reads (repo root)
-├── audio/                         # 252 MP3 clips, <slug>.mp3
+├── audio/                         # 325 MP3 clips, <slug>.mp3
 └── tools/
     ├── generar_audio_edgetts.py   # path-anchored, resumable generator
     ├── generar_audio_piper.py     # fully-offline FOSS alternative (Piper)
@@ -101,8 +102,9 @@ SpanishLessons/
 
 ## Open threads
 
-- **Lesson 5 (review)** — not yet built; should reuse quiz + self-test mechanics
-  and pull vocab from Lessons 1–4.
+- **Host guide** (answer keys + curveballs for the live Meet) is kept OFF the
+  public site by design — it lives as a separate printable (`Leccion5_Guia_del_Anfitrion.docx`),
+  not in the published repo.
 - A few verb *vos* forms (`querés`, `tenés`) reuse the `¿Querés?` / `¿Tenés?`
   question clips (same word, question intonation) — fine, but could get their own
   flat-intonation clips if desired.

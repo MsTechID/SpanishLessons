@@ -355,6 +355,7 @@
   <button class="tab" role="tab" id="tab4" aria-controls="lesson4" aria-selected="false"><span class="n">04</span>Verbos</button>
   <button class="tab" role="tab" id="tab5" aria-controls="lesson5" aria-selected="false"><span class="n">05</span>Repaso</button>
   <button class="tab" role="tab" id="tab6" aria-controls="lesson6" aria-selected="false"><span class="n">06</span>La hora</button>
+  <button class="tab" role="tab" id="tab8" aria-controls="lesson8" aria-selected="false"><span class="n">08</span>Dónde queda</button>
 </div>
 
 <main>
@@ -364,6 +365,7 @@
   <div class="sheet" id="lesson4" role="tabpanel" aria-labelledby="tab4" hidden></div>
   <div class="sheet" id="lesson5" role="tabpanel" aria-labelledby="tab5" hidden></div>
   <div class="sheet" id="lesson6" role="tabpanel" aria-labelledby="tab6" hidden></div>
+  <div class="sheet" id="lesson8" role="tabpanel" aria-labelledby="tab8" hidden></div>
 </main>
 
 <button id="quizToggle" aria-pressed="false" aria-label="Modo quiz — ocultar traducciones">
@@ -865,6 +867,117 @@ const LESSON5 = {
   ]
 };
 
+const LESSON8 = {
+  kicker:"Chuleta · Lección 8", title:"¿Dónde queda?",
+  subtitle:"Finding things, getting gas, and surviving the conversation",
+  blocks:[
+    { type:"rows", h:"Encontrar lugares", en:"Finding places — asking", items:[
+      P("¿Dónde queda…?","Where is…?",{note:"for fixed places",say:"¿Dónde queda?"}),
+      P("¿Dónde queda la farmacia?","Where’s the pharmacy?"),
+      P("¿Dónde queda el Hotel Argentino?","Where’s the Hotel Argentino?"),
+      P("¿Hay un/una… por acá?","Is there a… around here?",{note:"fill the blank with what you need",say:"¿Hay un cajero por acá?"}),
+      P("¿Hay una panadería por acá?","Is there a bakery nearby?"),
+    ]},
+    { type:"aside", cls:"warm", h:"“Queda”, muy uruguayo", body:[
+      "<b>Queda</b> is the Uruguayan way to ask where things are. <b>Está</b> works too, but <b>queda</b> sounds more local."
+    ], chips:[ P("¿Dónde queda?","Where is it?"), P("¿Hay un cajero por acá?","Is there an ATM nearby?") ]},
+    { type:"rows", h:"Ubicación", en:"Location words", items:[
+      P("al lado de","next to"),
+      P("enfrente de","across from / facing"),
+      P("en la esquina","on the corner"),
+      P("entre… y…","between… and…",{note:"entre la plaza y la iglesia",say:"entre la plaza y la iglesia"}),
+      P("cerca de","near / close to"),
+      P("acá / por acá","here / around here",{say:"acá"}),
+    ]},
+    { type:"aside", h:"de + el = del", body:[
+      "<b>al lado DEL hotel</b> — <b>de</b> + <b>el</b> contracts to <b>del</b>. You already know this from Lección 3."
+    ]},
+    { type:"rows", h:"La estación de servicio", en:"At the gas station", items:[
+      P("Lleno, por favor","Fill it up, please"),
+      P("nafta","gasoline (Uruguay)"),
+      P("la estación de servicio","the gas station"),
+      P("¿Cuánto es?","How much is it?"),
+      P("¿Aceptan tarjeta?","Do you take card?"),
+      P("Ta, pago en efectivo","OK, I’ll pay in cash"),
+      P("¿Hay un baño?","Is there a bathroom?"),
+    ]},
+    { type:"aside", cls:"warm", h:"De paso: es full-service", body:[
+      "In Uruguay gas stations are <b>full-service</b> — the attendant fills it for you. Just say <b>“Lleno, por favor.”</b>"
+    ]},
+    { type:"rows", h:"Frases de supervivencia", en:"Survival phrases", items:[
+      P("No entiendo","I don’t understand"),
+      P("Más despacio, por favor","Slower, please"),
+      P("¿Podés repetir?","Can you repeat that?"),
+      P("¿Cómo se dice…?","How do you say…?",{note:"when YOU need a word",say:"¿Cómo se dice?"}),
+      P("¿Qué significa…?","What does… mean?",{note:"when THEY said a word you don’t know",say:"¿Qué significa?"}),
+    ]},
+    { type:"aside", h:"¿Cuándo uso cada una?", body:[
+      "<b>No entiendo</b> — you caught nothing. Full reset.",
+      "<b>Más despacio</b> — you caught some words, but too fast.",
+      "<b>¿Podés repetir?</b> — you almost had it. One more time.",
+      "<b>¿Cómo se dice…?</b> — you need a word (fill in the English).",
+      "<b>¿Qué significa…?</b> — they said a word you don’t know."
+    ]},
+    { type:"rows", h:"Emergencias", en:"If there’s an emergency", items:[
+      P("¡Necesito ayuda!","I need help!"),
+      P("Necesito un médico","I need a doctor"),
+      P("Necesito ir al hospital","I need to go to the hospital"),
+      P("¡Llamá a la policía!","Call the police!"),
+      P("¡Llamá una ambulancia!","Call an ambulance!"),
+      P("Perdí mi pasaporte","I lost my passport"),
+      P("Perdí mi teléfono","I lost my phone"),
+      P("Perdí mi billetera","I lost my wallet"),
+      P("Perdí mi cartera","I lost my purse"),
+      P("Me robaron","I was robbed",{note:"follow with ¡Llamá a la policía!"}),
+    ]},
+    { type:"aside", cls:"warm", h:"Tres verbos para recordar", body:[
+      "<b>necesito</b> (I need) · <b>llamá</b> (call) · <b>perdí</b> (I lost). Uruguay emergency number: <b>911</b>."
+    ]},
+    { type:"selftest", h:"Autoevaluación — ¡Ponete a prueba!", en:"Cover the answer, say it out loud, then check", levels:[
+      { h:"Nivel 1: Encontrar lugares", en:"finding places", items:[
+        {p:"Where is the pharmacy?", es:"¿Dónde queda la farmacia?"},
+        {p:"Is there an ATM around here?", es:"¿Hay un cajero por acá?"},
+        {p:"Next to the hotel", es:"Al lado del hotel"},
+        {p:"Across from the church", es:"Enfrente de la iglesia"},
+        {p:"On the corner", es:"En la esquina"},
+        {p:"Near the beach", es:"Cerca de la playa"},
+      ]},
+      { h:"Nivel 2: La estación de servicio", en:"the gas station", items:[
+        {p:"Fill it up, please.", es:"Lleno, por favor"},
+        {p:"How much is it?", es:"¿Cuánto es?"},
+        {p:"Do you take card?", es:"¿Aceptan tarjeta?"},
+        {p:"OK, I’ll pay cash.", es:"Ta, pago en efectivo"},
+        {p:"Is there a bathroom?", es:"¿Hay un baño?"},
+      ]},
+      { h:"Nivel 3: Frases de supervivencia", en:"survival phrases", items:[
+        {p:"I don’t understand.", es:"No entiendo"},
+        {p:"Slower, please.", es:"Más despacio, por favor"},
+        {p:"Can you repeat that?", es:"¿Podés repetir?"},
+        {p:"How do you say ‘sunscreen’?", es:"¿Cómo se dice ‘sunscreen’?"},
+        {p:"What does ‘feriado’ mean?", es:"¿Qué significa ‘feriado’?"},
+      ]},
+      { h:"Nivel 4: Emergencias", en:"emergencies", items:[
+        {p:"I need help!", es:"¡Necesito ayuda!"},
+        {p:"Call the police!", es:"¡Llamá a la policía!"},
+        {p:"Call an ambulance!", es:"¡Llamá una ambulancia!"},
+        {p:"I lost my passport.", es:"Perdí mi pasaporte"},
+        {p:"I lost my wallet.", es:"Perdí mi billetera"},
+        {p:"I was robbed.", es:"Me robaron"},
+      ]},
+      { h:"Nivel 5: Combiná todo", en:"put it together", items:[
+        {p:"Where’s the gas station?", es:"¿Dónde queda la estación de servicio?"},
+        {p:"Is there a bakery near the beach?", es:"¿Hay una panadería cerca de la playa?"},
+        {p:"Fill it up. How much? Do you take card?", es:"Lleno. ¿Cuánto es? ¿Aceptan tarjeta?"},
+        {p:"I don’t understand. Can you repeat that slower?", es:"No entiendo. ¿Podés repetir más despacio?"},
+        {p:"I need a doctor! Call an ambulance!", es:"¡Necesito un médico! ¡Llamá una ambulancia!"},
+      ]},
+    ]},
+    { type:"aside", cls:"warm", h:"El desafío final — the final challenge", body:[
+      "Describe where 3 things in your house are, out loud, using <b>al lado de</b>, <b>enfrente de</b>, and <b>entre</b>. Then say <b>no entiendo</b> and <b>más despacio</b> five times each — burn them into muscle memory. Finally, say the three emergency verbs: <b>necesito, llamá, perdí</b>."
+    ]},
+  ]
+};
+
 const VOWELS = [
   {g:"a", lab:"“ah”", as:"as in father", sound:"a", ex:[{w:"casa",ph:"KAH-sah",en:"house"}]},
   {g:"e", lab:"“eh”", as:"as in bed",    sound:"e", ex:[{w:"que",ph:"keh",en:"that / what"}]},
@@ -912,6 +1025,13 @@ const HEADING_AUDIO = {
   "Repaso — día de juegos":{say:"Repaso",en:"Review — game day"},
   "Los juegos":{en:"The games"},
   "Chuleta de viaje — autoevaluación":{say:"Chuleta de viaje",en:"Trip cheat sheet self-test"},
+  "¿Dónde queda?":{en:"Where is it?"},
+  "Encontrar lugares":{en:"Finding places"},
+  "Ubicación":{en:"Location"},
+  "La estación de servicio":{en:"The gas station"},
+  "Frases de supervivencia":{en:"Survival phrases"},
+  "Emergencias":{en:"Emergencies"},
+  "Autoevaluación — ¡Ponete a prueba!":{say:"Ponete a prueba",en:"Test yourself"},
 };
 
 /* ============================================================ SLUG + RENDER ============================================================ */
@@ -1030,6 +1150,7 @@ document.getElementById("lesson3").innerHTML=renderLesson(LESSON3);
 document.getElementById("lesson4").innerHTML=renderLesson(LESSON4);
 document.getElementById("lesson5").innerHTML=renderLesson(LESSON5);
 document.getElementById("lesson6").innerHTML=renderLesson(LESSON6);
+document.getElementById("lesson8").innerHTML=renderLesson(LESSON8);
 
 /* attach speaker buttons to Spanish titles/headings */
 function addHeadingAudio(){
@@ -1050,8 +1171,8 @@ function addHeadingAudio(){
 addHeadingAudio();
 
 /* ============================================================ TABS ============================================================ */
-const tabs=[document.getElementById("tab1"),document.getElementById("tab2"),document.getElementById("tab3"),document.getElementById("tab4"),document.getElementById("tab5"),document.getElementById("tab6")];
-const panels=[document.getElementById("lesson1"),document.getElementById("lesson2"),document.getElementById("lesson3"),document.getElementById("lesson4"),document.getElementById("lesson5"),document.getElementById("lesson6")];
+const tabs=[document.getElementById("tab1"),document.getElementById("tab2"),document.getElementById("tab3"),document.getElementById("tab4"),document.getElementById("tab5"),document.getElementById("tab6"),document.getElementById("tab8")];
+const panels=[document.getElementById("lesson1"),document.getElementById("lesson2"),document.getElementById("lesson3"),document.getElementById("lesson4"),document.getElementById("lesson5"),document.getElementById("lesson6"),document.getElementById("lesson8")];
 tabs.forEach((t,i)=>t.addEventListener("click",()=>{tabs.forEach((x,j)=>{x.setAttribute("aria-selected",j===i);panels[j].hidden=(j!==i);});closePlayer();}));
 
 /* ============================================================ AUDIO ============================================================ */
