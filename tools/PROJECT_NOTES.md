@@ -9,7 +9,7 @@ to family, under the **Tardis Software** brand.
 
 ## What it is
 
-A single `index.html` with **six lessons** across tabs (numbered 1–6). Every Spanish word, phrase, and title is a
+A single `index.html` with **seven lessons** across tabs (numbered 1–6 and 8). Every Spanish word, phrase, and title is a
 clickable audio button; tapping opens a small popover player with **play/pause,
 speed (0.6 / 0.8 / 1×), and volume**. Audio plays a recorded clip when one exists,
 otherwise falls back to the device's Spanish voice.
@@ -21,8 +21,48 @@ Current tabs:
 - **04 Verbos** — five core verbs, tener idioms, "vamos a", sentence patterns, word bank
 - **05 Repaso** — game-day review (solo): 5 games + Jeopardy + cumulative trip self-test
 - **06 La hora** — time/hours cheat sheet + "Ponte a prueba" self-test
+- **08 Dónde queda** — directions, gas station, survival phrases, emergencies + 5-level self-test
 
-Clip count: **279** MP3s in `audio/`.
+Clip count: **325** MP3s in `audio/` before the trip guide; **563** once the
+guide's new phrases are generated (see below).
+
+## Trip guide (`viaje.html`)
+
+A second page for the family to use *during* the trip, at
+`https://mstechid.github.io/SpanishLessons/viaje.html`. Same look, same audio
+player, same `audio/` folder. Linked both ways (lesson header "Viaje →", guide
+header "Lecciones").
+
+- **Search bar** (sticky, top) - searches English or Spanish, accent-insensitive,
+  across phrases, menu words and outings. Small synonym list (bathroom → baño,
+  check → cuenta, gas → nafta, etc.) lives in `SYN` in the app code.
+- **Frases** - 15 categories with filter chips: Lo esencial, Saludos y charla,
+  Cuando no entendés, Restorán, Café/panadería/helado, Plata y compras (with a
+  peso → dollar converter), Números, Dónde queda, Auto y ruta, Hora y carteles,
+  Playa y paseos, Hotel/casa, Farmacia y salud, Emergencias. Quiz toggle works here.
+- **Menú** - "how to read the menu" notes, five **sample menus** (parrilla,
+  port seafood stand, café/confitería, pizzería, heladería) styled like a carta
+  with peso prices and an optional ≈US$ toggle, plus an A-Z **menu decoder** by
+  section with "safe pick" tags for familiar foods. Sample menus are composites of
+  typical places, not copies of real restaurants; prices are rough 2026 examples.
+- **Paseos** - 13 outings from the itinerary, **no dates**, grouped Grande →
+  Mediano → Pequeño. Each card: time, distance, tips, "Handy here" phrases, info
+  links and a Google Maps link. Filters: size, Rain OK, Sunset, Not done yet.
+  "Hecho" checkboxes are saved per phone (localStorage).
+- **Mostrar en grande** - button in the audio player that shows the phrase
+  full-screen so you can turn the phone around and show it.
+- Remembers last tab, ≈US$ toggle, exchange rate and "Hecho" ticks per device.
+- Content rule kept: no alcoholic drinks in the guide's menus or phrases.
+
+**Source and build.** `viaje.html` is assembled, not hand-edited:
+`tools/src/content.js` (all phrases, menus, outings), `tools/src/app.js`
+(render/search/tabs), `tools/src/shell_top.html` (markup + guide CSS). The build
+pulls the shared CSS, render helpers and audio engine straight out of
+`index.html`, so player fixes made there flow into the guide on the next build:
+
+```bash
+python3 tools/src/build.py index.html viaje.html
+```
 
 ## Design
 
@@ -78,6 +118,8 @@ yo, vos, example), `patterns` (sentence builders with slots + clickable example)
    `VOWELS`, `HEADING_AUDIO`).
 2. Copy the new `index.html` and `lista_de_grabacion.csv` into the repo (the
    generator script does NOT move these — it only reads the CSV and writes mp3s).
+   For the trip guide: edit `tools/src/content.js`, then run
+   `python3 tools/src/build.py index.html viaje.html`.
 3. Run `python3 tools/generar_audio_edgetts.py` (resumable → only new clips).
 4. Refresh `tools/PROJECT_NOTES.md` and `tools/AUDIO_PIPELINE.md` to match.
 5. `git add -A && git commit && git push` — Pages redeploys.
@@ -89,9 +131,11 @@ GitHub is case-sensitive: keep clip filenames lowercase to match slugs.
 ```
 SpanishLessons/
 ├── index.html                     # the lesson site
-├── lista_de_grabacion.csv         # phrase list the generator reads (repo root)
-├── audio/                         # 252 MP3 clips, <slug>.mp3
+├── viaje.html                     # trip guide (built from tools/src)
+├── lista_de_grabacion.csv         # phrase list the generator reads (repo root) - lessons + guide
+├── audio/                         # 563 MP3 clips, <slug>.mp3
 └── tools/
+    ├── src/                       # trip guide sources + build.py
     ├── generar_audio_edgetts.py   # path-anchored, resumable generator
     ├── generar_audio_piper.py     # fully-offline FOSS alternative (Piper)
     ├── lista_de_grabacion.csv     # copy for convenience

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0E5C56">
+<title>Guía de viaje — Piriápolis · Español Rioplatense</title>
+<style>
+/*__BASE_CSS__*/
+
+  /* ================= TRIP GUIDE ADDITIONS ================= */
+  .site-inner{flex-wrap:wrap}
+  .lessons-link{font-size:.82rem;color:var(--teal-deep);text-decoration:none;border:1px solid var(--line);background:var(--card);height:38px;padding:0 13px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+  .lessons-link:hover{border-color:var(--teal)}
+  .search-row{max-width:920px;margin:0 auto;padding:0 22px 12px}
+  .search{position:relative;display:flex;align-items:center}
+  .search svg.mag{position:absolute;left:13px;width:18px;height:18px;color:var(--ink-soft);pointer-events:none}
+  .search input{width:100%;font:inherit;font-size:1rem;padding:11px 42px 11px 40px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);outline:none;-webkit-appearance:none;appearance:none}
+  .search input:focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-tint)}
+  .search input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+  .search .clear{position:absolute;right:6px;border:none;background:none;font-size:1.35rem;line-height:1;color:var(--ink-soft);cursor:pointer;width:34px;height:34px;border-radius:8px}
+  .search .clear:hover{background:var(--teal-tint)}
+  .search .clear[hidden]{display:none}
+
+  .tabs{margin-top:18px}
+  body.searching .tabs .tab{opacity:.55}
+  body.searching main .sheet:not(#results){display:none}
+  #results[hidden]{display:none}
+  #results{border-radius:var(--radius)}
+
+  /* categories */
+  .chiprow{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 26px}
+  .chip{font:inherit;font-size:.88rem;font-weight:600;color:var(--teal-deep);background:var(--teal-faint);border:1px solid var(--hair);border-radius:999px;padding:6px 13px;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .12s,border-color .12s}
+  .chip:hover{border-color:var(--teal)}
+  .chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal-deep);color:#fff}
+  .cat{margin-bottom:12px}
+  .cat[hidden],.xgroup[hidden],.exc[hidden]{display:none}
+  .cat-head{margin:10px 0 16px;padding-top:8px;border-top:1px solid var(--line);scroll-margin-top:150px}
+  .cat:first-child .cat-head{border-top:none;padding-top:0}
+  .cat-head h2{margin:0;font-size:1.45rem;color:var(--teal-deep);display:flex;align-items:center;letter-spacing:-.01em}
+  .cat-head p{margin:2px 0 0;color:var(--ink-soft);font-size:.92rem}
+  .tag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal-deep);background:var(--teal-tint);border-radius:6px;padding:1px 6px;margin-left:4px;vertical-align:1px}
+  .where{display:block;font-size:.74rem;color:var(--clay-deep);font-weight:600;margin-top:2px}
+
+  /* converter */
+  .conv{border:1px solid var(--line);border-left:3px solid var(--clay);background:var(--clay-tint);border-radius:12px;padding:15px 18px}
+  .conv-title{font-weight:700;color:var(--clay-deep);font-size:1.02rem;margin-bottom:10px}
+  .conv-title span{font-weight:400;font-style:italic;color:var(--ink-soft);font-size:.85rem;margin-left:6px}
+  .conv-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .conv-in{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:0 10px;flex:1 1 150px;max-width:230px}
+  .conv-in span{font-weight:700;color:var(--ink-soft)}
+  .conv-in input{border:none;outline:none;font:inherit;font-size:1.2rem;padding:9px 6px;width:100%;background:transparent}
+  .conv-eq{font-size:1.3rem;color:var(--ink-soft)}
+  .conv-out{font-size:1.35rem;font-weight:700;color:var(--teal-deep)}
+  .conv-rate{margin-top:10px;font-size:.84rem;color:var(--ink-soft)}
+  .conv-rate input{width:62px;font:inherit;font-size:.86rem;padding:3px 6px;border:1px solid var(--line);border-radius:7px}
+  .conv-hint{font-style:italic}
+
+  /* menus */
+  .usd-toggle{margin:4px 0 22px;font-size:.9rem;color:var(--ink-soft)}
+  .usd-toggle input{accent-color:var(--teal);width:17px;height:17px;vertical-align:-3px;margin-right:6px}
+  .price .usd{display:none;color:var(--ink-soft);font-weight:400;font-size:.85em}
+  body.show-usd .price .usd{display:inline}
+  .cartas{display:grid;gap:22px;margin-bottom:38px}
+  .carta{background:#FFFDF8;border:1px solid var(--line);border-radius:14px;padding:22px clamp(16px,3vw,30px) 18px;box-shadow:var(--shadow);scroll-margin-top:150px;position:relative}
+  .carta::before{content:"";position:absolute;inset:7px;border:1px solid #EADFCD;border-radius:9px;pointer-events:none}
+  .carta-head{text-align:center;margin-bottom:14px;position:relative}
+  .carta-kicker{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay-deep);font-weight:700}
+  .carta-head h3{font-family:Cambria,Georgia,"Times New Roman",serif;font-size:1.6rem;margin:.15em 0 0;color:var(--teal-deep);display:inline-flex;align-items:center}
+  .carta-head p{margin:2px 0 0;color:var(--ink-soft);font-size:.88rem;font-style:italic}
+  .carta-body{columns:2 300px;column-gap:34px;position:relative}
+  .carta-sec{break-inside:avoid;margin:0 0 14px}
+  .carta-sec h4{font-family:Cambria,Georgia,serif;font-size:1.02rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay-deep);margin:4px 0 6px;border-bottom:1px solid #EADFCD;padding-bottom:3px}
+  .mi{padding:4px 0}
+  .mi-line{display:flex;align-items:baseline;gap:6px}
+  .mi-line .say{font-size:1.02rem;flex:0 1 auto}
+  .mi-dots{flex:1 1 auto;border-bottom:2px dotted #CDBFAA;transform:translateY(-4px);min-width:14px}
+  .price{font-weight:700;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .unit{font-size:.74rem;color:var(--ink-soft);white-space:nowrap}
+  .mi-en{font-size:.8rem;color:var(--ink-soft);font-style:italic;margin-top:1px}
+  .carta-foot{border-top:1px dashed #D9CCB7;margin-top:6px;padding-top:6px;position:relative}
+  .carta-note{position:relative;margin:10px 0 0;font-size:.82rem;color:var(--teal-deep);background:var(--teal-faint);border-radius:8px;padding:7px 10px}
+  #menu-gloss{scroll-margin-top:150px}
+
+  /* outings */
+  .xgroup{margin-bottom:22px}
+  .xgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+  .exc{border:1px solid var(--hair);border-radius:14px;background:var(--card);padding:15px 16px 14px;display:flex;flex-direction:column;gap:8px;scroll-margin-top:150px;box-shadow:0 1px 2px rgba(35,48,46,.04);transition:opacity .15s}
+  .exc.is-done{opacity:.62}
+  .exc.is-done h3{text-decoration:line-through;text-decoration-color:var(--clay)}
+  .exc-top{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+  .size{font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 8px;color:#fff}
+  .s-grande{background:var(--teal-deep)}
+  .s-mediano{background:var(--clay)}
+  .s-pequeno{background:#7A9A93}
+  .xtag{font-size:.7rem;color:var(--ink-soft);background:var(--teal-faint);border:1px solid var(--hair);border-radius:6px;padding:2px 7px}
+  .done{margin-left:auto;font-size:.8rem;color:var(--ink-soft);display:inline-flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+  .done input{accent-color:var(--clay);width:17px;height:17px;margin:0}
+  .exc h3{margin:2px 0 0;font-size:1.12rem;line-height:1.25;color:var(--teal-deep)}
+  .exc-es .say{font-size:.98rem;font-weight:600;color:var(--ink-soft)}
+  .exc-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.84rem;color:var(--ink)}
+  .exc-meta span{display:inline-flex;align-items:center;gap:5px}
+  .exc-meta svg{width:15px;height:15px;color:var(--clay-deep)}
+  .exc-blurb{margin:0;font-size:.92rem;color:var(--ink)}
+  .exc-tips{margin:0;padding-left:18px;font-size:.84rem;color:var(--ink-soft)}
+  .exc-tips li{margin:3px 0}
+  .exc-say{background:var(--teal-faint);border-radius:10px;padding:8px 10px}
+  .exc-say-lab{font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--clay-deep)}
+  .exc-say .chips{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:3px}
+  .exc-say .say{font-size:.95rem}
+  .exc-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+  .lnk{display:inline-flex;align-items:center;gap:5px;font-size:.84rem;font-weight:600;color:var(--teal-deep);text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:6px 10px;background:#fff}
+  .lnk:hover{border-color:var(--teal);background:var(--teal-faint)}
+  .lnk svg{width:13px;height:13px}
+  .lnk.map{color:#fff;background:var(--teal);border-color:var(--teal-deep)}
+  .lnk.map:hover{background:var(--teal-deep)}
+  .lnk.map svg{width:15px;height:15px}
+  .flash{animation:flash 1.6s ease}
+  @keyframes flash{0%,40%{box-shadow:0 0 0 4px var(--clay-glow)}100%{box-shadow:none}}
+
+  /* search results: outing shortcuts */
+  .xlite{display:grid;gap:8px}
+  .xl{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;font:inherit;border:1px solid var(--hair);background:var(--teal-faint);border-radius:12px;padding:11px 14px;cursor:pointer}
+  .xl:hover{border-color:var(--teal)}
+  .xl b{color:var(--teal-deep);font-size:1rem}
+  .xl span:last-child{font-size:.82rem;color:var(--ink-soft)}
+
+  /* quiz button only on phrases */
+  body:not([data-tab="frases"]) #quizToggle, body.searching #quizToggle{display:none}
+
+  /* show-it-big */
+  .pl-show{margin-top:12px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--teal);background:var(--teal-faint);color:var(--teal-deep);font:inherit;font-weight:700;font-size:.9rem;padding:9px;border-radius:10px;cursor:pointer}
+  .pl-show span{font-weight:400;font-style:italic;font-size:.8rem;color:var(--ink-soft)}
+  .pl-show svg{width:16px;height:16px}
+  .pl-show:hover{background:var(--teal-tint)}
+  #bigshow{position:fixed;inset:0;z-index:90;background:var(--teal-deep);color:#FBF7F0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;cursor:pointer}
+  #bigshow[hidden]{display:none}
+  #bigEs{font-size:clamp(2.2rem,10vw,5.4rem);font-weight:700;line-height:1.1;max-width:18ch;overflow-wrap:anywhere}
+  #bigEn{margin-top:18px;font-size:clamp(1rem,4vw,1.4rem);opacity:.75;font-style:italic}
+  #bigshow .bighint{position:absolute;bottom:22px;font-size:.85rem;opacity:.6}
+  body.big-open{overflow:hidden}
+
+  @media (max-width:560px){
+    .search-row{padding:0 16px 10px}
+    .brand span{display:none}
+    .lessons-link{height:34px;padding:0 10px;font-size:.78rem}
+    .gear{height:34px;padding:0 11px;font-size:.78rem}
+    .tabs{flex-wrap:nowrap}
+    .tab{flex:1 1 0;text-align:center;padding:10px 6px}
+    .chiprow{flex-wrap:nowrap;overflow-x:auto;margin-left:-18px;margin-right:-18px;padding:0 18px 4px;scrollbar-width:none}
+    .chiprow::-webkit-scrollbar{display:none}
+    .carta-body{columns:1}
+    .done{margin-left:0}
+    .exc-top .done{margin-left:auto}
+  }
+</style>
+</head>
+<body data-tab="frases">
+
+<header class="site">
+  <div class="site-inner">
+    <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M11 16 h18 v5 a9 9 0 0 1 -18 0 z" fill="#0E5C56"/>
+      <path d="M11 16 h18" stroke="#0A433E" stroke-width="2" stroke-linecap="round"/>
+      <line x1="24" y1="18" x2="31" y2="7" stroke="#C9682B" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="31" cy="6.5" r="2.2" fill="#C9682B"/>
+    </svg>
+    <div class="brand">
+      <b>Guía de viaje</b>
+      <span>Piriápolis · Rioplatense</span>
+    </div>
+    <a class="lessons-link" href="index.html">Lecciones</a>
+    <button class="gear" id="openSettings" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4M17 12h4M12 3v4M12 17v4" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2"/></svg>
+      Voz
+    </button>
+  </div>
+  <div class="search-row">
+    <div class="search" role="search">
+      <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4" stroke-linecap="round"/></svg>
+      <input id="q" type="search" enterkeyhint="search" placeholder="Search — bathroom, pollo, castle…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search phrases, menu words and outings">
+      <button class="clear" id="qClear" type="button" aria-label="Clear search" hidden>×</button>
+    </div>
+  </div>
+</header>
+
+<div class="tabs" role="tablist" aria-label="Secciones">
+  <button class="tab" role="tab" data-tab="frases" aria-controls="p-frases" aria-selected="true"><span class="n">01</span>Frases</button>
+  <button class="tab" role="tab" data-tab="menu" aria-controls="p-menu" aria-selected="false"><span class="n">02</span>Menú</button>
+  <button class="tab" role="tab" data-tab="paseos" aria-controls="p-paseos" aria-selected="false"><span class="n">03</span>Paseos</button>
+</div>
+
+<main>
+  <div class="sheet" id="results" hidden aria-live="polite"></div>
+  <div class="sheet" id="p-frases" role="tabpanel"></div>
+  <div class="sheet" id="p-menu" role="tabpanel" hidden></div>
+  <div class="sheet" id="p-paseos" role="tabpanel" hidden></div>
+</main>
+
+<div id="bigshow" hidden role="dialog" aria-label="Phrase, large">
+  <div id="bigEs"></div>
+  <div id="bigEn"></div>
+  <div class="bighint">Tocá para cerrar · tap to close</div>
+</div>
+
+<!--__ENGINE_MARKUP__-->
+
+<footer class="site">
+  <b>Tardis Software</b> · Guía de viaje · Piriápolis, Uruguay · <a href="index.html" style="color:inherit">Lecciones</a>
+</footer>
+
+<script>

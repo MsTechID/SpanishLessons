@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0E5C56">
+<title>Guía de viaje — Piriápolis · Español Rioplatense</title>
+<style>
+  :root{
+    /* palette lifted from the lesson sheets */
+    --page:#F4ECE1;      /* cream */
+    --card:#FFFFFF;
+    --teal:#0E5C56;      /* primary green */
+    --teal-deep:#0A433E;
+    --teal-tint:#E3F0EE; /* soft fill / row stripe */
+    --teal-faint:#EEF5F3;
+    --clay:#C9682B;      /* terracotta = interaction / audio */
+    --clay-deep:#A0521F;
+    --clay-tint:#F6E7DA;
+    --clay-glow:rgba(201,104,43,.18);
+    --ink:#23302E;
+    --ink-soft:#5C6B68;
+    --line:#E2D8CA;      /* warm border on cream */
+    --hair:#E1E9E6;      /* hairline inside white cards */
+
+    --font-ui:Calibri,"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+
+    --shadow:0 1px 2px rgba(35,48,46,.05),0 10px 28px rgba(35,48,46,.07);
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--page);color:var(--ink);
+    font-family:var(--font-ui);line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+
+  /* ---------- Header ---------- */
+  header.site{position:sticky;top:0;z-index:40;background:rgba(244,236,225,.9);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+  .site-inner{max-width:920px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:13px}
+  .mark{width:30px;height:30px;flex:0 0 auto;display:block}
+  .brand{display:flex;flex-direction:column;line-height:1.15;margin-right:auto}
+  .brand b{font-size:1.05rem;letter-spacing:.1px;font-weight:700;color:var(--teal-deep)}
+  .brand span{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--clay-deep);font-weight:700}
+  .gear{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);height:38px;padding:0 14px;border-radius:999px;cursor:pointer;font:inherit;font-size:.85rem;display:inline-flex;align-items:center;gap:7px;transition:border-color .15s,color .15s}
+  .gear:hover{border-color:var(--teal);color:var(--teal-deep)}
+  .gear svg{width:15px;height:15px}
+
+  /* ---------- Tabs ---------- */
+  .tabs{max-width:920px;margin:22px auto 0;padding:0 22px;display:flex;gap:8px}
+  .tab{appearance:none;border:1px solid var(--line);background:#FBF7F0;font:inherit;font-size:1rem;font-weight:600;color:var(--ink-soft);padding:11px 20px;border-radius:12px 12px 0 0;cursor:pointer;position:relative;top:1px;transition:color .15s,background .15s}
+  .tab .n{font-size:.72rem;color:var(--clay-deep);margin-right:8px;font-weight:700}
+  .tab[aria-selected="true"]{color:var(--ink);background:var(--card);border-color:var(--line);border-bottom-color:var(--card);box-shadow:0 -3px 0 var(--teal) inset}
+  .tab:hover{color:var(--teal-deep)}
+
+  /* ---------- Layout ---------- */
+  main{max-width:920px;margin:0 auto;padding:0 22px 90px}
+  .sheet{background:var(--card);border:1px solid var(--line);border-radius:0 var(--radius) var(--radius) var(--radius);box-shadow:var(--shadow);padding:34px clamp(20px,4vw,44px)}
+  .sheet[hidden]{display:none}
+
+  .lesson-head{margin:0 0 30px}
+  .lesson-kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay-deep);font-weight:700}
+  .lesson-head h1{font-weight:700;letter-spacing:-.01em;font-size:clamp(1.7rem,4.5vw,2.35rem);line-height:1.1;margin:.3em 0 .12em;color:var(--teal-deep)}
+  .lesson-head p{margin:0;color:var(--ink-soft);font-size:.98rem}
+
+  section.block{margin:0 0 34px;scroll-margin-top:120px}
+  .block-head{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;flex-wrap:wrap}
+  .block-head h2{font-weight:700;font-size:1.22rem;margin:0;letter-spacing:-.01em;color:var(--teal-deep)}
+  .block-head .en{color:var(--ink-soft);font-size:.9rem;font-style:italic}
+  .block-head::before{content:"";width:22px;height:3px;background:var(--clay);border-radius:2px;align-self:center;flex:0 0 auto}
+
+  /* phrase rows */
+  .rows{display:grid;gap:1px;border:1px solid var(--hair);border-radius:12px;overflow:hidden;background:var(--hair)}
+  .row{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:16px;padding:13px 16px;background:var(--card);align-items:baseline}
+  .row:nth-child(odd){background:var(--teal-faint)}
+  .row .en{color:var(--ink-soft);font-size:.92rem}
+  .row .en .note{display:block;color:var(--teal);font-size:.8rem;font-style:italic;margin-top:2px}
+
+  /* clickable spanish phrase = signature (terracotta = "tap to hear") */
+  .say{font-family:inherit;font-size:1.12rem;color:var(--ink);background:none;border:none;padding:2px 3px;margin:-2px -3px;cursor:pointer;text-align:left;font-weight:600;border-radius:6px;position:relative;line-height:1.35;
+       background-image:linear-gradient(var(--clay),var(--clay));background-size:100% 1.5px;background-position:0 100%;background-repeat:no-repeat;transition:color .15s,background-color .15s}
+  .say:hover,.say:focus-visible{color:var(--clay-deep);background-color:var(--clay-tint);outline:none}
+  .say:focus-visible{box-shadow:0 0 0 2px var(--clay)}
+  .say .ph{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:400;font-style:italic;margin-top:1px}
+  .say[data-playing="true"]{color:var(--clay-deep)}
+
+  /* number tiles */
+  .grid-nums{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+  .numtile{display:flex;flex-direction:column;gap:1px;align-items:flex-start;border:1px solid var(--hair);border-radius:10px;padding:11px 13px;background:var(--teal-faint);cursor:pointer;font:inherit;text-align:left;transition:border-color .15s,box-shadow .15s,background .15s}
+  .numtile:hover,.numtile:focus-visible{border-color:var(--clay);background:#fff;outline:none;box-shadow:0 0 0 3px var(--clay-glow)}
+  .numtile .val{font-size:.82rem;color:var(--clay-deep);font-weight:700}
+  .numtile .word{font-size:1.14rem;font-weight:600}
+  .numtile .ph{font-size:.74rem;color:var(--ink-soft);font-style:italic}
+  .numtile[data-playing="true"]{border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-glow)}
+
+  /* asides */
+  .aside{border:1px solid var(--line);border-left:3px solid var(--teal);background:var(--teal-faint);border-radius:10px;padding:15px 18px;margin:14px 0 0}
+  .aside.warm{border-left-color:var(--clay);background:var(--clay-tint)}
+  .aside h3{margin:0 0 7px;font-size:1.02rem;font-weight:700;color:var(--teal-deep)}
+  .aside.warm h3{color:var(--clay-deep)}
+  .aside p{margin:0;font-size:.9rem;color:var(--ink-soft)}
+  .aside p + p{margin-top:8px}
+  .aside .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+  .swap{font-size:.95rem;color:var(--ink);background:#fff;border:1px solid var(--line);padding:5px 11px;border-radius:8px}
+  .swap b{color:var(--clay-deep)}
+
+  /* homework */
+  .hw{border:1px dashed var(--clay);border-radius:12px;padding:18px 20px;background:var(--clay-tint);margin-top:8px}
+  .hw h2{display:flex;align-items:center;gap:9px;margin:0 0 10px;font-size:1.1rem;color:var(--clay-deep)}
+  .hw h2 svg{width:18px;height:18px}
+  .hw ol{margin:0;padding-left:20px}
+  .hw li{margin:6px 0;font-size:.93rem;color:var(--ink-soft)}
+  .hw li b{color:var(--ink)}
+
+  .pron-note{font-size:.82rem;color:var(--ink-soft);margin:10px 2px 0;font-style:italic}
+
+  /* ---------- Audio popover ---------- */
+  #player{position:absolute;z-index:60;width:266px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 34px rgba(35,48,46,.18);padding:14px 15px 15px;opacity:0;transform:translateY(-4px) scale(.98);pointer-events:none;transition:opacity .13s,transform .13s}
+  #player.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+  #player::before{content:"";position:absolute;top:-7px;left:var(--arrow,26px);width:13px;height:13px;background:var(--card);border-left:1px solid var(--line);border-top:1px solid var(--line);transform:rotate(45deg)}
+  .pl-phrase{font-size:1.16rem;font-weight:700;line-height:1.25;color:var(--teal-deep)}
+  .pl-ph{font-size:.8rem;color:var(--ink-soft);font-style:italic;margin-top:2px}
+  .pl-en{font-size:.82rem;color:var(--ink-soft);margin-top:3px}
+  .pl-main{display:flex;align-items:center;gap:11px;margin-top:12px}
+  .pl-play{width:44px;height:44px;flex:0 0 auto;border:none;border-radius:50%;cursor:pointer;background:radial-gradient(circle at 32% 30%,#E08a4d,var(--clay) 60%,var(--clay-deep));box-shadow:0 3px 10px var(--clay-glow);display:grid;place-items:center;color:#fff;transition:transform .1s,box-shadow .15s}
+  .pl-play:hover{transform:translateY(-1px);box-shadow:0 5px 14px var(--clay-glow)}
+  .pl-play:active{transform:translateY(0)}
+  .pl-play svg{width:20px;height:20px}
+  .pl-speeds{display:flex;gap:5px}
+  .sp{border:1px solid var(--line);background:var(--card);font:inherit;font-size:.74rem;color:var(--ink-soft);padding:6px 9px;border-radius:8px;cursor:pointer;line-height:1;transition:all .12s}
+  .sp b{display:block;font-size:.82rem;color:var(--ink)}
+  .sp[aria-pressed="true"]{background:var(--clay);border-color:var(--clay-deep);color:#fff}
+  .sp[aria-pressed="true"] b{color:#fff}
+  .pl-vol{display:flex;align-items:center;gap:9px;margin-top:13px}
+  .pl-vol svg{width:16px;height:16px;color:var(--ink-soft);flex:0 0 auto}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:var(--teal-tint);outline:none;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--teal);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--teal);border:2px solid #fff}
+  input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--clay-glow)}
+  .pl-status{margin-top:11px;font-size:.76rem;border-radius:8px;padding:7px 9px;line-height:1.4}
+  .pl-status.rec{color:var(--teal-deep);background:var(--teal-tint)}
+  .pl-status.warn{color:var(--clay-deep);background:var(--clay-tint)}
+  .pl-status[hidden]{display:none}
+
+  /* ---------- banner + settings ---------- */
+  .banner{max-width:920px;margin:14px auto 0;padding:0 22px}
+  .banner-inner{background:var(--clay-tint);border:1px solid #E9C6A9;border-radius:12px;padding:13px 16px;display:flex;gap:12px;align-items:flex-start;font-size:.86rem;color:var(--ink)}
+  .banner-inner svg{width:18px;height:18px;color:var(--clay-deep);flex:0 0 auto;margin-top:2px}
+  .banner-inner button{margin-left:auto;flex:0 0 auto;border:none;background:none;color:var(--ink-soft);cursor:pointer;font:inherit;font-size:.8rem;text-decoration:underline}
+  .banner[hidden]{display:none}
+
+  .panel-backdrop{position:fixed;inset:0;background:rgba(35,48,46,.3);z-index:70;opacity:0;pointer-events:none;transition:opacity .16s}
+  .panel-backdrop.open{opacity:1;pointer-events:auto}
+  .panel{position:fixed;top:0;right:0;height:100%;width:min(380px,93vw);z-index:71;background:var(--card);border-left:1px solid var(--line);box-shadow:-14px 0 40px rgba(35,48,46,.16);transform:translateX(100%);transition:transform .2s;padding:24px 24px 40px;overflow-y:auto}
+  .panel.open{transform:translateX(0)}
+  .panel h2{font-size:1.2rem;margin:0 0 4px;color:var(--teal-deep)}
+  .panel .sub{color:var(--ink-soft);font-size:.85rem;margin:0 0 22px}
+  .field{margin-bottom:20px}
+  .field > label{display:block;font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--clay-deep);font-weight:700;margin-bottom:7px}
+  .field select{width:100%;font:inherit;font-size:.92rem;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+  .field .hint{font-size:.79rem;color:var(--ink-soft);margin-top:6px;line-height:1.45}
+  .panel .close{position:absolute;top:18px;right:18px;border:none;background:none;font-size:1.5rem;color:var(--ink-soft);cursor:pointer;line-height:1}
+  .btn{width:100%;border:1px solid var(--teal);background:var(--teal-faint);color:var(--teal-deep);font:inherit;font-weight:700;padding:10px;border-radius:10px;cursor:pointer;margin-top:4px}
+  .btn:hover{background:var(--teal-tint)}
+  .btn.clay{border-color:var(--clay);background:var(--clay-tint);color:var(--clay-deep)}
+  .panel-sep{border:none;border-top:1px solid var(--line);margin:6px 0 22px}
+  details.help{margin-top:10px;font-size:.83rem;color:var(--ink-soft)}
+  details.help summary{cursor:pointer;color:var(--teal-deep);font-weight:700}
+  details.help ul{padding-left:18px;margin:8px 0 0}
+  details.help li{margin:6px 0}
+  .rec-copy{font-size:.85rem;color:var(--ink-soft);line-height:1.5;margin:0 0 12px}
+  .rec-copy b{color:var(--ink)}
+  code{background:var(--teal-tint);padding:1px 6px;border-radius:5px;font-size:.86em}
+
+  footer.site{max-width:920px;margin:0 auto;padding:26px 22px 40px;color:var(--ink-soft);font-size:.8rem;text-align:center}
+  footer.site b{color:var(--teal-deep);font-weight:700}
+
+  @media (max-width:560px){
+    .row{grid-template-columns:1fr;gap:5px}
+    .site-inner{padding:12px 16px}
+    .tabs,main,.banner{padding-left:16px;padding-right:16px}
+    .sheet{padding:26px 18px}
+  }
+  /* ---------- Self-test (Ponte a prueba) ---------- */
+  .st-level{margin-top:18px}
+  .st-level:first-child{margin-top:2px}
+  .st-level h3{font-size:1rem;font-weight:700;color:var(--teal-deep);margin:0 0 8px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+  .st-lvl-en{font-size:.8rem;font-weight:400;color:var(--ink-soft);font-style:italic}
+  .strows{display:grid;gap:1px;border:1px solid var(--hair);border-radius:12px;overflow:hidden;background:var(--hair)}
+  .strow{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:11px 14px;background:var(--card);align-items:center}
+  .strow:nth-child(odd){background:var(--teal-faint)}
+  .st-prompt{font-size:.98rem;color:var(--ink)}
+  .st-reveal{font:inherit;font-size:.82rem;font-weight:600;color:var(--clay-deep);background:var(--clay-tint);border:1px dashed var(--clay);border-radius:8px;padding:6px 13px;cursor:pointer}
+  .st-reveal:hover{background:#efd4bf}
+  .st-ans{display:none;align-items:center;gap:8px}
+  .stcell.shown .st-reveal{display:none}
+  .stcell.shown .st-ans{display:flex}
+  .st-ans .say{font-size:1.05rem;font-weight:700;color:var(--teal-deep)}
+  .st-gloss{color:var(--ink-soft);font-size:.85rem;font-style:italic}
+  .st-txt{font-weight:700;color:var(--teal-deep);font-size:1.02rem}
+  .st-hide{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:.95rem;line-height:1;padding:2px 5px;border-radius:6px;flex:0 0 auto}
+  .st-hide:hover{background:var(--teal-tint);color:var(--teal-deep)}
+
+  /* ---------- Verb cards ---------- */
+  .vgridcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:10px}
+  .vcard{border:1px solid var(--hair);border-radius:12px;padding:12px 14px;background:var(--card)}
+  .vcard-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid var(--hair)}
+  .vcard-head > .say{font-size:1.18rem;font-weight:700}
+  .vmean{font-size:.85rem;color:var(--ink-soft);font-style:italic;text-align:right}
+  .vconj{display:grid;grid-template-columns:auto 1fr;gap:6px 9px;align-items:center;margin-bottom:9px}
+  .clabel{font-size:.64rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--clay-deep)}
+  .vconj .say{font-size:1.03rem}
+  .vcex{display:flex;flex-direction:column;gap:1px;background:var(--teal-faint);border-radius:8px;padding:8px 10px}
+  .vcex > .say{font-size:1rem;font-weight:600;color:var(--teal-deep)}
+  .vcex-en{font-size:.77rem;color:var(--ink-soft);font-style:italic}
+
+  /* ---------- Sentence patterns ---------- */
+  .patterns{display:grid;gap:1px;border:1px solid var(--hair);border-radius:12px;overflow:hidden;background:var(--hair)}
+  .prow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr) minmax(0,1.1fr);gap:12px;padding:12px 14px;background:var(--card);align-items:baseline}
+  .prow:nth-child(odd){background:var(--teal-faint)}
+  .ppat{font-size:1.06rem;font-weight:600;color:var(--ink)}
+  .pen{font-size:.88rem;color:var(--ink-soft)}
+  .pex{display:flex;flex-direction:column;gap:1px}
+  .pex > .say{font-size:.98rem;font-weight:600;color:var(--teal-deep)}
+  .pex-en{font-size:.76rem;color:var(--ink-soft);font-style:italic}
+
+  .wordbank .say{font-family:inherit;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.98rem;font-weight:600;background-image:none}
+  .wordbank .say:hover{border-color:var(--clay);color:var(--clay-deep);background-color:var(--clay-tint)}
+
+  @media (max-width:560px){
+    .prow{grid-template-columns:1fr;gap:5px}
+  }
+
+  /* ---------- Dialogue ---------- */
+  .dialogue{border:1px solid var(--hair);border-radius:12px;overflow:hidden}
+  .dline{display:grid;grid-template-columns:56px minmax(0,1.15fr) minmax(0,1fr);gap:12px;align-items:baseline;padding:12px 14px;background:var(--card)}
+  .dline + .dline{border-top:1px solid var(--hair)}
+  .who{font-size:.66rem;font-weight:700;letter-spacing:.08em;padding:3px 0;border-radius:6px;text-align:center;color:#fff}
+  .who.mozo{background:var(--teal)}
+  .who.vos{background:var(--clay)}
+  .dsay .say{font-size:1.06rem}
+  .dline .en{color:var(--ink-soft);font-size:.9rem}
+
+  /* ---------- Tu turno (fill-in) ---------- */
+  .turno{border:1px dashed var(--teal);border-radius:12px;padding:18px 20px;background:var(--teal-faint)}
+  .turno h3{margin:0 0 12px;font-size:1.05rem;font-weight:700;color:var(--teal-deep)}
+  .turno-line{padding:9px 0}
+  .turno-line + .turno-line{border-top:1px solid var(--hair)}
+  .turno-es{display:block;font-size:1.06rem;font-weight:600;color:var(--ink)}
+  .turno-en{display:block;font-size:.84rem;color:var(--ink-soft);font-style:italic;margin-top:2px}
+  .slot{display:inline-block;background:var(--clay-tint);border:1px dashed var(--clay);color:var(--clay-deep);
+    font-weight:700;border-radius:6px;padding:0 7px;font-style:normal}
+
+  @media (max-width:560px){
+    .tabs{flex-wrap:wrap}
+    .tab{padding:10px 14px;font-size:.94rem}
+    .dline{grid-template-columns:1fr;gap:4px}
+    .who{justify-self:start;padding:2px 9px}
+  }
+
+  /* ---------- Vowel section (sound-first) ---------- */
+  .vgrid{display:flex;flex-direction:column;gap:8px}
+  .vrow{display:grid;grid-template-columns:52px minmax(120px,1fr) 24px minmax(150px,1.3fr);align-items:center;gap:12px;
+    border:1px solid var(--hair);border-radius:12px;padding:11px 14px;background:var(--card)}
+  .vrow:nth-child(odd){background:var(--teal-faint)}
+  .vglyph{font-size:1.85rem;font-weight:700;color:var(--clay-deep);text-align:center;line-height:1}
+  .vaudio{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:10px;
+    padding:8px 12px;cursor:pointer;font:inherit;text-align:left;transition:border-color .12s,box-shadow .12s}
+  .vaudio:hover,.vaudio:focus-visible{border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-glow);outline:none}
+  .vaudio[data-playing="true"]{border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-glow)}
+  .vaudio .spk{width:16px;height:16px;color:var(--clay-deep);flex:0 0 auto}
+  .vtxt{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+  .vsound{background:var(--clay-tint);border-color:#e6c3a6}
+  .vsound-lab{font-size:1.14rem;font-weight:700;color:var(--ink)}
+  .vsound-as{font-size:.72rem;color:var(--ink-soft);font-style:italic}
+  .varrow{color:var(--ink-soft);font-size:1.2rem;text-align:center}
+  .vex{display:flex;flex-wrap:wrap;gap:7px}
+  .vex-word{font-size:1.05rem;font-weight:600}
+  .vex-ph{font-size:.72rem;color:var(--ink-soft);font-style:italic}
+
+  /* ---------- Heading speaker buttons ---------- */
+  button.say-mini{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;
+    width:27px;height:27px;margin-left:11px;padding:0;border:1px solid var(--line);background:var(--card);background-image:none;
+    border-radius:50%;color:var(--clay-deep);cursor:pointer;flex:0 0 auto;transition:border-color .12s,box-shadow .12s,background .12s}
+  button.say-mini:hover,button.say-mini:focus-visible{border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-glow);outline:none}
+  button.say-mini[data-playing="true"]{border-color:var(--clay);background:var(--clay-tint)}
+  button.say-mini .spk{width:14px;height:14px}
+  h1 button.say-mini{width:31px;height:31px;margin-left:14px}
+  h1 button.say-mini .spk{width:16px;height:16px}
+
+  @media (max-width:560px){
+    .vrow{grid-template-columns:44px 1fr;grid-template-areas:"g s" "g e";gap:7px 10px}
+    .vglyph{grid-area:g;align-self:center}
+    .vsound{grid-area:s}
+    .vex{grid-area:e}
+    .varrow{display:none}
+  }
+
+  /* ---------- Quiz mode ---------- */
+  #quizToggle{
+    position:fixed;right:18px;bottom:18px;z-index:55;display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--teal-deep);background:var(--teal);color:#fff;font:inherit;font-weight:700;font-size:.92rem;
+    padding:11px 18px;border-radius:999px;box-shadow:0 6px 18px rgba(35,48,46,.22);cursor:pointer;transition:background .15s,transform .1s;
+  }
+  #quizToggle:hover{transform:translateY(-1px)}
+  #quizToggle svg{width:17px;height:17px}
+  body.quiz-on #quizToggle{background:var(--clay);border-color:var(--clay-deep)}
+
+  .reveal{
+    display:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--clay-deep);
+    background:var(--clay-tint);border:1px dashed var(--clay);border-radius:8px;padding:5px 12px;cursor:pointer;transition:background .12s;
+  }
+  .reveal:hover{background:#efd4bf}
+  body.quiz-on .quizzable .en-content{display:none}
+  body.quiz-on .quizzable .reveal{display:inline-flex;align-items:center}
+  body.quiz-on .quizzable.revealed .en-content{display:inline}
+  body.quiz-on .quizzable.revealed .reveal{display:none}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+  /* ================= TRIP GUIDE ADDITIONS ================= */
+  .site-inner{flex-wrap:wrap}
+  .lessons-link{font-size:.82rem;color:var(--teal-deep);text-decoration:none;border:1px solid var(--line);background:var(--card);height:38px;padding:0 13px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+  .lessons-link:hover{border-color:var(--teal)}
+  .search-row{max-width:920px;margin:0 auto;padding:0 22px 12px}
+  .search{position:relative;display:flex;align-items:center}
+  .search svg.mag{position:absolute;left:13px;width:18px;height:18px;color:var(--ink-soft);pointer-events:none}
+  .search input{width:100%;font:inherit;font-size:1rem;padding:11px 42px 11px 40px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);outline:none;-webkit-appearance:none;appearance:none}
+  .search input:focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-tint)}
+  .search input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+  .search .clear{position:absolute;right:6px;border:none;background:none;font-size:1.35rem;line-height:1;color:var(--ink-soft);cursor:pointer;width:34px;height:34px;border-radius:8px}
+  .search .clear:hover{background:var(--teal-tint)}
+  .search .clear[hidden]{display:none}
+
+  .tabs{margin-top:18px}
+  body.searching .tabs .tab{opacity:.55}
+  body.searching main .sheet:not(#results){display:none}
+  #results[hidden]{display:none}
+  #results{border-radius:var(--radius)}
+
+  /* categories */
+  .chiprow{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 26px}
+  .chip{font:inherit;font-size:.88rem;font-weight:600;color:var(--teal-deep);background:var(--teal-faint);border:1px solid var(--hair);border-radius:999px;padding:6px 13px;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .12s,border-color .12s}
+  .chip:hover{border-color:var(--teal)}
+  .chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal-deep);color:#fff}
+  .cat{margin-bottom:12px}
+  .cat[hidden],.xgroup[hidden],.exc[hidden]{display:none}
+  .cat-head{margin:10px 0 16px;padding-top:8px;border-top:1px solid var(--line);scroll-margin-top:150px}
+  .cat:first-child .cat-head{border-top:none;padding-top:0}
+  .cat-head h2{margin:0;font-size:1.45rem;color:var(--teal-deep);display:flex;align-items:center;letter-spacing:-.01em}
+  .cat-head p{margin:2px 0 0;color:var(--ink-soft);font-size:.92rem}
+  .tag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal-deep);background:var(--teal-tint);border-radius:6px;padding:1px 6px;margin-left:4px;vertical-align:1px}
+  .where{display:block;font-size:.74rem;color:var(--clay-deep);font-weight:600;margin-top:2px}
+
+  /* converter */
+  .conv{border:1px solid var(--line);border-left:3px solid var(--clay);background:var(--clay-tint);border-radius:12px;padding:15px 18px}
+  .conv-title{font-weight:700;color:var(--clay-deep);font-size:1.02rem;margin-bottom:10px}
+  .conv-title span{font-weight:400;font-style:italic;color:var(--ink-soft);font-size:.85rem;margin-left:6px}
+  .conv-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .conv-in{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:0 10px;flex:1 1 150px;max-width:230px}
+  .conv-in span{font-weight:700;color:var(--ink-soft)}
+  .conv-in input{border:none;outline:none;font:inherit;font-size:1.2rem;padding:9px 6px;width:100%;background:transparent}
+  .conv-eq{font-size:1.3rem;color:var(--ink-soft)}
+  .conv-out{font-size:1.35rem;font-weight:700;color:var(--teal-deep)}
+  .conv-rate{margin-top:10px;font-size:.84rem;color:var(--ink-soft)}
+  .conv-rate input{width:62px;font:inherit;font-size:.86rem;padding:3px 6px;border:1px solid var(--line);border-radius:7px}
+  .conv-hint{font-style:italic}
+
+  /* menus */
+  .usd-toggle{margin:4px 0 22px;font-size:.9rem;color:var(--ink-soft)}
+  .usd-toggle input{accent-color:var(--teal);width:17px;height:17px;vertical-align:-3px;margin-right:6px}
+  .price .usd{display:none;color:var(--ink-soft);font-weight:400;font-size:.85em}
+  body.show-usd .price .usd{display:inline}
+  .cartas{display:grid;gap:22px;margin-bottom:38px}
+  .carta{background:#FFFDF8;border:1px solid var(--line);border-radius:14px;padding:22px clamp(16px,3vw,30px) 18px;box-shadow:var(--shadow);scroll-margin-top:150px;position:relative}
+  .carta::before{content:"";position:absolute;inset:7px;border:1px solid #EADFCD;border-radius:9px;pointer-events:none}
+  .carta-head{text-align:center;margin-bottom:14px;position:relative}
+  .carta-kicker{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay-deep);font-weight:700}
+  .carta-head h3{font-family:Cambria,Georgia,"Times New Roman",serif;font-size:1.6rem;margin:.15em 0 0;color:var(--teal-deep);display:inline-flex;align-items:center}
+  .carta-head p{margin:2px 0 0;color:var(--ink-soft);font-size:.88rem;font-style:italic}
+  .carta-body{columns:2 300px;column-gap:34px;position:relative}
+  .carta-sec{break-inside:avoid;margin:0 0 14px}
+  .carta-sec h4{font-family:Cambria,Georgia,serif;font-size:1.02rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay-deep);margin:4px 0 6px;border-bottom:1px solid #EADFCD;padding-bottom:3px}
+  .mi{padding:4px 0}
+  .mi-line{display:flex;align-items:baseline;gap:6px}
+  .mi-line .say{font-size:1.02rem;flex:0 1 auto}
+  .mi-dots{flex:1 1 auto;border-bottom:2px dotted #CDBFAA;transform:translateY(-4px);min-width:14px}
+  .price{font-weight:700;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .unit{font-size:.74rem;color:var(--ink-soft);white-space:nowrap}
+  .mi-en{font-size:.8rem;color:var(--ink-soft);font-style:italic;margin-top:1px}
+  .carta-foot{border-top:1px dashed #D9CCB7;margin-top:6px;padding-top:6px;position:relative}
+  .carta-note{position:relative;margin:10px 0 0;font-size:.82rem;color:var(--teal-deep);background:var(--teal-faint);border-radius:8px;padding:7px 10px}
+  #menu-gloss{scroll-margin-top:150px}
+
+  /* outings */
+  .xgroup{margin-bottom:22px}
+  .xgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+  .exc{border:1px solid var(--hair);border-radius:14px;background:var(--card);padding:15px 16px 14px;display:flex;flex-direction:column;gap:8px;scroll-margin-top:150px;box-shadow:0 1px 2px rgba(35,48,46,.04);transition:opacity .15s}
+  .exc.is-done{opacity:.62}
+  .exc.is-done h3{text-decoration:line-through;text-decoration-color:var(--clay)}
+  .exc-top{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+  .size{font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 8px;color:#fff}
+  .s-grande{background:var(--teal-deep)}
+  .s-mediano{background:var(--clay)}
+  .s-pequeno{background:#7A9A93}
+  .xtag{font-size:.7rem;color:var(--ink-soft);background:var(--teal-faint);border:1px solid var(--hair);border-radius:6px;padding:2px 7px}
+  .done{margin-left:auto;font-size:.8rem;color:var(--ink-soft);display:inline-flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+  .done input{accent-color:var(--clay);width:17px;height:17px;margin:0}
+  .exc h3{margin:2px 0 0;font-size:1.12rem;line-height:1.25;color:var(--teal-deep)}
+  .exc-es .say{font-size:.98rem;font-weight:600;color:var(--ink-soft)}
+  .exc-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.84rem;color:var(--ink)}
+  .exc-meta span{display:inline-flex;align-items:center;gap:5px}
+  .exc-meta svg{width:15px;height:15px;color:var(--clay-deep)}
+  .exc-blurb{margin:0;font-size:.92rem;color:var(--ink)}
+  .exc-tips{margin:0;padding-left:18px;font-size:.84rem;color:var(--ink-soft)}
+  .exc-tips li{margin:3px 0}
+  .exc-say{background:var(--teal-faint);border-radius:10px;padding:8px 10px}
+  .exc-say-lab{font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--clay-deep)}
+  .exc-say .chips{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:3px}
+  .exc-say .say{font-size:.95rem}
+  .exc-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+  .lnk{display:inline-flex;align-items:center;gap:5px;font-size:.84rem;font-weight:600;color:var(--teal-deep);text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:6px 10px;background:#fff}
+  .lnk:hover{border-color:var(--teal);background:var(--teal-faint)}
+  .lnk svg{width:13px;height:13px}
+  .lnk.map{color:#fff;background:var(--teal);border-color:var(--teal-deep)}
+  .lnk.map:hover{background:var(--teal-deep)}
+  .lnk.map svg{width:15px;height:15px}
+  .flash{animation:flash 1.6s ease}
+  @keyframes flash{0%,40%{box-shadow:0 0 0 4px var(--clay-glow)}100%{box-shadow:none}}
+
+  /* search results: outing shortcuts */
+  .xlite{display:grid;gap:8px}
+  .xl{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;font:inherit;border:1px solid var(--hair);background:var(--teal-faint);border-radius:12px;padding:11px 14px;cursor:pointer}
+  .xl:hover{border-color:var(--teal)}
+  .xl b{color:var(--teal-deep);font-size:1rem}
+  .xl span:last-child{font-size:.82rem;color:var(--ink-soft)}
+
+  /* quiz button only on phrases */
+  body:not([data-tab="frases"]) #quizToggle, body.searching #quizToggle{display:none}
+
+  /* show-it-big */
+  .pl-show{margin-top:12px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--teal);background:var(--teal-faint);color:var(--teal-deep);font:inherit;font-weight:700;font-size:.9rem;padding:9px;border-radius:10px;cursor:pointer}
+  .pl-show span{font-weight:400;font-style:italic;font-size:.8rem;color:var(--ink-soft)}
+  .pl-show svg{width:16px;height:16px}
+  .pl-show:hover{background:var(--teal-tint)}
+  #bigshow{position:fixed;inset:0;z-index:90;background:var(--teal-deep);color:#FBF7F0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;cursor:pointer}
+  #bigshow[hidden]{display:none}
+  #bigEs{font-size:clamp(2.2rem,10vw,5.4rem);font-weight:700;line-height:1.1;max-width:18ch;overflow-wrap:anywhere}
+  #bigEn{margin-top:18px;font-size:clamp(1rem,4vw,1.4rem);opacity:.75;font-style:italic}
+  #bigshow .bighint{position:absolute;bottom:22px;font-size:.85rem;opacity:.6}
+  body.big-open{overflow:hidden}
+
+  @media (max-width:560px){
+    .search-row{padding:0 16px 10px}
+    .brand span{display:none}
+    .lessons-link{height:34px;padding:0 10px;font-size:.78rem}
+    .gear{height:34px;padding:0 11px;font-size:.78rem}
+    .tabs{flex-wrap:nowrap}
+    .tab{flex:1 1 0;text-align:center;padding:10px 6px}
+    .chiprow{flex-wrap:nowrap;overflow-x:auto;margin-left:-18px;margin-right:-18px;padding:0 18px 4px;scrollbar-width:none}
+    .chiprow::-webkit-scrollbar{display:none}
+    .carta-body{columns:1}
+    .done{margin-left:0}
+    .exc-top .done{margin-left:auto}
+  }
+</style>
+</head>
+<body data-tab="frases">
+
+<header class="site">
+  <div class="site-inner">
+    <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M11 16 h18 v5 a9 9 0 0 1 -18 0 z" fill="#0E5C56"/>
+      <path d="M11 16 h18" stroke="#0A433E" stroke-width="2" stroke-linecap="round"/>
+      <line x1="24" y1="18" x2="31" y2="7" stroke="#C9682B" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="31" cy="6.5" r="2.2" fill="#C9682B"/>
+    </svg>
+    <div class="brand">
+      <b>Guía de viaje</b>
+      <span>Piriápolis · Rioplatense</span>
+    </div>
+    <a class="lessons-link" href="index.html">Lecciones</a>
+    <button class="gear" id="openSettings" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4M17 12h4M12 3v4M12 17v4" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2"/></svg>
+      Voz
+    </button>
+  </div>
+  <div class="search-row">
+    <div class="search" role="search">
+      <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4" stroke-linecap="round"/></svg>
+      <input id="q" type="search" enterkeyhint="search" placeholder="Search — bathroom, pollo, castle…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search phrases, menu words and outings">
+      <button class="clear" id="qClear" type="button" aria-label="Clear search" hidden>×</button>
+    </div>
+  </div>
+</header>
+
+<div class="banner" id="voiceBanner" hidden>
+  <div class="banner-inner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>
+    <div>No custom recordings and no Spanish voice on this device, so audio may be silent. The phonetic guides (in italics) always work — or open <b>Voz y sonido</b> to add a voice or your own recordings.</div>
+    <button id="dismissBanner">Dismiss</button>
+  </div>
+</div>
+
+<div class="tabs" role="tablist" aria-label="Secciones">
+  <button class="tab" role="tab" data-tab="frases" aria-controls="p-frases" aria-selected="true"><span class="n">01</span>Frases</button>
+  <button class="tab" role="tab" data-tab="menu" aria-controls="p-menu" aria-selected="false"><span class="n">02</span>Menú</button>
+  <button class="tab" role="tab" data-tab="paseos" aria-controls="p-paseos" aria-selected="false"><span class="n">03</span>Paseos</button>
+</div>
+
+<main>
+  <div class="sheet" id="results" hidden aria-live="polite"></div>
+  <div class="sheet" id="p-frases" role="tabpanel"></div>
+  <div class="sheet" id="p-menu" role="tabpanel" hidden></div>
+  <div class="sheet" id="p-paseos" role="tabpanel" hidden></div>
+</main>
+
+<div id="bigshow" hidden role="dialog" aria-label="Phrase, large">
+  <div id="bigEs"></div>
+  <div id="bigEn"></div>
+  <div class="bighint">Tocá para cerrar · tap to close</div>
+</div>
+
+<button id="quizToggle" aria-pressed="false" aria-label="Modo quiz — ocultar traducciones">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9.2 9a2.8 2.8 0 1 1 4.3 2.5c-.9.6-1.5 1.2-1.5 2.4" stroke-linecap="round"/><circle cx="12" cy="17.6" r="1.15" fill="currentColor" stroke="none"/></svg>
+  <span id="quizLabel">Quiz me</span>
+</button>
+
+<div id="player" role="dialog" aria-label="Reproductor de audio">
+  <div class="pl-phrase" id="plPhrase"></div>
+  <div class="pl-ph" id="plPh"></div>
+  <div class="pl-en" id="plEn"></div>
+  <div class="pl-main">
+    <button class="pl-play" id="plPlay" aria-label="Reproducir">
+      <svg id="plIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="pl-speeds" role="group" aria-label="Velocidad">
+      <button class="sp" data-rate="0.6" aria-pressed="false">Lento<b>0.6×</b></button>
+      <button class="sp" data-rate="0.8" aria-pressed="true">Medio<b>0.8×</b></button>
+      <button class="sp" data-rate="1" aria-pressed="false">Normal<b>1×</b></button>
+    </div>
+  </div>
+  <div class="pl-vol">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none"/><path d="M16 8.5a4 4 0 010 7" stroke-linecap="round"/></svg>
+    <input type="range" id="plVol" min="0" max="1" step="0.05" value="1" aria-label="Volumen">
+  </div>
+  <div class="pl-status" id="plStatus" hidden></div>
+</div>
+
+<div class="panel-backdrop" id="backdrop"></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-label="Voz y sonido">
+  <button class="close" id="closePanel" aria-label="Cerrar">×</button>
+  <h2>Voz y sonido</h2>
+  <p class="sub">Each phrase plays your own recording if one exists; otherwise your device speaks it live.</p>
+
+  <div class="field">
+    <label for="voiceSel">Voz del dispositivo (device voice)</label>
+    <select id="voiceSel"></select>
+    <div class="hint" id="voiceHint"></div>
+  </div>
+
+  <div class="field">
+    <label for="rateSel">Velocidad por defecto</label>
+    <select id="rateSel">
+      <option value="0.6">Lento — 0.6×</option>
+      <option value="0.8" selected>Medio — 0.8× (recomendado)</option>
+      <option value="1">Normal — 1×</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <button class="btn" id="testVoice">▶ Escuchar la voz — “Buen día, ¿cómo andás?”</button>
+    <div class="hint" id="iosHint"></div>
+  </div>
+
+  <hr class="panel-sep">
+
+  <div class="field">
+    <label>Tu propia voz (your own recordings)</label>
+    <p class="rec-copy">Recorded clips are <b>identical everywhere</b> and don’t need any voice installed — best for phones and offline. Record each phrase, name the file after its slug, and drop it in an <code>audio/</code> folder next to this page (or send them to me to embed).</p>
+    <button class="btn clay" id="dlList">⤓ Descargar lista de grabación (CSV)</button>
+    <details class="help">
+      <summary>How recording works</summary>
+      <ul>
+        <li>The CSV lists every phrase, its English, and its exact <b>filename</b> (e.g. <code>como-andas.mp3</code>).</li>
+        <li>Record in <b>Audacity</b> → export each as <b>MP3</b> (mono is fine) → name it exactly as the CSV says.</li>
+        <li>Put them in a folder called <code>audio</code> beside this HTML file, then host it (your GitHub Pages works great).</li>
+        <li>Or send me the clips and I’ll embed them straight into the file so it stays a single portable page.</li>
+        <li>Recorded audio also gets the slow/normal speed control (pitch kept natural) and volume.</li>
+      </ul>
+    </details>
+  </div>
+
+  <details class="help">
+    <summary>Add or preview a Spanish voice per device</summary>
+    <ul>
+      <li><b>iPhone / iPad — preview before using:</b> Settings → Accessibility → Spoken Content → Voices → Spanish → tap <b>Spanish (Argentina)</b> and the ▶ to hear a sample; tap the cloud to download it. That downloaded voice is exactly what this page will use.</li>
+      <li><b>Fastest check:</b> open this page on the iPhone, pick that voice above, and tap <b>Escuchar la voz</b> — same engine, same sound.</li>
+      <li><b>Mac:</b> System Settings → Accessibility → Spoken Content → System Voice → Manage Voices → Spanish (Argentina).</li>
+      <li><b>Android:</b> Settings → Accessibility → Text-to-speech → install Google TTS + a Spanish voice.</li>
+      <li><b>Windows:</b> Settings → Time &amp; Language → add Spanish → download speech.</li>
+      <li><b>Linux / GrapheneOS (FOSS):</b> device needs a Spanish speech engine; a Piper/RHVoice speech-dispatcher backend beats default espeak. Recorded clips avoid this entirely.</li>
+    </ul>
+  </details>
+</aside>
+
+<footer class="site">
+  <b>Tardis Software</b> · Guía de viaje · Piriápolis, Uruguay · <a href="index.html" style="color:inherit">Lecciones</a>
+</footer>
+
+<script>
+/* ============================================================ TRIP CONTENT ============================================================ */
+function P(es, en, opts={}){ return {es, en, ...opts}; }
+
+/* ---------- Phrasebook, by category ---------- */
+const CATS = [
+  { id:"esencial", es:"Lo esencial", en:"The must-knows — if you learn nothing else", blocks:[
+    { items:[
+      P("Hola","Hi / Hello"), P("Buen día","Good morning"),
+      P("Por favor","Please"), P("Gracias","Thank you"), P("Perdón","Excuse me / Sorry"),
+      P("¿Cuánto sale?","How much is it?",{note:"“sale”, not “cuesta”"}),
+      P("¿Dónde queda el baño?","Where’s the bathroom?"),
+      P("No entiendo","I don’t understand"),
+      P("¿Hablás inglés?","Do you speak English?"),
+      P("Más despacio, por favor","Slower, please"),
+      P("La cuenta, por favor","The check, please"),
+      P("¿Puedo pagar con tarjeta?","Can I pay by card?"),
+      P("Ta","OK / got it / deal",{note:"You’ll hear this constantly"}),
+      P("Chau","Bye"),
+    ]},
+    { type:"aside", cls:"warm", h:"Tip: tap, then “Mostrar”", body:[
+      "Tap any phrase to hear it. In the player, <b>Mostrar en grande</b> fills the screen with the phrase so you can just turn your phone around and show it."
+    ]},
+  ]},
+
+  { id:"saludos", es:"Saludos y charla", en:"Greetings & small talk", blocks:[
+    { h:"Saludos", en:"Greetings", items:[
+      P("Hola","Hi / Hello"), P("Buen día","Good morning"), P("Buenas tardes","Good afternoon"),
+      P("Buenas noches","Good evening / night"),
+      P("¿Cómo andás?","How’s it going?",{note:"Used even with strangers"}),
+      P("Todo bien, ¿y vos?","All good, and you?"),
+      P("Disculpá","Excuse me (to get attention)"),
+      P("Con permiso","Excuse me (squeezing past)"),
+      P("De nada","You’re welcome"),
+      P("Hasta mañana","See you tomorrow"), P("Nos vemos","See you"), P("Chau","Bye"),
+    ]},
+    { h:"Charla", en:"Small talk", items:[
+      P("Me llamo…","My name is…",{say:"Me llamo"}), P("Mucho gusto","Nice to meet you"),
+      P("¿Y vos, cómo te llamás?","And you, what’s your name?"),
+      P("¿De dónde sos?","Where are you from?"),
+      P("Soy de Estados Unidos","I’m from the United States"),
+      P("Vivo cerca de Chicago","I live near Chicago"),
+      P("Vivo cerca de San Luis","I live near St. Louis"),
+      P("Estamos de vacaciones","We’re on vacation"),
+      P("Es mi primera vez en Uruguay","It’s my first time in Uruguay"),
+      P("¡Qué lindo!","How nice! / How pretty!"),
+      P("Me encanta Piriápolis","I love Piriápolis"),
+    ]},
+  ]},
+
+  { id:"supervivencia", es:"Cuando no entendés", en:"When you’re lost in the conversation", blocks:[
+    { items:[
+      P("No entiendo","I don’t understand",{note:"You caught nothing. Full reset."}),
+      P("Más despacio, por favor","Slower, please",{note:"You caught some words"}),
+      P("¿Podés repetir?","Can you repeat that?",{note:"You almost had it"}),
+      P("¿Hablás inglés?","Do you speak English?"),
+      P("Hablo un poco de español","I speak a little Spanish"),
+      P("¿Me lo podés escribir?","Can you write it down for me?",{note:"Then type it into the search box above"}),
+      P("¿Cómo se dice…?","How do you say…?",{say:"¿Cómo se dice?"}),
+      P("¿Qué significa…?","What does… mean?",{say:"¿Qué significa?"}),
+      P("Un momento, por favor","One moment, please"),
+      P("Está bien","That’s fine / OK"),
+      P("Sí","Yes"), P("No","No"),
+    ]},
+  ]},
+
+  { id:"restaurante", es:"En el restorán", en:"At the restaurant", blocks:[
+    { h:"Pedir", en:"Ordering", items:[
+      P("Una mesa para tres, por favor","A table for three, please"),
+      P("¿Puedo ver la carta?","Can I see the menu?"),
+      P("¿Hay menú del día?","Is there a daily special?",{note:"Weekday lunch specials are often called “menú ejecutivo”"}),
+      P("¿Qué me recomendás?","What do you recommend?"),
+      P("Quería…","I’d like…",{say:"Quería",note:"The polite way to order"}),
+      P("Para mí, la milanesa","For me, the milanesa"),
+      P("¿Con qué viene?","What does it come with?",{note:"At a parrilla, sides are often ordered separately"}),
+      P("Para compartir","To share"),
+      P("Sin cebolla, por favor","No onion, please",{note:"Swap in any food: sin tomate, sin queso…"}),
+      P("¿Me traés agua, por favor?","Can you bring me water, please?"),
+      P("Otro, por favor","Another one, please"),
+      P("Para llevar","To go"),
+    ]},
+    { h:"La carne", en:"How you want your meat", items:[
+      P("jugoso","rare / pink inside"),
+      P("a punto","medium"),
+      P("bien cocido","well done"),
+    ]},
+    { h:"Lo que dice el mozo", en:"What the waiter says", items:[
+      P("¿Qué van a pedir?","What are you going to order?"),
+      P("¿Y para tomar?","And to drink?"),
+      P("¿Van a querer postre?","Do you want dessert?"),
+      P("No tenemos chivito hoy.","We don’t have chivito today."),
+      P("La cocina cierra en diez minutos.","The kitchen closes in ten minutes."),
+    ]},
+    { h:"Al final", en:"Wrapping up", items:[
+      P("¡Está muy rico!","It’s delicious!"),
+      P("La cuenta, por favor","The check, please"),
+      P("¿Puedo pagar con tarjeta?","Can I pay by card?"),
+    ]},
+    { type:"aside", cls:"warm", h:"El cubierto y la propina", body:[
+      "<b>Cubierto</b> on the bill is a per-person cover charge (bread, table setting). It’s normal, not a scam.",
+      "<b>Propina</b> (tip) is about 10%, often left in cash. See the <b>Menú</b> tab for a full menu decoder."
+    ]},
+  ]},
+
+  { id:"cafe", es:"Café, panadería y helado", en:"Café, bakery & ice cream", blocks:[
+    { items:[
+      P("Quería un café con leche","I’d like a coffee with milk"),
+      P("Un cortado, por favor","An espresso with a splash of milk, please"),
+      P("Dos medialunas, por favor","Two croissants, please"),
+      P("¿Para acá o para llevar?","For here or to go?",{note:"What they’ll ask you"}),
+      P("Media docena de bizcochos","Half a dozen pastries",{note:"The classic bakery order to share"}),
+      P("¿Qué gustos tenés?","What flavors do you have?",{note:"Ice cream flavors are “gustos” here"}),
+      P("Un cucurucho de dulce de leche","A dulce de leche cone"),
+      P("Quiero un helado","I want an ice cream"),
+    ]},
+  ]},
+
+  { id:"plata", es:"Plata y compras", en:"Money & shopping", blocks:[
+    { type:"converter" },
+    { h:"Pagar", en:"Paying", items:[
+      P("¿Cuánto sale?","How much is it?"),
+      P("¿Puedo pagar con tarjeta?","Can I pay by card?"),
+      P("¿Aceptan tarjeta?","Do you take card?"),
+      P("En efectivo","In cash"),
+      P("¿Tenés cambio?","Do you have change?"),
+      P("¿Me cobrás?","Can you ring me up?"),
+      P("¿Débito o crédito?","Debit or credit?",{note:"What they’ll ask when you hand over a card"}),
+      P("¿En cuántas cuotas?","In how many installments?",{note:"Uruguayans split credit purchases into payments. Just say “En una”."}),
+      P("En una","In one (payment)"),
+      P("¿Hay un cajero por acá?","Is there an ATM around here?"),
+      P("Solo aceptamos efectivo.","We only take cash."),
+    ]},
+    { h:"Comprar", en:"Shopping", items:[
+      P("Estoy mirando, nomás","Just looking"),
+      P("¿Me mostrás ese?","Can you show me that one?"),
+      P("Me llevo esto","I’ll take this"),
+      P("¿Qué talle?","What size (clothing)?"),
+      P("Está barato","It’s cheap"), P("Está caro","It’s expensive"),
+      P("la feria","the street market"), P("el puesto","the stall"),
+    ]},
+    { type:"aside", cls:"warm", h:"Ojo con el $", body:[
+      "In Uruguay <b>$</b> means <b>pesos</b>. Dollars are written <b>U$S</b>. Rough rule: divide by 40, so <b>$400 ≈ US$10</b>. The rate drifts, so check it when you land."
+    ], chips:[ P("la plata","money"), P("quinientos pesos","500 pesos") ]},
+  ]},
+
+  { id:"numeros", es:"Los números", en:"Numbers & prices", blocks:[
+    { type:"nums", h:"0–15", en:"The basics",
+      items:[
+        {v:"0",w:"cero"},{v:"1",w:"uno"},{v:"2",w:"dos"},{v:"3",w:"tres"},{v:"4",w:"cuatro"},{v:"5",w:"cinco"},
+        {v:"6",w:"seis"},{v:"7",w:"siete"},{v:"8",w:"ocho"},{v:"9",w:"nueve"},{v:"10",w:"diez"},{v:"11",w:"once"},
+        {v:"12",w:"doce"},{v:"13",w:"trece"},{v:"14",w:"catorce"},{v:"15",w:"quince"}
+    ]},
+    { type:"nums", h:"Las decenas", en:"Tens",
+      items:[
+        {v:"16",w:"dieciséis"},{v:"20",w:"veinte"},{v:"25",w:"veinticinco"},{v:"30",w:"treinta"},{v:"40",w:"cuarenta"},
+        {v:"50",w:"cincuenta"},{v:"60",w:"sesenta"},{v:"70",w:"setenta"},{v:"80",w:"ochenta"},{v:"90",w:"noventa"},{v:"100",w:"cien"}
+    ]},
+    { type:"nums", h:"Los precios", en:"The money numbers", note:"Watch for quinientos (500) — it’s irregular.",
+      items:[
+        {v:"200",w:"doscientos"},{v:"300",w:"trescientos"},{v:"400",w:"cuatrocientos"},{v:"500",w:"quinientos"},
+        {v:"600",w:"seiscientos"},{v:"700",w:"setecientos"},{v:"800",w:"ochocientos"},{v:"900",w:"novecientos"},
+        {v:"1.000",w:"mil"},{v:"1.500",w:"mil quinientos"},{v:"2.000",w:"dos mil"}
+    ]},
+  ]},
+
+  { id:"direcciones", es:"¿Dónde queda?", en:"Finding your way", blocks:[
+    { h:"Preguntar", en:"Asking", items:[
+      P("¿Dónde queda…?","Where is…?",{say:"¿Dónde queda?",note:"The local way to ask"}),
+      P("¿Dónde queda el baño?","Where’s the bathroom?"),
+      P("¿Dónde queda la farmacia?","Where’s the pharmacy?"),
+      P("¿Dónde queda el Hotel Argentino?","Where’s the Hotel Argentino?"),
+      P("¿Hay un cajero por acá?","Is there an ATM around here?"),
+      P("¿Hay una panadería por acá?","Is there a bakery nearby?"),
+    ]},
+    { h:"Entender la respuesta", en:"Understanding the answer", items:[
+      P("Está cerca","It’s close"), P("Está lejos","It’s far"),
+      P("A la derecha","To the right"), P("A la izquierda","To the left"), P("Derecho","Straight ahead"),
+      P("al lado de","next to"), P("enfrente de","across from"), P("en la esquina","on the corner"),
+      P("cerca de","near"), P("acá","here"),
+    ]},
+    { h:"Lugares", en:"Places", items:[
+      P("la playa","the beach"), P("la rambla","the waterfront promenade"), P("el cerro","the hill"),
+      P("el puerto","the port"), P("la plaza","the square"), P("el mercado","the market"),
+      P("la iglesia","the church"), P("el supermercado","the supermarket"),
+    ]},
+  ]},
+
+  { id:"auto", es:"El auto y la ruta", en:"Car, gas & road signs", blocks:[
+    { h:"La estación de servicio", en:"At the gas station", items:[
+      P("Lleno, por favor","Fill it up, please"),
+      P("Lleno de súper, por favor","Fill it with regular, please",{note:"Check which fuel your rental car takes"}),
+      P("nafta","gasoline"),
+      P("¿Cuánto es?","How much is it?"),
+      P("¿Aceptan tarjeta?","Do you take card?"),
+      P("¿Hay un baño?","Is there a bathroom?"),
+    ]},
+    { h:"Manejar", en:"Driving", items:[
+      P("¿Dónde puedo estacionar?","Where can I park?"),
+      P("el estacionamiento","parking"),
+      P("la ruta","the highway"),
+      P("el peaje","the toll"),
+      P("la rotonda","the roundabout"),
+      P("Pare","Stop (sign)"),
+      P("Ceda el paso","Yield (sign)"),
+      P("Prohibido estacionar","No parking"),
+    ]},
+    { type:"aside", cls:"warm", h:"De paso", body:[
+      "Gas stations are <b>full-service</b>: stay in the car and say <b>“Lleno, por favor.”</b>",
+      "Ask the rental desk about the <b>toll tag</b> (telepeaje) for the Interbalnearia highway, and keep your headlights on when driving on highways."
+    ]},
+  ]},
+
+  { id:"hora", es:"La hora y los carteles", en:"Time, hours & signs", blocks:[
+    { h:"La hora", en:"Time", items:[
+      P("¿Qué hora es?","What time is it?"),
+      P("¿A qué hora abre?","What time does it open?"),
+      P("¿A qué hora cierra?","What time does it close?"),
+      P("¿Está abierto ahora?","Is it open now?"),
+      P("Abre a las nueve","It opens at 9"), P("Cierra a las ocho","It closes at 8"),
+      P("y media","half past"), P("de la mañana","a.m."), P("de la tarde","afternoon (~12–7)"), P("de la noche","evening / night"),
+    ]},
+    { h:"Los carteles", en:"Signs", items:[
+      P("abierto","open"), P("cerrado","closed"), P("el horario","the hours"),
+      P("feriado","public holiday",{note:"Often closed!"}),
+      P("Entrada","Entrance"), P("Salida","Exit"),
+      P("Empuje","Push"), P("Tire","Pull"),
+      P("Baños","Restrooms"), P("Damas","Women"), P("Caballeros","Men"),
+    ]},
+    { h:"Los días", en:"Days", items:[
+      P("lunes","Monday"), P("martes","Tuesday"), P("miércoles","Wednesday"), P("jueves","Thursday"),
+      P("viernes","Friday"), P("sábado","Saturday"), P("domingo","Sunday"),
+    ]},
+    { type:"aside", h:"El reloj de 24 horas", body:[
+      "Signs use 24-hour time: <b>13:00 = 1 p.m. · 18:00 = 6 p.m. · 20:00 = 8 p.m.</b> Subtract 12 after noon. Dinner starts late here, often after 21:00."
+    ]},
+  ]},
+
+  { id:"paseos", es:"Playa y paseos", en:"Beach & sightseeing", blocks:[
+    { h:"En la playa", en:"At the beach", items:[
+      P("la playa","the beach"), P("las olas","the waves"),
+      P("la sombrilla","the beach umbrella"),
+      P("el protector solar","sunscreen"),
+      P("el guardavidas","the lifeguard"),
+      P("¿Se puede nadar acá?","Can you swim here?"),
+      P("la bandera roja","the red flag",{note:"Red flag = no swimming"}),
+    ]},
+    { h:"De paseo", en:"Sightseeing", items:[
+      P("Tres entradas, por favor","Three tickets, please"),
+      P("¿Cuánto sale la entrada?","How much is the ticket?"),
+      P("¿Me sacás una foto?","Can you take a photo of me?"),
+      P("la aerosilla","the chairlift"),
+      P("el castillo","the castle"),
+      P("el museo","the museum"),
+      P("el barco","the boat"),
+      P("los lobos marinos","the sea lions"),
+      P("el atardecer","the sunset"),
+      P("¡Vamos a la playa!","Let’s go to the beach!"),
+    ]},
+  ]},
+
+  { id:"casa", es:"El hotel o la casa", en:"Where you’re staying", blocks:[
+    { items:[
+      P("Tengo una reserva","I have a reservation"),
+      P("la llave","the key"),
+      P("¿Cuál es la clave del wifi?","What’s the wifi password?"),
+      P("No hay agua caliente","There’s no hot water"),
+      P("No funciona","It doesn’t work"),
+      P("¿Podés ayudarme?","Can you help me?"),
+    ]},
+  ]},
+
+  { id:"salud", es:"Farmacia y salud", en:"Pharmacy & feeling unwell", blocks:[
+    { items:[
+      P("¿Dónde queda la farmacia?","Where’s the pharmacy?"),
+      P("¿Tenés algo para el dolor de cabeza?","Do you have something for a headache?"),
+      P("Me duele la cabeza","My head hurts"),
+      P("Me duele la panza","My stomach hurts",{note:"“panza” is the everyday word"}),
+      P("Me duele la garganta","My throat hurts"),
+      P("Tengo fiebre","I have a fever"),
+      P("Tengo alergia a…","I’m allergic to…",{say:"Tengo alergia"}),
+      P("Me quemé con el sol","I got sunburned"),
+      P("el protector solar","sunscreen"),
+      P("el repelente","bug spray"),
+      P("una curita","a band-aid"),
+    ]},
+  ]},
+
+  { id:"emergencias", es:"Emergencias", en:"Emergencies — call 911", blocks:[
+    { items:[
+      P("¡Necesito ayuda!","I need help!"),
+      P("Necesito un médico","I need a doctor"),
+      P("Necesito ir al hospital","I need to go to the hospital"),
+      P("¡Llamá a la policía!","Call the police!"),
+      P("¡Llamá una ambulancia!","Call an ambulance!"),
+      P("Perdí mi pasaporte","I lost my passport"),
+      P("Perdí mi teléfono","I lost my phone"),
+      P("Perdí mi billetera","I lost my wallet"),
+      P("Perdí mi cartera","I lost my purse"),
+      P("Me robaron","I was robbed"),
+    ]},
+    { type:"aside", cls:"warm", h:"911", body:[
+      "Uruguay’s emergency number is <b>911</b>, the same as at home."
+    ]},
+  ]},
+];
+
+/* ---------- Menu decoder (glossary by menu section) ---------- */
+/* tag:"fam" marks safe, familiar picks */
+const MENU_GLOSS = [
+  { h:"Entradas", en:"Starters", items:[
+    P("la provoleta","grilled provolone cheese, crispy outside",{tag:"fam"}),
+    P("la empanada","stuffed pastry — carne, jamón y queso, pollo…",{tag:"fam"}),
+    P("las rabas","fried squid rings"),
+    P("los buñuelos de algas","seaweed fritters — a coastal classic"),
+    P("la picada","snack board to share: cheese, cold cuts, olives"),
+    P("la tortilla","thick potato omelet (Spanish style)"),
+    P("la pascualina","spinach & egg pie"),
+  ]},
+  { h:"Parrilla", en:"From the grill", items:[
+    P("el asado de tira","cross-cut beef short ribs — THE parrilla order"),
+    P("el vacío","flank steak, juicy and fatty"),
+    P("el entrecot","ribeye-style steak",{tag:"fam"}),
+    P("el bife de chorizo","sirloin strip (not sausage!)",{tag:"fam"}),
+    P("la entraña","skirt steak"),
+    P("la pamplona","rolled meat stuffed with ham, cheese & peppers"),
+    P("el chorizo","grilled sausage",{tag:"fam"}),
+    P("la morcilla","blood sausage — the “dulce” kind has nuts & orange"),
+    P("las achuras","organ meats (chinchulines, mollejas, riñones)",{note:"Skip if you’re not adventurous"}),
+    P("la parrillada","mixed grill for the table"),
+    P("el pollo","chicken",{tag:"fam"}),
+  ]},
+  { h:"Platos", en:"Main dishes", items:[
+    P("el chivito","steak sandwich with ham, cheese, egg & more",{tag:"fam"}),
+    P("el chivito al plato","the chivito on a plate with fries, no bread",{tag:"fam"}),
+    P("la milanesa","breaded cutlet (beef or chicken)",{tag:"fam"}),
+    P("la milanesa a la napolitana","milanesa with ham, tomato sauce & cheese",{tag:"fam"}),
+    P("la hamburguesa completa","burger with ham, cheese, egg, lettuce & tomato",{tag:"fam"}),
+    P("los ñoquis","gnocchi — traditional on the 29th of the month"),
+    P("los ravioles","ravioli",{tag:"fam"}),
+    P("los tallarines","fettuccine-style noodles",{tag:"fam"}),
+    P("la salsa caruso","cream sauce with ham, mushrooms & cheese — invented in Uruguay"),
+    P("la tarta","savory pie"),
+  ]},
+  { h:"Pescados y mariscos", en:"Fish & seafood", items:[
+    P("la merluza","hake — mild white fish",{tag:"fam"}),
+    P("la brótola","local white fish, flaky"),
+    P("la corvina","croaker — firm local fish"),
+    P("el lenguado","sole"),
+    P("los camarones","shrimp"),
+    P("el siri","small local crab — great in empanadas"),
+    P("los mejillones","mussels"),
+    P("la cazuela de mariscos","seafood stew"),
+    P("a la romana","battered & fried",{tag:"fam"}),
+    P("a la plancha","grilled on a flat-top"),
+    P("a la parrilla","on the grill"),
+  ]},
+  { h:"Pizzería", en:"Pizza place", items:[
+    P("la pizza","pizza — often thick, sold by the slice or whole",{tag:"fam"}),
+    P("la muzzarella","cheese pizza",{tag:"fam"}),
+    P("el fainá","chickpea flatbread, eaten on top of pizza"),
+    P("la pizza a caballo","pizza with a slice of fainá on top"),
+    P("la porción","a slice / a portion"),
+    P("el pancho","hot dog",{tag:"fam"}),
+    P("la pizzeta","small personal pizza",{tag:"fam"}),
+  ]},
+  { h:"Guarniciones", en:"Sides — often ordered separately", items:[
+    P("las papas fritas","french fries",{tag:"fam"}),
+    P("el puré","mashed potatoes",{tag:"fam"}),
+    P("la ensalada mixta","lettuce, tomato & onion",{tag:"fam"}),
+    P("las verduras grilladas","grilled vegetables"),
+    P("el boniato","sweet potato"),
+    P("el arroz","rice",{tag:"fam"}),
+  ]},
+  { h:"Ingredientes", en:"Words that change the dish", items:[
+    P("el jamón","ham"), P("el queso","cheese"), P("la panceta","bacon"),
+    P("el huevo","egg"), P("la palta","avocado",{note:"not “aguacate”"}),
+    P("el morrón","bell pepper"), P("el choclo","corn"), P("el zapallo","squash / pumpkin"),
+    P("la manteca","butter"), P("la crema","cream"), P("la cebolla","onion"), P("el tomate","tomato"),
+    P("completo","“with everything” (ham, cheese, egg…)"),
+  ]},
+  { h:"Postres", en:"Desserts", items:[
+    P("el flan","caramel custard",{tag:"fam"}),
+    P("con dulce de leche","with dulce de leche"),
+    P("el panqueque de dulce de leche","crepe rolled with dulce de leche",{tag:"fam"}),
+    P("el chajá","meringue, peaches & cream cake — very Uruguayan"),
+    P("el Martín Fierro","cheese with quince paste"),
+    P("el alfajor","cookie sandwich with dulce de leche",{tag:"fam"}),
+    P("la ensalada de frutas","fruit salad",{tag:"fam"}),
+  ]},
+  { h:"Café y panadería", en:"Café & bakery", items:[
+    P("el café","espresso-style coffee"),
+    P("el cortado","espresso with a little milk"),
+    P("el café con leche","coffee with milk, latte-style",{tag:"fam"}),
+    P("la lágrima","mostly milk with a “tear” of coffee"),
+    P("el submarino","hot milk with a chocolate bar to melt in",{tag:"fam"}),
+    P("la medialuna","croissant — dulce (sweet) or de grasa (savory)",{tag:"fam"}),
+    P("el tostado","grilled ham & cheese sandwich",{tag:"fam"}),
+    P("los bizcochos","assorted pastries, sold by the piece"),
+    P("las tortas fritas","fried dough — a rainy-day tradition"),
+    P("el licuado","fruit smoothie, with milk or water"),
+  ]},
+  { h:"Heladería", en:"Ice cream shop", items:[
+    P("el cucurucho","cone"), P("el vasito","small cup"),
+    P("un cuarto kilo","a quarter kilo tub — for sharing"),
+    P("el dulce de leche granizado","dulce de leche with chocolate chips"),
+    P("la frutilla","strawberry",{note:"not “fresa”"}),
+    P("la crema americana","vanilla-style cream flavor",{tag:"fam"}),
+    P("el limón","lemon"), P("el chocolate","chocolate",{tag:"fam"}),
+  ]},
+  { h:"Para tomar", en:"Drinks", items:[
+    P("el agua sin gas","still water"), P("el agua con gas","sparkling water"),
+    P("el refresco","soda"),
+    P("el jugo natural","fresh-squeezed juice"),
+    P("la limonada","lemonade"),
+    P("el té","tea"),
+  ]},
+];
+
+/* ---------- Sample menus (composites of typical Piriápolis places; prices are rough 2026 examples) ---------- */
+const SAMPLE_MENUS = [
+  { id:"parrilla", es:"Parrilla de barrio", en:"Neighborhood grill house", note:"Plates are big, so ordering 2 mains for 3 people plus sides is normal.", sections:[
+    { h:"Entradas", items:[ ["la provoleta",390], ["el chorizo",190], ["la morcilla dulce",190], ["la empanada de carne",110] ]},
+    { h:"Parrilla", items:[ ["el asado de tira",790], ["el vacío",780], ["el entrecot",850], ["el pollo deshuesado",590], ["la parrillada para dos",2200] ]},
+    { h:"Platos", items:[ ["el chivito al plato",790], ["la milanesa a la napolitana con fritas",690] ]},
+    { h:"Guarniciones", items:[ ["las papas fritas",260], ["el puré",220], ["la ensalada mixta",250] ]},
+    { h:"Postres", items:[ ["el flan con dulce de leche",260], ["el panqueque de dulce de leche",260] ]},
+    { h:"Bebidas", items:[ ["el agua sin gas",140], ["el refresco",140], ["el jugo natural",220] ]},
+  ], footer:[ ["el cubierto",90,"per person"] ]},
+
+  { id:"puerto", es:"Puesto del puerto", en:"Seafood stand by the port", note:"Casual counter service. Point and say “Quería…”.", sections:[
+    { h:"Empanadas", items:[ ["la empanada de pescado",120], ["la empanada de camarones",140], ["la empanada de siri",140] ]},
+    { h:"Para picar", items:[ ["las rabas",520], ["los buñuelos de algas",320] ]},
+    { h:"Platos", items:[ ["la merluza a la romana con fritas",590], ["la brótola a la plancha con puré",650], ["la corvina a la parrilla",690], ["la cazuela de mariscos",890] ]},
+    { h:"Al pan", items:[ ["el sándwich de milanesa de pescado",390] ]},
+    { h:"Bebidas", items:[ ["el agua con gas",130], ["el refresco",130], ["la limonada",180] ]},
+  ]},
+
+  { id:"cafe", es:"Café y confitería", en:"Café & bakery — breakfast and afternoon “merienda”", note:"“Merienda” is the late-afternoon coffee-and-pastry break, around 17:00.", sections:[
+    { h:"Café", items:[ ["el café",110], ["el cortado",130], ["el café con leche",170], ["la lágrima",160], ["el submarino",190], ["el té",110] ]},
+    { h:"Panadería", items:[ ["la medialuna",60], ["los bizcochos",35,"each"], ["el alfajor",90], ["la torta de la casa",230] ]},
+    { h:"Salado", items:[ ["el tostado de jamón y queso",290], ["el desayuno completo",390,"coffee, juice, 2 medialunas"] ]},
+    { h:"Jugos", items:[ ["el jugo de naranja",220], ["el licuado de frutilla",240] ]},
+  ]},
+
+  { id:"pizzeria", es:"Pizzería y rotisería", en:"Pizza & takeout counter", note:"Great for a cheap family dinner or takeout back to the house.", sections:[
+    { h:"Pizzas", items:[ ["la muzzarella entera",560], ["la porción de muzzarella",120], ["la pizza napolitana",640], ["el fainá",90,"per slice"], ["la pizza a caballo",210,"slice + fainá"] ]},
+    { h:"Empanadas", items:[ ["la empanada de carne",110], ["la empanada de jamón y queso",110], ["la empanada de pollo",110] ]},
+    { h:"Al pan", items:[ ["el chivito canadiense",590], ["la hamburguesa completa",450], ["el pancho",160] ]},
+    { h:"Para llevar", items:[ ["la docena de empanadas",1200] ]},
+  ]},
+
+  { id:"helados", es:"Heladería en la rambla", en:"Ice cream on the waterfront", note:"Ask “¿Qué gustos tenés?” and pick up to 2 or 3 flavors per cone.", sections:[
+    { h:"Tamaños", items:[ ["el cucurucho chico",180], ["el cucurucho grande",260], ["el vasito",200], ["un cuarto kilo",390] ]},
+    { h:"Gustos", items:[ ["el dulce de leche"], ["el dulce de leche granizado"], ["la frutilla"], ["la crema americana"], ["el chocolate"], ["el limón"] ]},
+  ]},
+];
+
+/* ---------- Outings, biggest to smallest (no dates) ---------- */
+const GMAP = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+const EXC = [
+  /* ----- GRANDE ----- */
+  { id:"punta-del-este", size:"grande", name:"Punta del Este + Isla de Lobos boat", es:"Punta del Este y la Isla de Lobos",
+    time:"Full day", dist:"~40 km · 45 min", tags:["Book ahead","Weather dependent"],
+    blurb:"The big resort city. Take the noon boat out to see the sea lion colony on Isla de Lobos (about 2 hours round trip), then a seafood lunch at the port and a walk around the peninsula and lighthouse.",
+    tips:["The boat needs calm weather and a 10-passenger minimum. Visitors can’t land on the island.","Boats run about US$40–70 per person. Wear non-skid shoes.","No boat? Sea lions hang around the port for free, especially mid-morning and late afternoon when fishing boats come in."],
+    links:[["Punta del Este","https://en.wikipedia.org/wiki/Punta_del_Este"],["Isla de Lobos","https://en.wikipedia.org/wiki/Isla_de_Lobos"],["Port guide","https://lorenzigo.com/?p=32771"]],
+    map:"Puerto de Punta del Este Uruguay",
+    say:[P("el barco","the boat"),P("los lobos marinos","the sea lions"),P("Tres entradas, por favor","Three tickets, please")] },
+
+  { id:"montevideo", size:"grande", name:"Montevideo: Ciudad Vieja", es:"Montevideo, la Ciudad Vieja",
+    time:"Full day", dist:"~97 km · 1 h 20 min", tags:["Rain OK","Culture"],
+    blurb:"The capital’s old town: walk the pedestrian streets, pick a museum or two, and have a long parrilla lunch. Leave early and be back by evening.",
+    tips:["Museums make this a good rainy-day pick.","Same highway you drove from the airport, so the route is familiar."],
+    links:[["Ciudad Vieja","https://en.wikipedia.org/wiki/Ciudad_Vieja,_Montevideo"]],
+    map:"Ciudad Vieja Montevideo Uruguay",
+    say:[P("¿Dónde queda el museo?","Where’s the museum?"),P("¿Dónde puedo estacionar?","Where can I park?"),P("Una mesa para tres, por favor","A table for three, please")] },
+
+  { id:"punta-ballena", size:"grande", name:"Punta Ballena: Arboretum Lussich + Casapueblo", es:"Punta Ballena y Casapueblo",
+    time:"Most of a day (until sunset)", dist:"~30 km · 35 min", tags:["Sunset","Book ahead","Rain OK"],
+    blurb:"Morning in the Lussich arboretum’s forest trails, then Casapueblo, the white cliffside “livable sculpture” by artist Carlos Páez Vilaró. Stay for sunset, when a poem is read over the speakers.",
+    tips:["Casapueblo opens about 10am to sunset. Tickets run around $600 pesos (≈US$15). Kids under 12 free.","Arrive 40–60 minutes before sunset to get a good spot on the terrace.","Lots of stairs and levels."],
+    links:[["Casapueblo","https://en.wikipedia.org/wiki/Casapueblo"],["Official site","https://clubhotelcasapueblo.com"],["Arboretum Lussich","https://en.wikipedia.org/wiki/Lussich_Arboretum"]],
+    map:"Casapueblo Punta Ballena Uruguay",
+    say:[P("¿Cuánto sale la entrada?","How much is the ticket?"),P("el atardecer","the sunset"),P("¡Qué lindo!","How pretty!")] },
+
+  { id:"costa-serrana", size:"grande", name:"Costa Serrana drive (Ruta 60)", es:"La Costa Serrana",
+    time:"Full day", dist:"Loop drive, 2–3 h at the wheel", tags:["Scenic drive","Picnic"],
+    blurb:"Trade the coast for the hills. Ruta 60 winds through the sierras between Maldonado and Lavalleja, past old mills, small waterfalls and farm country. Pack a picnic.",
+    tips:["Ask the Piriápolis tourist office for current stops and road conditions before you go.","Fill the tank first. Gas stations get sparse inland."],
+    links:[["Sierra de las Ánimas","https://en.wikipedia.org/wiki/Sierra_de_las_%C3%81nimas"]],
+    map:"Ruta 60 Maldonado Uruguay",
+    say:[P("Lleno, por favor","Fill it up, please"),P("la ruta","the highway"),P("¿Está lejos?","Is it far?")] },
+
+  /* ----- MEDIANO ----- */
+  { id:"pan-de-azucar", size:"mediano", name:"Pan de Azúcar reserve & hike", es:"El Cerro Pan de Azúcar",
+    time:"Half day", dist:"~6 km · 10 min", tags:["Walking","Animals"],
+    blurb:"A nature reserve at the foot of Uruguay’s third-highest hill, with native animals (look for capybaras), easy flat trails, and a marked trail up to the big cross at the top if you have the energy.",
+    tips:["Pick the trail by energy that day. The flat trails near the entrance are plenty.","The summit climb is moderate and sometimes closes in extreme heat. Go early or late, not midday.","There’s a restaurant and picnic area at the entrance."],
+    links:[["The reserve","https://en.wikipedia.org/wiki/Estaci%C3%B3n_de_Cr%C3%ADa_de_Fauna_aut%C3%B3ctona_Cerro_Pan_de_Az%C3%BAcar"],["Cerro Pan de Azúcar","https://en.wikipedia.org/wiki/Cerro_Pan_de_Az%C3%BAcar"]],
+    map:"Reserva de Fauna Cerro Pan de Azúcar Piriápolis Uruguay",
+    say:[P("¿A qué hora cierra?","What time does it close?"),P("Necesito agua.","I need water."),P("¿Me sacás una foto?","Can you take a photo of me?")] },
+
+  { id:"toro-piria", size:"mediano", name:"Cerro del Toro + Castillo de Piria", es:"El Cerro del Toro y el Castillo de Piria",
+    time:"Half day", dist:"In town + ~5 km", tags:["Rain OK","History"],
+    blurb:"Drive up Cerro del Toro for the bronze bull fountain and the view, then visit the castle-home of Francisco Piria, the town’s eccentric founder, complete with a basement alchemy lab.",
+    tips:["The castle keeps short hours (historically Tuesday–Sunday, mornings to mid-afternoon) and is sometimes closed. Check before driving out.","Pairs well with Castillo Pittamiglio on another day."],
+    links:[["Castillo de Piria","https://www.infocasas.com.uy/blog/?p=1500"],["Map: Cerro del Toro",GMAP("Cerro del Toro Piriápolis Uruguay")]],
+    map:"Castillo de Piria Piriápolis Uruguay",
+    say:[P("el castillo","the castle"),P("¿Está abierto ahora?","Is it open now?"),P("¿A qué hora abre?","What time does it open?")] },
+
+  { id:"las-flores", size:"mediano", name:"Las Flores + Castillo Pittamiglio", es:"Las Flores y el Castillo Pittamiglio",
+    time:"Half day", dist:"~8 km west", tags:["Rain OK","Beach"],
+    blurb:"A quiet beach town next door, plus the odd little castle built by alchemist-architect Humberto Pittamiglio. Spend the afternoon on the beach after.",
+    tips:["Check opening hours for the castle before you go."],
+    links:[["Las Flores","https://www.welcomeuruguay.com/piriapolis/minutes-away-las-flores.html"],["Castillo Pittamiglio","https://www.lonelyplanet.com/points-of-interest/castillo-pittamiglio/1273963"]],
+    map:"Castillo Pittamiglio Las Flores Maldonado Uruguay",
+    say:[P("el castillo","the castle"),P("¿Cuánto sale la entrada?","How much is the ticket?")] },
+
+  { id:"san-antonio", size:"mediano", name:"Cerro San Antonio & the chairlift", es:"El Cerro San Antonio",
+    time:"2–3 hours", dist:"By the port, in town", tags:["Sunset","Views"],
+    blurb:"Ride Uruguay’s only chairlift from the port up the 130 m hill to the little chapel and the best view of the bay. You can also drive or walk up. Seafood empanadas at the port stands after.",
+    tips:["Go late afternoon for the views and sunset.","Chairlift hours change with the season and wind, so check at the booth.","It’s free to visit the hilltop; the chairlift is paid per ride."],
+    links:[["Cerro San Antonio","https://en.wikipedia.org/wiki/Cerro_San_Antonio,_Piri%C3%A1polis"],["About the chairlift","https://www.infocasas.com.uy/blog/?p=1487"]],
+    map:"Aerosilla Cerro San Antonio Piriápolis Uruguay",
+    say:[P("la aerosilla","the chairlift"),P("Tres entradas, por favor","Three tickets, please"),P("la empanada de pescado","fish empanada")] },
+
+  /* ----- PEQUEÑO ----- */
+  { id:"rambla", size:"pequeno", name:"Rambla, port & Argentino Hotel", es:"La rambla y el Hotel Argentino",
+    time:"1–2 hours", dist:"Walk from anywhere", tags:["Rain OK","Easy"],
+    blurb:"Stroll the waterfront to the port, peek into the grand old Argentino Hotel’s public areas, and stop at the tourist office next door for event listings and bilingual tours.",
+    tips:["Ask the tourist office what’s on this week and about feria days."],
+    links:[["Argentino Hotel","https://www.infocasas.com.uy/blog/?p=1432"],["Ideas for Piriápolis","https://www.infocasas.com.uy/blog/?p=1116"]],
+    map:"Argentino Hotel Piriápolis Uruguay",
+    say:[P("¿Dónde queda el Hotel Argentino?","Where’s the Hotel Argentino?"),P("¡Vamos a la rambla!","Let’s go to the rambla!")] },
+
+  { id:"pasiva", size:"pequeno", name:"Paseo de la Pasiva & the feria", es:"El Paseo de la Pasiva y la feria",
+    time:"1–2 hours", dist:"On the rambla", tags:["Shopping","Easy"],
+    blurb:"The artisan fair on the Rambla de los Argentinos, plus the street feria for fruit, cheese and odds and ends. The best place for souvenirs and for practicing your numbers.",
+    tips:["Bring cash in small bills.","Confirm feria days and hours with the tourist office. The artisan fair runs late in high season."],
+    links:[["Map: Paseo de la Pasiva",GMAP("Paseo de la Pasiva Piriápolis Uruguay")]],
+    map:"Paseo de la Pasiva Piriápolis Uruguay",
+    say:[P("Estoy mirando, nomás","Just looking"),P("¿Cuánto sale?","How much is it?"),P("Me llevo esto","I’ll take this")] },
+
+  { id:"punta-colorada", size:"pequeno", name:"Playa Mansa, Punta Colorada (sunset)", es:"Punta Colorada",
+    time:"1–2 hours", dist:"~7 km east", tags:["Sunset","Beach"],
+    blurb:"A calm little beach just east of town. Go late afternoon and stay for the sunset.",
+    tips:["A nice low-key evening after a big day out."],
+    links:[["Map: Playa Mansa",GMAP("Playa Mansa Punta Colorada Maldonado Uruguay")]],
+    map:"Playa Mansa Punta Colorada Maldonado Uruguay",
+    say:[P("el atardecer","the sunset"),P("la playa","the beach")] },
+
+  { id:"punta-fria", size:"pequeno", name:"Punta Fría walk", es:"Punta Fría",
+    time:"About 1 hour", dist:"East end of the rambla", tags:["Walking","Easy"],
+    blurb:"An easy walk along the water to the rocky point at the east end of town.",
+    tips:["Good after a long lunch."],
+    links:[["Map: Punta Fría",GMAP("Punta Fría Piriápolis Uruguay")]],
+    map:"Punta Fría Piriápolis Uruguay",
+    say:[P("¿Querés caminar?","Do you want to walk?")] },
+
+  { id:"venus", size:"pequeno", name:"Fuente de Venus", es:"La Fuente de Venus",
+    time:"Quick stop", dist:"Av. 25 de Mayo, edge of town", tags:["Easy","Photo"],
+    blurb:"A 1911 fountain from Piria’s original town plan, on the avenue heading out of town. A quick photo stop on the way to somewhere else.",
+    tips:["Combine with Cerro del Toro or the Pan de Azúcar drive."],
+    links:[["Ideas for Piriápolis","https://www.infocasas.com.uy/blog/?p=1116"]],
+    map:"Fuente de Venus Piriápolis Uruguay",
+    say:[P("¿Me sacás una foto?","Can you take a photo of me?")] },
+
+  { id:"playa", size:"pequeno", name:"Beach, cafés & ice cream", es:"La playa, un café y un helado",
+    time:"As long as you like", dist:"Right there", tags:["Easy","Open day"],
+    blurb:"The no-plan plan: beach time, a café merienda, and ice cream on the rambla.",
+    tips:["Late November seas are still chilly. Bring layers and sunscreen."],
+    links:[["Ice cream & café words","#menu-gloss"]],
+    map:"Playa Piriápolis Uruguay",
+    say:[P("¿Qué gustos tenés?","What flavors do you have?"),P("Dos medialunas, por favor","Two croissants, please")] },
+];
+
+const SIZE_LABEL = {
+  grande:{es:"Grande", en:"Full-day trips"},
+  mediano:{es:"Mediano", en:"Half-day outings"},
+  pequeno:{es:"Pequeño", en:"An hour or two, close by"},
+};
+
+/* ============================================================ SLUG + RENDER ============================================================ */
+function slugify(s){
+  return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[¿?¡!.,…"'’“”]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+}
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SPK='<svg class="spk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none"/><path d="M16 8.5a4 4 0 010 7" stroke-linecap="round"/></svg>';
+
+function sayButton(o){
+  const say=o.say||o.es, slug=slugify(say);
+  const ph=o.ph?`<span class="ph">${esc(o.ph)}</span>`:"";
+  return `<button class="say" data-slug="${slug}" data-say="${esc(say)}" data-es="${esc(o.es)}" data-en="${esc(o.en)}" data-ph="${esc(o.ph||'')}">${esc(o.es)}${ph}</button>`;
+}
+function renderRows(b){
+  const rows=b.items.map(o=>{
+    const note=o.note?`<span class="note">${esc(o.note)}</span>`:"";
+    return `<div class="row">${sayButton(o)}<div class="en quizzable"><span class="en-content">${esc(o.en)}${note}</span><button type="button" class="reveal">Show answer</button></div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="rows">${rows}</div>${b.note?`<p class="pron-note">${esc(b.note)}</p>`:''}</section>`;
+}
+function renderNums(b){
+  const tiles=b.items.map(o=>{
+    const ph=o.ph?`<span class="ph">${esc(o.ph)}</span>`:"";
+    return `<button class="numtile say" data-slug="${slugify(o.w)}" data-say="${esc(o.w)}" data-es="${esc(o.w)}" data-en="${esc(o.v)}" data-ph="${esc(o.ph||'')}"><span class="val">${esc(o.v)}</span><span class="word">${esc(o.w)}</span>${ph}</button>`;
+  }).join("");
+  const note=b.note?`<p class="pron-note">${esc(b.note)}</p>`:"";
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="grid-nums">${tiles}</div>${note}</section>`;
+}
+function renderVowels(){
+  const rows=VOWELS.map(o=>{
+    const soundLab=o.lab.replace(/[“”]/g,'');
+    const soundInner=`<span class="vtxt"><span class="vsound-lab">${esc(o.lab)}</span><span class="vsound-as">${esc(o.as)}${o.soundPh?` · ${esc(o.soundPh)}`:''}</span></span>`;
+    const soundBtn=`<button class="say vaudio vsound" data-slug="${slugify(o.sound)}" data-say="${esc(o.soundSay||o.sound)}" data-es="${esc(o.sound)}" data-en="the ‘${esc(soundLab)}’ sound" data-ph="${esc(o.soundPh||'')}">${SPK}${soundInner}</button>`;
+    const exBtns=o.ex.map(x=>`<button class="say vaudio vexample" data-slug="${slugify(x.w)}" data-say="${esc(x.w)}" data-es="${esc(x.w)}" data-en="${esc(x.en)}" data-ph="${esc(x.ph)}">${SPK}<span class="vtxt"><span class="vex-word">${esc(x.w)}</span><span class="vex-ph">${esc(x.ph)}</span></span></button>`).join("");
+    return `<div class="vrow"><div class="vglyph">${esc(o.g)}</div>${soundBtn}<span class="varrow" aria-hidden="true">→</span><div class="vex">${exBtns}</div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>Las vocales</h2><span class="en">Vowel pronunciation — always the same sound</span></div><div class="vgrid">${rows}</div><p class="pron-note">Tap the <b>sound</b>, then the <b>example word</b> that shows it. In Rioplatense, <b>ll</b> and <b>y</b> sound like “sh” (calle = KAH-she) — the most striking regional feature.</p></section>`;
+}
+function renderVoseo(){
+  return `<section class="block"><div class="block-head"><h2>El voseo</h2><span class="en">The key difference from most Spanish apps</span></div>
+  <div class="aside warm"><h3>tú / eres → vos / sos</h3><p>Uruguay uses <b>vos</b>, not <b>tú</b>. The verb changes too.</p>
+  <div class="chips"><span class="swap">¿de dónde eres? → <b>¿de dónde sos?</b></span></div>
+  <div class="chips" style="margin-top:12px">${sayButton(P("vos","you (informal)"))}${sayButton(P("sos","you are"))}${sayButton(P("¿De dónde sos?","Where are you from?"))}</div></div></section>`;
+}
+function renderAside(b){
+  const body=b.body.map(p=>`<p>${p}</p>`).join("");
+  const chips=b.chips?`<div class="chips">${b.chips.map(sayButton).join("")}</div>`:"";
+  return `<section class="block"><div class="aside ${b.cls==='warm'?'warm':''}"><h3>${esc(b.h)}</h3>${body}${chips}</div></section>`;
+}
+function renderHw(b){
+  const items=b.items.map(t=>`<li>${t}</li>`).join("");
+  return `<section class="block"><div class="hw"><h2><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay-deep)" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10" stroke-linecap="round"/></svg>Tarea — Homework (10–15 min)</h2><ol>${items}</ol></div></section>`;
+}
+function renderSelftest(b){
+  const levels=b.levels.map(lv=>{
+    const rows=lv.items.map(it=>{
+      let ans;
+      if(it.es){
+        const gloss=it.gloss?`<span class="st-gloss">${esc(it.gloss)} </span>`:'';
+        const extra=it.extra?`<span class="st-extra">${esc(it.extra)}</span>`:'';
+        ans=`${gloss}${sayButton({es:it.es,say:it.es,en:it.p})}${extra}`;
+      } else {
+        ans=`<span class="st-txt">${esc(it.txt)}</span>`;
+      }
+      const prompt = it.pSay ? sayButton({es:it.p,say:it.pSay,en:""}) : `<span>${esc(it.p)}</span>`;
+      return `<div class="strow"><div class="st-prompt">${prompt}</div><div class="stcell"><button type="button" class="st-reveal">Show answer</button><span class="st-ans">${ans}<button type="button" class="st-hide" aria-label="Cover again">↺</button></span></div></div>`;
+    }).join("");
+    const h3=lv.h?`<h3>${esc(lv.h)} <span class="st-lvl-en">${esc(lv.en||'')}</span></h3>`:'';
+    return `<div class="st-level">${h3}<div class="strows">${rows}</div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="selftest">${levels}</div></section>`;
+}
+function renderVerbs(b){
+  const cards=b.items.map(v=>{
+    const inf=sayButton({es:v.inf,say:v.inf,en:v.en});
+    const yo=sayButton({es:v.yo,say:v.yo,en:"yo — "+v.en});
+    const vos=sayButton({es:v.vos,say:v.vos,en:"vos — "+v.en});
+    const ex=sayButton({es:v.ex,say:v.ex,en:v.exEn});
+    return `<div class="vcard"><div class="vcard-head">${inf}<span class="vmean quizzable"><span class="en-content">${esc(v.en)}</span><button type="button" class="reveal">Show answer</button></span></div>
+      <div class="vconj"><span class="clabel">yo</span>${yo}<span class="clabel">vos</span>${vos}</div>
+      <div class="vcex">${ex}<span class="vcex-en">${esc(v.exEn)}</span></div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="vgridcards">${cards}</div>${b.note?`<p class="pron-note">${esc(b.note)}</p>`:''}</section>`;
+}
+function renderPatterns(b){
+  const rows=b.items.map(p=>{
+    const ex=sayButton({es:p.ex,say:p.ex,en:p.exEn});
+    return `<div class="prow"><div class="ppat">${p.pat}</div><div class="pen quizzable"><span class="en-content">${esc(p.en)}</span><button type="button" class="reveal">Show answer</button></div><div class="pex">${ex}<span class="pex-en">${esc(p.exEn)}</span></div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="patterns">${rows}</div></section>`;
+}
+function renderWordbank(b){
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="chips wordbank">${b.items.map(sayButton).join("")}</div></section>`;
+}
+function renderDialogue(b){
+  const lines=b.lines.map(l=>{
+    const cls=l.who==="VOS"?"vos":"mozo";
+    return `<div class="dline"><span class="who ${cls}">${esc(l.who)}</span><div class="dsay">${sayButton({es:l.es,en:l.en})}</div><div class="en quizzable"><span class="en-content">${esc(l.en)}</span><button type="button" class="reveal">Show answer</button></div></div>`;
+  }).join("");
+  return `<section class="block"><div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en)}</span></div><div class="dialogue">${lines}</div></section>`;
+}
+function renderTurno(b){
+  const lines=b.lines.map(l=>`<div class="turno-line"><span class="turno-es">${l.es}</span><span class="turno-en">${esc(l.en)}</span></div>`).join("");
+  return `<section class="block"><div class="turno"><h3>${esc(b.h)}</h3>${lines}</div></section>`;
+}
+/* ============================================================ AUDIO ============================================================ */
+/* Embedded custom clips (empty until recordings are added). slug -> data URI. */
+const AUDIO = {};
+/* Look in an audio/ folder when the page is actually hosted (http/https). */
+const USE_AUDIO_FOLDER = location.protocol === "http:" || location.protocol === "https:";
+const AUDIO_DIR = "audio";
+
+const synth = window.speechSynthesis;
+let voices=[], chosenVoice=null;
+let defaultRate=0.8, curRate=0.8, curVol=1;
+let currentBtn=null, engineMode=null, isPaused=false, speakSeq=0;
+const fileCache={}; // slug -> url | false
+
+const audioEl=new Audio();
+audioEl.preload="auto";
+try{audioEl.preservesPitch=true;audioEl.mozPreservesPitch=true;audioEl.webkitPreservesPitch=true;}catch(e){}
+audioEl.addEventListener("ended",()=>{ setPlayIcon(false); paintPlaying(null); });
+
+const RIOPLATENSE_PREF=["es-uy","es-ar","es-419","es-us","es-mx","es-cl","es-py","es-pe","es-co","es-es","es"];
+function scoreVoice(v){
+  const lang=(v.lang||"").toLowerCase().replace("_","-");
+  let idx=RIOPLATENSE_PREF.findIndex(p=>lang===p||lang.startsWith(p+"-"));
+  if(idx<0&&lang.startsWith("es")) idx=RIOPLATENSE_PREF.length;
+  if(idx<0) return 99;
+  const n=(v.name||"").toLowerCase();
+  return idx + (/diego|argentin|uruguay|rioplat|montevideo/.test(n)?-0.5:0);
+}
+function loadVoices(){
+  voices=(synth?synth.getVoices():[]).filter(v=>(v.lang||"").toLowerCase().startsWith("es"));
+  voices.sort((a,b)=>scoreVoice(a)-scoreVoice(b));
+  buildVoiceSelect();
+  chosenVoice=voices.find(v=>v.voiceURI===MEM.voiceURI)||voices[0]||null;
+  syncVoiceSelect(); updateBanner();
+}
+if(synth) synth.onvoiceschanged=loadVoices;
+const MEM={};
+
+/* settings elements */
+const voiceSel=document.getElementById("voiceSel"), voiceHint=document.getElementById("voiceHint"),
+      rateSel=document.getElementById("rateSel"), iosHint=document.getElementById("iosHint");
+function buildVoiceSelect(){
+  if(!voices.length){voiceSel.innerHTML=`<option>No Spanish voice on this device</option>`;voiceSel.disabled=true;
+    voiceHint.innerHTML="No Spanish voice found. Add one (guide below) or record your own clips — those need no voice at all.";return;}
+  voiceSel.disabled=false;
+  voiceSel.innerHTML=voices.map((v,i)=>{
+    const star=(/diego|argentin|uruguay|rioplat/i.test(v.name)||/^es-?(ar|uy)/i.test(v.lang))?" ★ Rioplatense":"";
+    return `<option value="${i}">${esc(v.name)} — ${esc(v.lang)}${star}</option>`;
+  }).join("");
+}
+function syncVoiceSelect(){
+  if(!chosenVoice||!voices.length) return;
+  const i=voices.indexOf(chosenVoice); if(i>=0) voiceSel.value=String(i);
+  voiceHint.innerHTML=(/diego|argentin|uruguay|rioplat/i.test(chosenVoice.name)||/^es-?(ar|uy)/i.test(chosenVoice.lang))
+    ? "Great pick — an Argentine/Uruguayan voice, about as close to Rioplatense as synthetic gets."
+    : "Spanish, but not specifically Rioplatense. If you can, add an <b>Argentina</b> or <b>Uruguay</b> voice (guide below).";
+}
+voiceSel.addEventListener("change",()=>{chosenVoice=voices[+voiceSel.value]||chosenVoice; if(chosenVoice) MEM.voiceURI=chosenVoice.voiceURI; syncVoiceSelect();});
+rateSel.addEventListener("change",()=>{defaultRate=+rateSel.value;});
+document.getElementById("testVoice").addEventListener("click",()=>{ if(!voices.length){iosHint.innerHTML="No voice to test — see the per-device guide below.";return;} ttsSpeak("Buen día, ¿cómo andás?",defaultRate,1);});
+iosHint.innerHTML="On iPhone this is the same engine as the system Spanish voice — what you hear here is what phrases sound like.";
+
+/* panel */
+const backdrop=document.getElementById("backdrop"),panel=document.getElementById("panel");
+document.getElementById("openSettings").addEventListener("click",()=>{backdrop.classList.add("open");panel.classList.add("open");});
+function closePanelFn(){backdrop.classList.remove("open");panel.classList.remove("open");}
+document.getElementById("closePanel").addEventListener("click",closePanelFn);
+backdrop.addEventListener("click",closePanelFn);
+
+/* banner */
+const banner=document.getElementById("voiceBanner");
+function updateBanner(){ banner.hidden = voices.length>0 || Object.keys(AUDIO).length>0; }
+document.getElementById("dismissBanner").addEventListener("click",()=>banner.hidden=true);
+
+/* download recording list */
+document.getElementById("dlList").addEventListener("click",()=>{
+  const seen=new Set(), rows=[["slug","filename","spanish","english"]];
+  document.querySelectorAll(".say").forEach(b=>{
+    const slug=b.dataset.slug; if(seen.has(slug))return; seen.add(slug);
+    const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
+    rows.push([slug,slug+".mp3",b.dataset.say,b.dataset.en].map(q));
+  });
+  const csv=rows.map(r=>r.join(",")).join("\r\n");
+  const blob=new Blob([csv],{type:"text/csv"}), url=URL.createObjectURL(blob);
+  const a=document.createElement("a"); a.href=url; a.download="lista_de_grabacion.csv"; a.click(); URL.revokeObjectURL(url);
+});
+
+/* ---------- TTS ---------- */
+function ttsSpeak(text,rate,vol){
+  if(!synth) return;
+  const mySeq=++speakSeq; synth.cancel();
+  setTimeout(()=>{
+    if(mySeq!==speakSeq) return;
+    const u=new SpeechSynthesisUtterance(text);
+    if(chosenVoice){u.voice=chosenVoice;u.lang=chosenVoice.lang;} else u.lang="es-UY";
+    u.rate=rate;u.volume=vol;u.pitch=1;
+    u.onstart=()=>{ if(mySeq===speakSeq) setPlayIcon(true); };
+    u.onend  =()=>{ if(mySeq===speakSeq){ setPlayIcon(false); paintPlaying(null); isPaused=false; } };
+    u.onerror=()=>{ if(mySeq===speakSeq){ setPlayIcon(false); paintPlaying(null); isPaused=false; } };
+    isPaused=false; synth.speak(u);
+  },60);
+}
+
+/* ---------- resolve a recording for a slug ---------- */
+function resolveFile(slug){
+  if(AUDIO[slug]) return Promise.resolve(AUDIO[slug]);
+  if(!USE_AUDIO_FOLDER) return Promise.resolve(false);
+  if(slug in fileCache) return Promise.resolve(fileCache[slug]);
+  const url=`${AUDIO_DIR}/${slug}.mp3`;
+  return new Promise(res=>{
+    const probe=new Audio(); let done=false;
+    const fin=v=>{ if(!done){done=true; fileCache[slug]=v; res(v);} };
+    probe.onloadedmetadata=()=>fin(url); probe.onerror=()=>fin(false);
+    setTimeout(()=>fin(false),2000); probe.preload="metadata"; probe.src=url;
+  });
+}
+
+/* ============================================================ POPOVER ============================================================ */
+const player=document.getElementById("player");
+const plPhrase=document.getElementById("plPhrase"),plPh=document.getElementById("plPh"),plEn=document.getElementById("plEn"),
+      plPlay=document.getElementById("plPlay"),plIcon=document.getElementById("plIcon"),plVol=document.getElementById("plVol"),
+      plStatus=document.getElementById("plStatus");
+const speedBtns=[...player.querySelectorAll(".sp")];
+let curSay="";
+const ICON_PLAY='<path d="M8 5v14l11-7z"/>', ICON_PAUSE='<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>';
+function setPlayIcon(p){ plIcon.innerHTML=p?ICON_PAUSE:ICON_PLAY; plPlay.setAttribute("aria-label",p?"Pausar":"Reproducir"); }
+function paintPlaying(btn){ document.querySelectorAll('.say[data-playing="true"]').forEach(b=>b.removeAttribute("data-playing")); if(btn) btn.setAttribute("data-playing","true"); }
+
+async function openPlayerFor(btn){
+  currentBtn=btn; curSay=btn.dataset.say;
+  plPhrase.textContent=btn.dataset.es; plPh.textContent=btn.dataset.ph||""; plPh.style.display=btn.dataset.ph?"block":"none";
+  plEn.textContent=btn.dataset.en||"";
+  curRate=defaultRate; speedBtns.forEach(s=>s.setAttribute("aria-pressed",(+s.dataset.rate===curRate)?"true":"false"));
+  plVol.value=String(curVol);
+  positionPlayer(btn); player.classList.add("open"); setPlayIcon(false);
+
+  const src=await resolveFile(btn.dataset.slug);
+  if(currentBtn!==btn) return; // user moved on
+  if(src){
+    engineMode="file"; audioEl.src=src; audioEl.playbackRate=curRate; audioEl.volume=curVol;
+    setStatus("rec","🎙 Tu grabación (your recording)");
+  } else {
+    engineMode="tts";
+    if(!voices.length) setStatus("warn","No Spanish voice — playback may be silent. Trust the guide or add a voice/recording.");
+    else setStatus(null);
+  }
+  play();
+}
+function setStatus(kind,text){ if(!kind){plStatus.hidden=true;return;} plStatus.hidden=false; plStatus.className="pl-status "+kind; plStatus.textContent=text; }
+
+function positionPlayer(btn){
+  const r=btn.getBoundingClientRect(), pw=266, m=10;
+  let left=window.scrollX+r.left;
+  const maxLeft=window.scrollX+document.documentElement.clientWidth-pw-m;
+  if(left>maxLeft) left=maxLeft; if(left<window.scrollX+m) left=window.scrollX+m;
+  player.style.left=left+"px"; player.style.top=(window.scrollY+r.bottom+10)+"px";
+  const arrow=Math.min(Math.max((window.scrollX+r.left)-left+(r.width/2)-6,14),pw-26);
+  player.style.setProperty("--arrow",arrow+"px");
+}
+
+function play(){
+  paintPlaying(currentBtn);
+  if(engineMode==="file"){ audioEl.currentTime=0; audioEl.playbackRate=curRate; audioEl.volume=curVol; audioEl.play().catch(()=>{}); setPlayIcon(true); }
+  else { ttsSpeak(curSay,curRate,curVol); setPlayIcon(true); }
+}
+function togglePlay(){
+  if(engineMode==="file"){
+    if(audioEl.paused){ audioEl.play().catch(()=>{}); setPlayIcon(true); } else { audioEl.pause(); setPlayIcon(false); }
+  } else if(synth){
+    if(synth.speaking&&!synth.paused&&!isPaused){ try{synth.pause();isPaused=true;setPlayIcon(false);}catch(e){synth.cancel();setPlayIcon(false);} }
+    else if(synth.paused||isPaused){ try{synth.resume();isPaused=false;setPlayIcon(true);}catch(e){play();} }
+    else play();
+  }
+}
+plPlay.addEventListener("click",togglePlay);
+speedBtns.forEach(s=>s.addEventListener("click",()=>{
+  curRate=+s.dataset.rate; speedBtns.forEach(x=>x.setAttribute("aria-pressed",x===s?"true":"false"));
+  if(engineMode==="file"){ audioEl.playbackRate=curRate; if(audioEl.paused) play(); } else play();
+}));
+plVol.addEventListener("input",()=>{
+  curVol=+plVol.value;
+  if(engineMode==="file"){ audioEl.volume=curVol; } else if(synth&&synth.speaking){ play(); }
+});
+function closePlayer(){ player.classList.remove("open"); audioEl.pause(); if(synth) synth.cancel(); setPlayIcon(false); paintPlaying(null); isPaused=false; currentBtn=null; }
+
+document.addEventListener("click",e=>{
+  const stRev=e.target.closest(".st-reveal");
+  if(stRev){ stRev.closest(".stcell").classList.add("shown"); return; }
+  const stHide=e.target.closest(".st-hide");
+  if(stHide){ e.preventDefault(); stHide.closest(".stcell").classList.remove("shown"); return; }
+  const rev=e.target.closest(".reveal");
+  if(rev){ e.preventDefault(); rev.closest(".quizzable").classList.add("revealed"); return; }
+  const btn=e.target.closest(".say");
+  if(btn){ e.preventDefault(); openPlayerFor(btn); return; }
+  if(!player.contains(e.target)&&!panel.contains(e.target)&&e.target.id!=="openSettings") closePlayer();
+});
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){closePlayer();closePanelFn();} });
+window.addEventListener("resize",()=>{ if(currentBtn&&player.classList.contains("open")) positionPlayer(currentBtn); });
+window.addEventListener("scroll",()=>{ if(currentBtn&&player.classList.contains("open")) positionPlayer(currentBtn); },{passive:true});
+
+/* ---------- Quiz mode toggle ---------- */
+const quizToggle=document.getElementById("quizToggle"), quizLabel=document.getElementById("quizLabel");
+function setQuiz(on){
+  document.body.classList.toggle("quiz-on",on);
+  quizToggle.setAttribute("aria-pressed",on?"true":"false");
+  quizLabel.textContent=on?"Show answers":"Quiz me";
+  if(on) document.querySelectorAll(".quizzable.revealed").forEach(el=>el.classList.remove("revealed")); // fresh test each pass
+}
+quizToggle.addEventListener("click",()=>setQuiz(!document.body.classList.contains("quiz-on")));
+
+loadVoices(); setTimeout(loadVoices,300); setTimeout(loadVoices,1200);
+/* ============================================================ TRIP APP: render, search, tabs ============================================================ */
+const norm = s => String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[¿?¡!.,…"'’“”()]/g," ").replace(/\s+/g," ").trim();
+const store = {
+  get(k,d){ try{ const v=localStorage.getItem("viaje."+k); return v===null?d:JSON.parse(v); }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem("viaje."+k, JSON.stringify(v)); }catch(e){} }
+};
+let RATE = store.get("rate", 40);
+let SHOW_USD = store.get("usd", false);
+const usd = n => { const v=n/RATE; return v<10 ? v.toFixed(1).replace(/\.0$/,"") : Math.round(v); };
+const fmtPeso = n => "$" + n.toLocaleString("es-UY");
+
+const ICON = {
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>',
+  car:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 16V11l2-5h10l2 5v5" stroke-linejoin="round"/><path d="M3 16h18v3H3z" stroke-linejoin="round"/><circle cx="7.5" cy="19" r="1.4" fill="currentColor"/><circle cx="16.5" cy="19" r="1.4" fill="currentColor"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-6-5.6-6-11a6 6 0 0 1 12 0c0 5.4-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg>',
+  ext:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5H5V6h5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+};
+
+/* ---------- generic blocks ---------- */
+function rowHTML(o, extra=""){
+  const note=o.note?`<span class="note">${esc(o.note)}</span>`:"";
+  const tag=o.tag==="fam"?` <span class="tag" title="Familiar, safe pick">safe pick</span>`:"";
+  return `<div class="row">${sayButton(o)}<div class="en quizzable"><span class="en-content">${esc(o.en)}${tag}${note}${extra}</span><button type="button" class="reveal">Show answer</button></div></div>`;
+}
+function renderRowsOpt(b){
+  const head=b.h?`<div class="block-head"><h2>${esc(b.h)}</h2><span class="en">${esc(b.en||"")}</span></div>`:"";
+  return `<section class="block">${head}<div class="rows">${b.items.map(o=>rowHTML(o)).join("")}</div>${b.note?`<p class="pron-note">${esc(b.note)}</p>`:""}</section>`;
+}
+function renderConverter(){
+  return `<section class="block"><div class="conv" data-conv>
+    <div class="conv-title">¿Cuánto es en dólares? <span>Peso → dollar</span></div>
+    <div class="conv-row">
+      <label class="conv-in"><span>$</span><input type="number" inputmode="decimal" min="0" placeholder="pesos" data-conv-pesos aria-label="Price in pesos"></label>
+      <span class="conv-eq">≈</span>
+      <output class="conv-out" data-conv-out>US$ —</output>
+    </div>
+    <div class="conv-rate">Rate: <input type="number" inputmode="decimal" min="1" step="0.5" value="${RATE}" data-conv-rate aria-label="Pesos per dollar"> pesos per US$ <span class="conv-hint">· check the real rate when you land</span></div>
+  </div></section>`;
+}
+function renderBlock(b){
+  if(b.type==="aside") return renderAside(b);
+  if(b.type==="nums") return renderNums(b);
+  if(b.type==="converter") return renderConverter();
+  return renderRowsOpt(b);
+}
+function miniSay(es,en){
+  return `<button class="say say-mini" type="button" data-slug="${slugify(es)}" data-say="${esc(es)}" data-es="${esc(es)}" data-en="${esc(en)}" data-ph="" aria-label="Escuchar “${esc(es)}”">${SPK}</button>`;
+}
+function catHead(es,en,id){
+  return `<div class="cat-head" ${id?`id="${id}"`:""}><h2>${esc(es)}${miniSay(es,en)}</h2><p>${esc(en)}</p></div>`;
+}
+
+/* ---------- FRASES ---------- */
+function renderFrases(){
+  const chips=`<div class="chiprow" role="toolbar" aria-label="Categories">
+    <button class="chip" data-cat="all" aria-pressed="true">Todo</button>
+    ${CATS.map(c=>`<button class="chip" data-cat="${c.id}" aria-pressed="false">${esc(c.es)}</button>`).join("")}
+  </div>`;
+  const cats=CATS.map(c=>`<div class="cat" data-catid="${c.id}">${catHead(c.es,c.en,"cat-"+c.id)}${c.blocks.map(renderBlock).join("")}</div>`).join("");
+  return `<div class="lesson-head"><div class="lesson-kicker">Frases</div><h1>Frases para el viaje</h1><p>Tap a category, or type anything in the search box. Tap any Spanish to hear it.</p></div>${chips}<div class="cats">${cats}</div>`;
+}
+
+/* ---------- MENÚ ---------- */
+function priceHTML(n,unit){
+  if(n==null) return "";
+  const u=unit?` <span class="unit">${esc(unit)}</span>`:"";
+  return `<span class="price" data-uyu="${n}">${fmtPeso(n)}<span class="usd"> · ≈US$${usd(n)}</span></span>${u}`;
+}
+const GLOSS_INDEX = {};
+MENU_GLOSS.forEach(s=>s.items.forEach(o=>{ GLOSS_INDEX[norm(o.es)]=o; }));
+function glossFor(es){
+  // best-effort English for a sample-menu line: exact match, else the longest glossary term it contains
+  const n=norm(es);
+  if(GLOSS_INDEX[n]) return GLOSS_INDEX[n].en;
+  let best=null;
+  Object.keys(GLOSS_INDEX).forEach(k=>{ const kk=k.replace(/^(el|la|los|las|un|una) /,""); if(n.includes(kk) && (!best||kk.length>best.k.length)) best={k:kk,en:GLOSS_INDEX[k].en}; });
+  return best?best.en:"";
+}
+const MENU_EN = {
+  "la morcilla dulce":"sweet blood sausage with nuts & orange peel",
+  "la empanada de carne":"beef empanada","la empanada de pescado":"fish empanada","la empanada de camarones":"shrimp empanada",
+  "la empanada de siri":"crab empanada","la empanada de jamón y queso":"ham & cheese empanada","la empanada de pollo":"chicken empanada",
+  "el pollo deshuesado":"boneless grilled chicken","la parrillada para dos":"mixed grill for two",
+  "la milanesa a la napolitana con fritas":"napolitana milanesa with fries",
+  "el flan con dulce de leche":"caramel custard with dulce de leche",
+  "la merluza a la romana con fritas":"battered hake with fries","la brótola a la plancha con puré":"grilled brótola with mashed potatoes",
+  "la corvina a la parrilla":"grilled croaker","el sándwich de milanesa de pescado":"breaded fish sandwich",
+  "la torta de la casa":"house cake","el tostado de jamón y queso":"grilled ham & cheese sandwich",
+  "el desayuno completo":"full breakfast","el jugo de naranja":"orange juice","el licuado de frutilla":"strawberry smoothie",
+  "la muzzarella entera":"whole cheese pizza","la porción de muzzarella":"slice of cheese pizza",
+  "la pizza napolitana":"pizza with tomato slices & garlic","el chivito canadiense":"chivito with Canadian bacon",
+  "la docena de empanadas":"a dozen empanadas","el cucurucho chico":"small cone","el cucurucho grande":"large cone",
+  "el cubierto":"cover charge",
+};
+function menuItemHTML([es,price,unit]){
+  const en=MENU_EN[es]||glossFor(es);
+  return `<div class="mi"><div class="mi-line">${sayButton({es,en})}<span class="mi-dots" aria-hidden="true"></span>${priceHTML(price,unit)}</div>${en?`<div class="mi-en quizzable"><span class="en-content">${esc(en)}</span><button type="button" class="reveal">Show answer</button></div>`:""}</div>`;
+}
+function renderCarta(m){
+  const secs=m.sections.map(s=>`<div class="carta-sec"><h4>${esc(s.h)}</h4>${s.items.map(menuItemHTML).join("")}</div>`).join("");
+  const foot=m.footer?`<div class="carta-foot">${m.footer.map(menuItemHTML).join("")}</div>`:"";
+  return `<article class="carta" id="carta-${m.id}">
+    <header class="carta-head"><div class="carta-kicker">Menú de ejemplo</div><h3>${esc(m.es)}${miniSay(m.es,m.en)}</h3><p>${esc(m.en)}</p></header>
+    <div class="carta-body">${secs}</div>${foot}
+    <p class="carta-note">${esc(m.note)}</p>
+  </article>`;
+}
+function renderMenu(){
+  const nav=`<div class="chiprow" role="toolbar" aria-label="Sample menus">
+    ${SAMPLE_MENUS.map(m=>`<a class="chip" href="#carta-${m.id}" data-jump="carta-${m.id}">${esc(m.es)}</a>`).join("")}
+    <a class="chip" href="#menu-gloss" data-jump="menu-gloss">Decoder A–Z</a>
+  </div>`;
+  const howto=renderAside({cls:"warm", h:"Cómo leer la carta — reading the menu", body:[
+    "<b>$</b> = pesos. <b>Cubierto</b> = per-person cover charge. <b>Propina</b> (tip) ≈ 10%, often in cash.",
+    "At a <b>parrilla</b>, meat usually comes alone: order <b>guarniciones</b> (sides) separately. Portions are big, so sharing is normal: say <b>“para compartir.”</b>",
+    "<b>Al plato</b> = on a plate (not in a sandwich). <b>Al pan</b> = in bread. <b>Completo/a</b> = with everything."
+  ], chips:[P("el cubierto","cover charge"),P("la propina","the tip"),P("las guarniciones","sides"),P("Para compartir","To share")]});
+  const toggle=`<div class="usd-toggle"><label><input type="checkbox" id="usdToggle" ${SHOW_USD?"checked":""}> Show ≈US$ next to prices</label></div>`;
+  const cartas=SAMPLE_MENUS.map(renderCarta).join("");
+  const gloss=MENU_GLOSS.map(s=>renderRowsOpt(s)).join("");
+  return `<div class="lesson-head"><div class="lesson-kicker">Menú</div><h1>La carta</h1><p>Five sample menus modeled on the kinds of places around Piriápolis, plus a decoder for menu words. Prices are rough 2026 examples, so expect real menus to vary.</p></div>
+    ${nav}${renderConverter()}${howto}${toggle}
+    <div class="cartas">${cartas}</div>
+    <div id="menu-gloss">${catHead("Diccionario de la carta","Menu decoder — tap a word to hear it")}${gloss}</div>`;
+}
+
+/* ---------- PASEOS ---------- */
+function excCard(x){
+  const done=store.get("done",{})[x.id];
+  const tags=x.tags.map(t=>`<span class="xtag">${esc(t)}</span>`).join("");
+  const tips=x.tips.map(t=>`<li>${esc(t)}</li>`).join("");
+  const links=x.links.map(([t,u])=>{
+    const internal=u.startsWith("#");
+    return `<a class="lnk" href="${esc(u)}" ${internal?`data-jump="${esc(u.slice(1))}"`:'target="_blank" rel="noopener"'}>${esc(t)}${internal?"":ICON.ext}</a>`;
+  }).join("");
+  const map=`<a class="lnk map" href="${GMAP(x.map)}" target="_blank" rel="noopener">${ICON.pin}Mapa</a>`;
+  const say=x.say.map(sayButton).join("");
+  return `<article class="exc${done?" is-done":""}" id="exc-${x.id}" data-size="${x.size}" data-tags="${esc(x.tags.join("|"))}">
+    <div class="exc-top"><span class="size s-${x.size}">${SIZE_LABEL[x.size].es}</span>${tags}
+      <label class="done"><input type="checkbox" data-done="${x.id}" ${done?"checked":""}> Hecho</label></div>
+    <h3>${esc(x.name)}</h3>
+    <div class="exc-es">${sayButton({es:x.es,en:x.name})}</div>
+    <div class="exc-meta"><span>${ICON.clock}${esc(x.time)}</span><span>${ICON.car}${esc(x.dist)}</span></div>
+    <p class="exc-blurb">${esc(x.blurb)}</p>
+    <ul class="exc-tips">${tips}</ul>
+    <div class="exc-say"><span class="exc-say-lab">Handy here</span><div class="chips">${say}</div></div>
+    <div class="exc-links">${links}${map}</div>
+  </article>`;
+}
+function renderPaseos(){
+  const filters=[["all","Todo"],["grande","Grande"],["mediano","Mediano"],["pequeno","Pequeño"],["Rain OK","Rain OK"],["Sunset","Sunset"],["undone","Not done yet"]];
+  const chips=`<div class="chiprow" role="toolbar" aria-label="Filter outings">${filters.map(([k,l],i)=>`<button class="chip" data-xf="${esc(k)}" aria-pressed="${i===0}">${esc(l)}</button>`).join("")}</div>`;
+  const groups=["grande","mediano","pequeno"].map(sz=>{
+    const cards=EXC.filter(x=>x.size===sz).map(excCard).join("");
+    return `<section class="xgroup" data-group="${sz}">${catHead(SIZE_LABEL[sz].es,SIZE_LABEL[sz].en)}<div class="xgrid">${cards}</div></section>`;
+  }).join("");
+  const tip=renderAside({h:"Cómo elegir — how to pick", body:[
+    "Ordered from biggest to smallest. A good rhythm: one <b>Grande</b> day, then a <b>Mediano</b> or <b>Pequeño</b> day to recover. Tick <b>Hecho</b> when you’ve done one (it’s saved on this phone).",
+    "Hours and prices change with the season. Check before you drive, and ask the Piriápolis tourist office (next to the Argentino Hotel) about events."
+  ]});
+  return `<div class="lesson-head"><div class="lesson-kicker">Paseos</div><h1>¿Qué hacemos hoy?</h1><p>Outings around Piriápolis, biggest to smallest. Pick and choose on any given day.</p></div>${tip}${chips}${groups}`;
+}
+
+/* ---------- mount ---------- */
+document.getElementById("p-frases").innerHTML=renderFrases();
+document.getElementById("p-menu").innerHTML=renderMenu();
+document.getElementById("p-paseos").innerHTML=renderPaseos();
+document.body.classList.toggle("show-usd",SHOW_USD);
+
+/* ---------- tabs ---------- */
+const TABS=[...document.querySelectorAll(".tab")];
+const PANELS={frases:document.getElementById("p-frases"),menu:document.getElementById("p-menu"),paseos:document.getElementById("p-paseos")};
+function showTab(id,opts={}){
+  TABS.forEach(t=>t.setAttribute("aria-selected",t.dataset.tab===id?"true":"false"));
+  Object.entries(PANELS).forEach(([k,p])=>p.hidden=(k!==id));
+  document.body.dataset.tab=id;
+  if(!opts.keepSearch) clearSearch();
+  closePlayer();
+  if(!opts.noScroll) window.scrollTo({top:0});
+  store.set("tab",id);
+}
+TABS.forEach(t=>t.addEventListener("click",()=>showTab(t.dataset.tab)));
+function jumpTo(id){
+  const el=document.getElementById(id); if(!el) return;
+  const panel=el.closest(".sheet"); const tabId=Object.keys(PANELS).find(k=>PANELS[k]===panel);
+  if(tabId) showTab(tabId,{noScroll:true});
+  if(tabId==="frases") setCat("all");
+  if(tabId==="paseos") setXF("all");
+  requestAnimationFrame(()=>{ el.scrollIntoView({behavior:"smooth",block:"start"}); el.classList.add("flash"); setTimeout(()=>el.classList.remove("flash"),1600); });
+}
+
+/* ---------- category filter (Frases) ---------- */
+function setCat(id){
+  document.querySelectorAll('#p-frases .chip').forEach(c=>c.setAttribute("aria-pressed",c.dataset.cat===id?"true":"false"));
+  document.querySelectorAll('#p-frases .cat').forEach(c=>c.hidden=!(id==="all"||c.dataset.catid===id));
+}
+/* ---------- outing filter (Paseos) ---------- */
+function setXF(k){
+  const done=store.get("done",{});
+  document.querySelectorAll('#p-paseos .chip').forEach(c=>c.setAttribute("aria-pressed",c.dataset.xf===k?"true":"false"));
+  document.querySelectorAll('#p-paseos .exc').forEach(card=>{
+    const tags=card.dataset.tags.split("|");
+    let show = k==="all" || card.dataset.size===k || tags.includes(k) || (k==="undone" && !done[card.id.replace(/^exc-/,"")]);
+    card.hidden=!show;
+  });
+  document.querySelectorAll('#p-paseos .xgroup').forEach(g=>g.hidden=![...g.querySelectorAll(".exc")].some(c=>!c.hidden));
+}
+
+/* ---------- converter + USD ---------- */
+function refreshPrices(){
+  document.querySelectorAll(".price").forEach(p=>{ const u=p.querySelector(".usd"); if(u) u.textContent=" · ≈US$"+usd(+p.dataset.uyu); });
+  document.querySelectorAll("[data-conv]").forEach(c=>{
+    const v=parseFloat(c.querySelector("[data-conv-pesos]").value);
+    c.querySelector("[data-conv-out]").textContent = isFinite(v)&&v>0 ? "US$"+(v/RATE).toFixed(2) : "US$ —";
+    const r=c.querySelector("[data-conv-rate]"); if(document.activeElement!==r) r.value=RATE;
+  });
+}
+document.addEventListener("input",e=>{
+  if(e.target.matches("[data-conv-pesos]")){ refreshPrices(); return; }
+  if(e.target.matches("[data-conv-rate]")){ const v=parseFloat(e.target.value); if(isFinite(v)&&v>0){ RATE=v; store.set("rate",RATE); refreshPrices(); } return; }
+});
+document.addEventListener("change",e=>{
+  if(e.target.id==="usdToggle"){ SHOW_USD=e.target.checked; store.set("usd",SHOW_USD); document.body.classList.toggle("show-usd",SHOW_USD); return; }
+  if(e.target.matches("[data-done]")){
+    const d=store.get("done",{}); const id=e.target.dataset.done;
+    if(e.target.checked) d[id]=1; else delete d[id];
+    store.set("done",d); e.target.closest(".exc").classList.toggle("is-done",e.target.checked);
+    const pressed=document.querySelector('#p-paseos .chip[aria-pressed="true"]'); if(pressed&&pressed.dataset.xf==="undone") setXF("undone");
+  }
+});
+
+/* ---------- search ---------- */
+const SEARCH=[];
+(function buildIndex(){
+  const seen=new Set();
+  const add=(kind,o,label,extra={})=>{ const key=kind+"|"+norm(o.es); if(seen.has(key)) return; seen.add(key); SEARCH.push({kind,o,label,hay:norm(o.es+" "+o.en+" "+(o.note||"")+" "+(extra.more||"")),es:norm(o.es),en:norm(o.en),...extra}); };
+  CATS.forEach(c=>c.blocks.forEach(b=>{
+    if(b.items && b.type!=="nums") b.items.forEach(o=>add("frase",o,c.es,{cat:c.id}));
+    if(b.type==="nums") b.items.forEach(n=>add("frase",{es:n.w,en:n.v},c.es,{cat:c.id}));
+    if(b.chips) b.chips.forEach(o=>add("frase",o,c.es,{cat:c.id}));
+  }));
+  MENU_GLOSS.forEach(s=>s.items.forEach(o=>add("menu",o,"Menú · "+s.h)));
+  SAMPLE_MENUS.forEach(m=>m.sections.forEach(s=>s.items.forEach(([es])=>add("menu",{es,en:MENU_EN[es]||glossFor(es)},"Menú · "+m.es))));
+  EXC.forEach(x=>SEARCH.push({kind:"paseo",x,hay:norm([x.name,x.es,x.blurb,x.tags.join(" "),x.tips.join(" "),SIZE_LABEL[x.size].es].join(" ")),es:norm(x.es),en:norm(x.name)}));
+})();
+const qEl=document.getElementById("q"), qClear=document.getElementById("qClear"), results=document.getElementById("results");
+const SYN={bathroom:["bano","restroom","toilet"],toilet:["bano","bathroom","restroom"],restroom:["bano","bathroom"],bano:["bathroom","restroom"],
+  check:["cuenta"],bill:["cuenta","check"],atm:["cajero"],cash:["efectivo"],money:["plata"],gas:["nafta","gasoline"],gasoline:["nafta"],petrol:["nafta"],
+  pay:["pagar","pago"],card:["tarjeta"],credit:["credito","tarjeta"],water:["agua"],coffee:["cafe"],icecream:["helado"],help:["ayuda"],doctor:["medico"],
+  steak:["bife","entrecot"],beef:["carne","asado","bife"],fish:["pescado","merluza"],chicken:["pollo"],shrimp:["camarones"],sunscreen:["protector"],
+  wifi:["wifi","clave"],password:["clave"],ticket:["entrada"],tickets:["entrada","entradas"],price:["cuanto","sale"],cost:["cuanto","sale"],"how much":["cuanto"]};
+function score(item,terms,full){
+  let s=0;
+  for(const t of terms){ if(item.hay.includes(t)){ s+=1; continue; } const alt=SYN[t]; if(alt&&alt.some(a=>item.hay.includes(a))){ s+=.8; continue; } return 0; }
+  if(item.es===full||item.en===full) s+=10;
+  if(item.es.startsWith(full)||item.en.startsWith(full)) s+=4;
+  if(item.es.includes(full)||item.en.includes(full)) s+=2;
+  if(item.kind==="frase") s+=.5;
+  return s;
+}
+function runSearch(){
+  const raw=qEl.value; const full=norm(raw);
+  qClear.hidden=!raw;
+  if(full.length<2){ results.hidden=true; document.body.classList.remove("searching"); return; }
+  const terms=full.split(" ").filter(Boolean);
+  const hits=SEARCH.map(it=>({it,s:score(it,terms,full)})).filter(h=>h.s>0).sort((a,b)=>b.s-a.s);
+  const fr=hits.filter(h=>h.it.kind==="frase").slice(0,40), mn=hits.filter(h=>h.it.kind==="menu").slice(0,30), px=hits.filter(h=>h.it.kind==="paseo").slice(0,8);
+  const sec=(title,en,body,n)=>n?`<section class="block"><div class="block-head"><h2>${title}</h2><span class="en">${en} · ${n}</span></div>${body}</section>`:"";
+  const rows=list=>`<div class="rows">${list.map(h=>rowHTML(h.it.o,`<span class="where">${esc(h.it.label)}</span>`)).join("")}</div>`;
+  const pcards=`<div class="xlite">${px.map(h=>`<button type="button" class="xl" data-jump="exc-${h.it.x.id}"><span class="size s-${h.it.x.size}">${SIZE_LABEL[h.it.x.size].es}</span><b>${esc(h.it.x.name)}</b><span>${esc(h.it.x.time)} · ${esc(h.it.x.dist)}</span></button>`).join("")}</div>`;
+  const body = sec("Frases","Phrases",rows(fr),fr.length)+sec("Menú","Menu words",rows(mn),mn.length)+sec("Paseos","Outings",pcards,px.length);
+  results.innerHTML=`<div class="lesson-head"><div class="lesson-kicker">Buscar</div><h1>“${esc(raw.trim())}”</h1><p>${hits.length?`${fr.length+mn.length+px.length} matches`:"No matches."}</p></div>`+
+    (body||`<div class="aside warm"><h3>Nada todavía</h3><p>Try a simpler word in English or Spanish (accents don’t matter), like <b>bathroom</b>, <b>pago</b>, <b>chicken</b> or <b>castle</b>. Or ask someone: <b>¿Cómo se dice…?</b></p><div class="chips">${sayButton(P("¿Cómo se dice?","How do you say…?"))}${sayButton(P("¿Me lo podés escribir?","Can you write it down for me?"))}</div></div>`);
+  results.hidden=false; document.body.classList.add("searching");
+}
+function clearSearch(){ if(!qEl.value&&results.hidden) return; qEl.value=""; runSearch(); }
+qEl.addEventListener("input",()=>{ closePlayer(); runSearch(); });
+qEl.addEventListener("keydown",e=>{ if(e.key==="Escape"){ clearSearch(); qEl.blur(); } if(e.key==="Enter") qEl.blur(); });
+qClear.addEventListener("click",()=>{ clearSearch(); qEl.focus(); });
+
+/* ---------- show-it-big overlay ---------- */
+const big=document.getElementById("bigshow");
+const showBtn=document.createElement("button");
+showBtn.type="button"; showBtn.className="pl-show"; showBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke-linecap="round"/></svg>Mostrar en grande <span>show it</span>';
+player.appendChild(showBtn);
+showBtn.addEventListener("click",e=>{
+  e.stopPropagation();
+  if(!currentBtn) return;
+  document.getElementById("bigEs").textContent=currentBtn.dataset.es;
+  document.getElementById("bigEn").textContent=currentBtn.dataset.en||"";
+  big.hidden=false; document.body.classList.add("big-open");
+});
+big.addEventListener("click",()=>{ big.hidden=true; document.body.classList.remove("big-open"); });
+
+/* ---------- clicks for chips/jumps (capture so the player logic doesn't swallow them) ---------- */
+document.addEventListener("click",e=>{
+  const cat=e.target.closest("#p-frases .chip[data-cat]");
+  if(cat){ setCat(cat.dataset.cat); if(cat.dataset.cat!=="all"){ const t=document.getElementById("cat-"+cat.dataset.cat); if(t) t.scrollIntoView({behavior:"smooth",block:"start"}); } return; }
+  const xf=e.target.closest("#p-paseos .chip[data-xf]");
+  if(xf){ setXF(xf.dataset.xf); return; }
+  const j=e.target.closest("[data-jump]");
+  if(j){ e.preventDefault(); clearSearch(); jumpTo(j.dataset.jump); return; }
+},true);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!big.hidden){ big.hidden=true; document.body.classList.remove("big-open"); } });
+
+showTab(store.get("tab","frases"),{noScroll:true});
+setCat("all"); setXF("all"); refreshPrices();
+
+</script>
+</body>
+</html>

@@ -12,7 +12,24 @@ How the `audio/*.mp3` files are generated, and how to regenerate or extend them.
 - **Input:** `lista_de_grabacion.csv` at the repo root. Columns:
   `slug, filename, spanish, english`. The `spanish` column holds the **spoken**
   text (already stripped of ornamental "…"); `slug` is the lookup key / filename.
-- **Output:** `audio/<slug>.mp3`, one per phrase (currently 279).
+- **Output:** `audio/<slug>.mp3`, one per phrase (563: 325 lesson clips + 238
+  new ones for the trip guide).
+
+### Trip guide clips
+`viaje.html` shares the same `audio/` folder and slug rules. 162 of its phrases
+reuse existing lesson clips; the other 238 were appended to the end of
+`lista_de_grabacion.csv` (existing rows unchanged). Until they're generated, the
+guide falls back to the device voice for those phrases. The resumable generator
+only makes the 238 missing files.
+
+The in-page **Descargar lista de grabación** button exports only the phrases on
+the page you're on. To rebuild the combined list after editing either page,
+merge the two downloads (lesson rows first, then any new guide slugs), or ask
+Claude to regenerate it.
+
+A few guide phrases share a slug with a lesson clip that differs only in
+capitals or ¡! (`si`, `no`, `la-plata`, `vamos-a-la-playa`, `vamos-a-la-rambla`).
+They reuse the lesson clip, which is fine.
 
 ## Data flow
 
