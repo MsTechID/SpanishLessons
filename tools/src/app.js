@@ -53,11 +53,11 @@ function catHead(es,en,id){
 /* ---------- FRASES ---------- */
 function renderFrases(){
   const chips=`<div class="chiprow" role="toolbar" aria-label="Categories">
-    <button class="chip" data-cat="all" aria-pressed="true">Todo</button>
-    ${CATS.map(c=>`<button class="chip" data-cat="${c.id}" aria-pressed="false">${esc(c.es)}</button>`).join("")}
+    <button class="chip" data-cat="all" aria-pressed="true">All</button>
+    ${CATS.map(c=>`<button class="chip" data-cat="${c.id}" aria-pressed="false">${esc(c.chip||c.es)}</button>`).join("")}
   </div>`;
   const cats=CATS.map(c=>`<div class="cat" data-catid="${c.id}">${catHead(c.es,c.en,"cat-"+c.id)}${c.blocks.map(renderBlock).join("")}</div>`).join("");
-  return `<div class="lesson-head"><div class="lesson-kicker">Frases</div><h1>Frases para el viaje</h1><p>Tap a category, or type anything in the search box. Tap any Spanish to hear it.</p></div>${chips}<div class="cats">${cats}</div>`;
+  return `<div class="lesson-head"><div class="lesson-kicker">Frases</div><h1>Phrases for the trip</h1><p>Tap a category, or type anything in the search box. Tap any Spanish to hear it.</p></div>${chips}<div class="cats">${cats}</div>`;
 }
 
 /* ---------- MENÚ ---------- */

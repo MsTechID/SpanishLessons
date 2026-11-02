@@ -3,7 +3,7 @@ function P(es, en, opts={}){ return {es, en, ...opts}; }
 
 /* ---------- Phrasebook, by category ---------- */
 const CATS = [
-  { id:"esencial", es:"Lo esencial", en:"The must-knows — if you learn nothing else", blocks:[
+  { id:"esencial", chip:"Must-knows", es:"Lo esencial", en:"The must-knows — if you learn nothing else", blocks:[
     { items:[
       P("Hola","Hi / Hello"), P("Buen día","Good morning"),
       P("Por favor","Please"), P("Gracias","Thank you"), P("Perdón","Excuse me / Sorry"),
@@ -22,7 +22,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"saludos", es:"Saludos y charla", en:"Greetings & small talk", blocks:[
+  { id:"saludos", chip:"Greetings & small talk", es:"Saludos y charla", en:"Greetings & small talk", blocks:[
     { h:"Saludos", en:"Greetings", items:[
       P("Hola","Hi / Hello"), P("Buen día","Good morning"), P("Buenas tardes","Good afternoon"),
       P("Buenas noches","Good evening / night"),
@@ -47,7 +47,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"supervivencia", es:"Cuando no entendés", en:"When you’re lost in the conversation", blocks:[
+  { id:"supervivencia", chip:"When you don’t understand", es:"Cuando no entendés", en:"When you’re lost in the conversation", blocks:[
     { items:[
       P("No entiendo","I don’t understand",{note:"You caught nothing. Full reset."}),
       P("Más despacio, por favor","Slower, please",{note:"You caught some words"}),
@@ -63,7 +63,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"restaurante", es:"En el restorán", en:"At the restaurant", blocks:[
+  { id:"restaurante", chip:"Restaurant", es:"En el restorán", en:"At the restaurant", blocks:[
     { h:"Pedir", en:"Ordering", items:[
       P("Una mesa para tres, por favor","A table for three, please"),
       P("¿Puedo ver la carta?","Can I see the menu?"),
@@ -101,7 +101,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"cafe", es:"Café, panadería y helado", en:"Café, bakery & ice cream", blocks:[
+  { id:"cafe", chip:"Café, bakery & ice cream", es:"Café, panadería y helado", en:"Café, bakery & ice cream", blocks:[
     { items:[
       P("Quería un café con leche","I’d like a coffee with milk"),
       P("Un cortado, por favor","An espresso with a splash of milk, please"),
@@ -114,7 +114,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"plata", es:"Plata y compras", en:"Money & shopping", blocks:[
+  { id:"plata", chip:"Money & shopping", es:"Plata y compras", en:"Money & shopping", blocks:[
     { type:"converter" },
     { h:"Pagar", en:"Paying", items:[
       P("¿Cuánto sale?","How much is it?"),
@@ -142,7 +142,7 @@ const CATS = [
     ], chips:[ P("la plata","money"), P("quinientos pesos","500 pesos") ]},
   ]},
 
-  { id:"numeros", es:"Los números", en:"Numbers & prices", blocks:[
+  { id:"numeros", chip:"Numbers", es:"Los números", en:"Numbers & prices", blocks:[
     { type:"nums", h:"0–15", en:"The basics",
       items:[
         {v:"0",w:"cero"},{v:"1",w:"uno"},{v:"2",w:"dos"},{v:"3",w:"tres"},{v:"4",w:"cuatro"},{v:"5",w:"cinco"},
@@ -162,7 +162,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"direcciones", es:"¿Dónde queda?", en:"Finding your way", blocks:[
+  { id:"direcciones", chip:"Directions", es:"¿Dónde queda?", en:"Finding your way", blocks:[
     { h:"Preguntar", en:"Asking", items:[
       P("¿Dónde queda…?","Where is…?",{say:"¿Dónde queda?",note:"The local way to ask"}),
       P("¿Dónde queda el baño?","Where’s the bathroom?"),
@@ -184,7 +184,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"auto", es:"El auto y la ruta", en:"Car, gas & road signs", blocks:[
+  { id:"auto", chip:"Car & driving", es:"El auto y la ruta", en:"Car, gas & road signs", blocks:[
     { h:"La estación de servicio", en:"At the gas station", items:[
       P("Lleno, por favor","Fill it up, please"),
       P("Lleno de súper, por favor","Fill it with regular, please",{note:"Check which fuel your rental car takes"}),
@@ -209,7 +209,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"hora", es:"La hora y los carteles", en:"Time, hours & signs", blocks:[
+  { id:"hora", chip:"Time & signs", es:"La hora y los carteles", en:"Time, hours & signs", blocks:[
     { h:"La hora", en:"Time", items:[
       P("¿Qué hora es?","What time is it?"),
       P("¿A qué hora abre?","What time does it open?"),
@@ -234,7 +234,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"paseos", es:"Playa y paseos", en:"Beach & sightseeing", blocks:[
+  { id:"paseos", chip:"Beach & sightseeing", es:"Playa y paseos", en:"Beach & sightseeing", blocks:[
     { h:"En la playa", en:"At the beach", items:[
       P("la playa","the beach"), P("las olas","the waves"),
       P("la sombrilla","the beach umbrella"),
@@ -257,7 +257,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"casa", es:"El hotel o la casa", en:"Where you’re staying", blocks:[
+  { id:"casa", chip:"Hotel / house", es:"El hotel o la casa", en:"Where you’re staying", blocks:[
     { items:[
       P("Tengo una reserva","I have a reservation"),
       P("la llave","the key"),
@@ -268,7 +268,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"salud", es:"Farmacia y salud", en:"Pharmacy & feeling unwell", blocks:[
+  { id:"salud", chip:"Pharmacy & health", es:"Farmacia y salud", en:"Pharmacy & feeling unwell", blocks:[
     { items:[
       P("¿Dónde queda la farmacia?","Where’s the pharmacy?"),
       P("¿Tenés algo para el dolor de cabeza?","Do you have something for a headache?"),
@@ -284,7 +284,7 @@ const CATS = [
     ]},
   ]},
 
-  { id:"emergencias", es:"Emergencias", en:"Emergencies — call 911", blocks:[
+  { id:"emergencias", chip:"Emergencies", es:"Emergencias", en:"Emergencies — call 911", blocks:[
     { items:[
       P("¡Necesito ayuda!","I need help!"),
       P("Necesito un médico","I need a doctor"),
